@@ -97,7 +97,7 @@ const Register = () => {
                     <p className='font-light text-sm'>I agree to platforms <span className='text-[#7851A9] font-semibold'>Terms of service</span> and <span className='text-[#7851A9] font-semibold'>Privacy Policy</span></p>
                 </div>
 
-                <Button type="submit" className='w-full py-6 bg-[#7851A9]'> Continue</Button>
+                <Button type="submit" className='w-full py-6 bg-[#7851A9] hover:bg-[#563382] transition duration-300'> Continue</Button>
 
             </form>
         </Form>
