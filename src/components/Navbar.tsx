@@ -1,10 +1,23 @@
+'use client'
 import Image from 'next/image'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button } from './ui/button'
 
 const Navbar = () => {
+  const [isScrolled, setIsScrolled] =useState(false);
+
+  useEffect(()=>{
+        const handleScroll =()=>{
+            setIsScrolled(window.scrollY > 20) // this checks if the page is scrolled more than 20px, if so it sets isScrolled to true
+        };
+        window.addEventListener('scroll', handleScroll) // add the event listener to the window object
+
+        return()=> window.removeEventListener('scroll', handleScroll) // cleanup function to remove the event listener when the component unmounts
+    },[])
+
   return (
-    <nav className='w-full py-5 fixed top-0 left-0 bg-transparent z-20'>
+    <nav className={`w-full py-5 fixed top-0 left-0  z-50 transition-all duration-300 bg-blur ${isScrolled ? ' border-b border-card-border backdrop-blur-glass bg-[#7852A9]' :
+        'bg-transparent'}`}>
       <div className='flex items-center justify-between max-w-6xl mx-auto px-2'>
         {/* logo */}
         <div className=''>

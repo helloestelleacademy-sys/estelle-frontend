@@ -119,3 +119,15 @@
     @apply bg-background text-foreground;
   }
 }
+
+  .glass {
+    background: hsl(220 27% 8% / 0.1);
+    backdrop-filter: blur(20px);
+    border: 1px solid hsl(220 27% 12% / 0.2);
+  }
+
+    .glass-border {
+    background: var(--gradient-border);
+    padding: 1px;
+    border-radius: inherit;
+  }

@@ -33,7 +33,7 @@ const Dashboard = () => {
         {/* details */}
         <div className='mt-6 grid grid-cols-1 md:grid-cols-2 gap-6'>
             {TrackedVideos.map((video)=>(
-                <div className='bg-white flex items-center rounded-3xl px-6 py-4 gap-3'>
+                <div key={video.title} className='bg-white flex items-center rounded-3xl px-6 py-4 gap-3'>
                     <div className='py-3  px-3 bg-[#7851A9] text-white rounded-full'>
                         <User className='' />
                     </div>
