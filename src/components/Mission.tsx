@@ -89,7 +89,7 @@ const Mission = () => {
                             <p className='text-sm'>{feature.num}</p>
 
                             <div className='mt-6 space-y-6'>
-                                <h2 className='text-2xl md:text-3xl max-w-lg'><span className='text-[#7852A9]'>{feature.coloredTitle}</span>{" "}{feature.title}</h2>
+                                <h2 className='text-2xl md:text-3xl max-w-lg'><span className='gradient-bg bg-clip-text text-transparent'>{feature.coloredTitle}</span>{" "}{feature.title}</h2>
                                 <h3 className='max-w-2xl text-balance'>{feature.text}</h3>
                             </div>
                         </div>

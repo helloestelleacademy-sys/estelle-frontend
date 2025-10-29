@@ -12,7 +12,7 @@ const About = () => {
         <div className='space-y-6 flex-1'>
             <p className='text-sm text-[#76a8ee] flex items-center gap-2'>Why Estelle</p>
             <h2 className='text-3xl md:text-4xl lg:text-5xl mt-2 font-semibold'>About Estelle</h2>
-            <p className='text-neutral-500 max-w-xl text-balance'>Become a thought leader: Learn how to tell your story that becomes a legacy. Get seen and make an impact. 
+            <p className='text-neutral-500 max-w-xl text-[18px] tracking-wide text-balance'>Become a thought leader: Learn how to tell your story that becomes a legacy. Get seen and make an impact. 
             Expert led courses: Access to valuable knowledge and mentorship that improves your visibility 
             Earn valuable credentials: Get certified and boost your chances of being trusted by clients & recruiters.
             saepe excepturi repellat totam obcaecati quae accusantium consequuntur blanditiis deleniti quisquam.
@@ -41,7 +41,7 @@ const About = () => {
             </div>
             
             <div>
-            <Button className='bg-gradient-to-r from-[#ff00ff] via-[#d500f9] to-[#7b1fa2] hover:opacity-90 w-[200px] py-6'>Read More</Button>
+            <Button className='bg-gradient-to-r from-[#ff00ff] via-[#d500f9] to-[#7b1fa2] hover:opacity-90 w-[200px] py-6 text-lg'>Read More</Button>
             </div>
         </div>
 

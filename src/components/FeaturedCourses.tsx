@@ -10,7 +10,7 @@ const FeaturedCourses = () => {
             <div className='flex flex-col md:flex-row items-center justify-between gap-10'>
                 {/* left */}
                 <div>
-                    <p className='text-sm text-[#76a8ee] flex items-center gap-2'><span className='w-[50px] h-0.5 bg-[#76a8ee]' /> Popular Courses</p>
+                    <p className='text-sm text-[#25143b] flex items-center gap-2'><span className='w-[50px] h-0.5 bg-[#76a8ee]' /> Popular Courses</p>
                     <h2 className='text-3xl md:text-4xl lg:text-5xl mt-2 font-semibold'>Secure a Fresh Career With Advanced Tech Skils Training</h2>
                 </div>
 

@@ -118,6 +118,13 @@
   body {
     @apply bg-background text-foreground;
   }
+
+}
+
+@layer components {
+  .gradient-bg{
+    @apply bg-gradient-to-r from-[#ff00ff] via-[#d500f9] to-[#7b1fa2]
+  }
 }
 
   .glass {
@@ -130,4 +137,8 @@
     background: var(--gradient-border);
     padding: 1px;
     border-radius: inherit;
+  }
+
+  .bg {
+
   }
