@@ -16,7 +16,7 @@ const Navbar = () => {
     },[])
 
   return (
-    <nav className={`w-full py-5 fixed top-0 left-0  z-50 transition-all duration-300 bg-blur ${isScrolled ? ' border-b border-card-border backdrop-blur-glass bg-[#7852A9]' :
+    <nav className={`w-full py-5 fixed top-0 left-0  z-50 transition-all duration-300 bg-blur ${isScrolled ? '  backdrop-blur-glass bg-[#25143b]' :
         'bg-transparent'}`}>
       <div className='flex items-center justify-between max-w-6xl mx-auto px-2'>
         {/* logo */}
