@@ -1,11 +1,41 @@
+'use client'
 import React from 'react'
+import gsap from "gsap"
+import { SplitText } from "gsap/all"
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useGSAP } from '@gsap/react'
+
+gsap.registerPlugin(SplitText, ScrollTrigger)
 
 const Details = () => {
+
+  useGSAP(()=>{
+    const messageSplit = SplitText.create('.message', {type:'words'})
+
+    const tl = gsap.timeline({
+      scrollTrigger:{
+        trigger:'.about',
+        start:'top center',
+        end: 'bottom center',
+      }
+    })
+
+    tl.to('.about h2', {opacity:1, y:0, ease:'power2.inOut', duration:0.8})
+
+    tl.from(messageSplit.words, {
+      opacity:0,
+      yPercent:50,
+      ease:'power1.in',
+      stagger:0.03,
+      duration:0.5,
+    })
+  },[])
+
   return (
-    <section className='py-18 lg:py-24 min-h-screen'>
+    <section className='about py-18 lg:py-24 min-h-screen'>
       <div className='max-w-7xl mx-auto px-4 md:px-6'>
-            <h2 className='text-3xl md:text-4xl lg:text-5xl text-center font-semibold'>About Estelle</h2>
-            <p className='max-w-3xl mx-auto text-[24px] text-center text-[#636971] mt-6'>
+            <h2 className='text-3xl md:text-4xl lg:text-5xl text-center font-semibold opacity-0 translate-y-10'>About Estelle</h2>
+            <p className='message max-w-3xl mx-auto text-[20px] text-center text-[#131314] mt-6'>
                 Estelle is an e-learning platform designed to make personal branding education universally accessible. Through curated courses, expert mentorship,
                 and interactive learning experiences, we empower individuals and teams to define their voice, showcase their value, and build influence that matters.
                 

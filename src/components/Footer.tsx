@@ -77,8 +77,8 @@ const Footer = () => {
             </div>
 
             <div className='space-y-4'>
-                <h3 className='font-semibold text-sm'>estelle@gmail.com</h3>
-                <p className='font-semibold text-sm'>+234 803 069 6738</p>
+                <h3 className='font-semibold text-sm'>info.estelleglobal@gmail.com</h3>
+                {/* <p className='font-semibold text-sm'>+234 803 069 6738</p> */}
             </div>
         </div>
 

@@ -7,6 +7,7 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
 --font-sans: var(--font-inter);
+--font-source:["var(--font-sourceserif4)", "serif"];
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -116,14 +117,14 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
   }
 
 }
 
 @layer components {
   .gradient-bg{
-    @apply bg-gradient-to-r from-[#ff00ff] via-[#d500f9] to-[#7b1fa2]
+    @apply  bg-[#7851A9]
   }
 }
 
@@ -137,8 +138,4 @@
     background: var(--gradient-border);
     padding: 1px;
     border-radius: inherit;
-  }
-
-  .bg {
-
   }

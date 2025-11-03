@@ -43,31 +43,31 @@ export const NavItems2 =[
 
 export const testimonials = [
   {
-    name: 'Abigail P.',
+    name: 'Precious O.',
     img: '/assets/img4.png',
-    text: 'I have a full-time job and 3 kids. I needed the flexibility offered by Coursera Plus in order to achieve my goals. My Coursera Plus subscription motivated me to keep learning.',
+    text: 'Estelle courses are very practical, they helped me achieve my goal of being impactful in my niche as a Virtual Assistant whilst staying top of mind. ',
   },
   {
-    name: 'James T.',
+    name: 'Gift C.',
     img: '/assets/img4.png',
-    text: 'The projects and mentorship were game changers. I learned practical skills that helped me land a remote role as a frontend developer.',
+    text: " I really appreciate the flexibility i get learning with Estelle. I have a 9-5 job and I'm still able to take courses to build my personal brand.",
   },
   {
-    name: 'Miriam S.',
+    name: 'Timothy O.',
     img: '/assets/img4.png',
-    text: 'The platform kept me accountable and inspired. I finally built confidence in my tech career journey!',
+    text: "I'm a freelancer and Estelle premium  plan has motivated me to build my personal brand, through their 1-1 hands-on mentorship.",
   },
-  {
-    name: 'Kelvin A.',
-    img: '/assets/img4.png',
-    text: 'Its like learning from the best minds at your own pace — without pressure.',
-  },
+  // {
+  //   name: 'Kelvin A.',
+  //   img: '/assets/img4.png',
+  //   text: 'Its like learning from the best minds at your own pace — without pressure.',
+  // },
 ]
 
 export const featuredCourses =[
   {
     title:'Building Your Personal Brand from Scratch',
-    img:'/assets/courseImg1.jpg',
+    img:'/assets/courseImg.png',
     time:'1 hour, 30mins',
     price:'35,000',
     level:'Beginner level',
@@ -75,10 +75,61 @@ export const featuredCourses =[
   },
   {
     title:'Building Your Personal Brand from Scratch',
-    img:'/assets/courseImg1.jpg',
+    img:'/assets/courseImg.png',
     time:'1 hour, 30mins',
     price:'55,000',
     level:'Intermediate level',
+    modules:'10 modules',
+  },
+  {
+    title:'Building Your Personal Brand from Scratch',
+    img:'/assets/courseImg2.jpg',
+    time:'1 hour, 30mins',
+    price:'40,000',
+    level:'Beginner level',
+    modules:'10 modules',
+  },
+]
+
+export const AllCourses =[
+  {
+    title:'Building Your Personal Brand from Scratch',
+    img:'/assets/courseImg.png',
+    time:'1 hour, 30mins',
+    price:'35,000',
+    level:'Beginner level',
+    modules:'10 modules',
+  },
+  {
+    title:'Building Your Personal Brand from Scratch',
+    img:'/assets/courseImg.png',
+    time:'1 hour, 30mins',
+    price:'55,000',
+    level:'Intermediate level',
+    modules:'10 modules',
+  },
+  {
+    title:'Building Your Personal Brand from Scratch',
+    img:'/assets/courseImg2.jpg',
+    time:'1 hour, 30mins',
+    price:'40,000',
+    level:'Beginner level',
+    modules:'10 modules',
+  },
+  {
+    title:'Building Your Personal Brand from Scratch',
+    img:'/assets/courseImg2.jpg',
+    time:'1 hour, 30mins',
+    price:'40,000',
+    level:'Beginner level',
+    modules:'10 modules',
+  },
+  {
+    title:'Building Your Personal Brand from Scratch',
+    img:'/assets/courseImg2.jpg',
+    time:'1 hour, 30mins',
+    price:'40,000',
+    level:'Beginner level',
     modules:'10 modules',
   },
   {

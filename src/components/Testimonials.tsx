@@ -13,7 +13,7 @@ const Testimonials = () => {
 
         gsap.to(container, {
              x: -totalWidth,
-             duration: 20, 
+             duration: 25, 
              ease: 'linear',
              repeat: -1,
              modifiers: {
@@ -26,7 +26,7 @@ const Testimonials = () => {
 
   return (
     <section className='py-18 lg:py-24'>
-      <div className='max-w-7xl mx-auto flex flex-col items-center justify-center'> 
+      <div className='max-w-7xl mx-auto flex flex-col items-center justify-center px-4'> 
 
         <h2 className='text-2xl md:text-3xl lg:text-5xl text-center font-semibold lg:max-w-2xl pb-12'>What our learners are acheiving through learning</h2>
 
@@ -40,12 +40,12 @@ const Testimonials = () => {
               >
                 <div className="flex items-center gap-3 mb-4">
                   <Avatar>
-                    <AvatarImage className="size-12" src={t.img} />
+                    <AvatarImage className="" src={t.img} />
                     <AvatarFallback>{t.name.charAt(0)}</AvatarFallback>
                   </Avatar>
                   <p className="font-medium">{t.name}</p>
                 </div>
-                <p className="text-sm text-neutral-400">{t.text}</p>
+                <p className="text-neutral-400">{t.text}</p>
               </div>
             ))}
           </div>

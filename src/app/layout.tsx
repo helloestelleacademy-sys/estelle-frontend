@@ -1,9 +1,15 @@
 import type { Metadata } from "next";
-import {Inter,} from "next/font/google";
+import {Inter, Source_Serif_4} from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
   variable: "--font-inter",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const source = Source_Serif_4({
+  variable: "--font-sourceserif4",
   subsets: ["latin"],
   display: "swap",
 });
@@ -23,7 +29,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} font-sans antialiased`}
+        className={`${inter.variable} ${source.variable} antialiased`}
       >
         {children}
       </body>

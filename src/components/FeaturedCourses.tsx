@@ -11,12 +11,12 @@ const FeaturedCourses = () => {
                 {/* left */}
                 <div>
                     <p className='text-sm text-[#25143b] flex items-center gap-2'><span className='w-[50px] h-0.5 bg-[#76a8ee]' /> Popular Courses</p>
-                    <h2 className='text-3xl md:text-4xl lg:text-5xl mt-2 font-semibold'>Secure a Fresh Career With Advanced Tech Skils Training</h2>
+                    <h2 className='text-3xl md:text-2xl lg:text-3xl mt-2 font-semibold'>Master the Art of Personal Branding for Career Success with these courses</h2>
                 </div>
 
                 {/* right */}
                 <div>
-                    <p className='max-w-2xl text-[#98aac2]'>Estelle Academy focuses heavily on practical real world skills, ensuring your teams stay prepared with the top abilities
+                    <p className='max-w-2xl text-[#7851A9]'>Estelle Academy focuses heavily on practical real world skills, ensuring your teams stay prepared with the top abilities
                         needed to tackle tomorrow's digital challenges
                     </p>
                 </div>

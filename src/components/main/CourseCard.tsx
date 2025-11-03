@@ -1,6 +1,7 @@
 import { BadgeDollarSign, Book, ChartNoAxesCombined, TimerIcon } from 'lucide-react'
 import Image from 'next/image'
 import React from 'react'
+import { Button } from '../ui/button'
 
 type CourseProp ={
     title:string,
@@ -17,9 +18,9 @@ const CourseCard = ({title, time, img, price, level, modules}:CourseProp) => {
         <Image src={img} alt='Image' width={200} height={150} className='w-full h-[200px] rounded-2xl inset-0 object-cover' />
 
         <div className='py-6 px-4 bg-white rounded-2xl -mt-2'>
-                <h2 className='font-semibold text-xl'>{title}</h2>
+                <h2 className='font-semibold text-lg'>{title}</h2>
 
-                <div className='flex items-center mt-2'>
+                {/* <div className='flex items-center mt-2'>
                     <div className='flex items-center gap-2'>
                         <TimerIcon  className='text-gray-400' size={18}  />
                         <p className='text-xs text-neutral-400 mt-2'>{time}</p>
@@ -29,9 +30,17 @@ const CourseCard = ({title, time, img, price, level, modules}:CourseProp) => {
                             <BadgeDollarSign className='text-gray-400' size={18} />
                                 {price}
                         </p>
+                </div> */}
+                {/* <hr className='mt-4' /> */}
+                <div className='flex items-center justify-between gap-6 mt-4 px-8'>
+                    <Button className='bg-[#EEE0FF] w-[120px] text-black hover:bg-[#dbc2fa]'>Basic</Button>
+
+                    <h2 className='text-sm'>30 minutes</h2>
                 </div>
-                <hr className='mt-4' />
-                <div className='flex justify-between  mt-2'>
+                <div className='mt-4 w-full flex justify-center px-6'>
+                    <Button className='w-full bg-[#37296D] py-6 hover:bg-[#302362]'>Start Learning</Button>
+                </div>
+                {/* <div className='flex justify-between  mt-2'>
                     <div className='flex items-center gap-2'>
                             <ChartNoAxesCombined  className='text-gray-400' size={18}  />
                             <p className='text-xs text-neutral-400 mt-2'>{level}</p>
@@ -41,7 +50,7 @@ const CourseCard = ({title, time, img, price, level, modules}:CourseProp) => {
                         <Book className='text-gray-400' size={18}  />
                         <p className='text-xs text-neutral-400 mt-2'>{modules}</p>
                     </div>
-                </div>
+                </div> */}
             </div>
     </div>
   )

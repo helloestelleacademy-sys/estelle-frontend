@@ -7,27 +7,27 @@ gsap.registerPlugin(ScrollTrigger);
 const features = [
   {
     num:'01',
-    coloredTitle:'Start',
-    title: "with a vision",
-    text: "Whether starting with an idea or seeking to elevate an existing project, ao Ventures is interested in working with any project building on Arweave and ao.",
+    coloredTitle:'Become',
+    title: "a thought leader",
+    text: "Learn how to tell your story that becomes a legacy. Get seen and make an impact.",
   },
   {
     num:'02',
-    coloredTitle:'Enroll',
-    title: "in the 10-week program",
-    text: "Take part in weekly technical workshops, engineering office hours, and keynote talks from industry pioneers, investors, and founders in the Arweave ecosystem.",
+    coloredTitle:'Expert',
+    title: "led courses",
+    text: "Access to valuable knowledge and mentorship that improves your visibility",
   },
   {
     num:'03',
-    coloredTitle:'Pitch',    
-    title: "your product on demo day",
-    text: "While participation in ao Ventures is open to everyone, only a select few projects will be selected to pitch on demo day to showcase their project to investors and the broader community.",
+    coloredTitle:'Earn',    
+    title: "valuable credentials",
+    text: "Get certified and boost your chances of being trusted by clients & recruiters.",
   },
   {
     num:'04',
-   coloredTitle:'Raise',   
-    title: "funds and elevate your project",
-    text: "With over $35M in capital committed from leading investors in the Web3 space, our focus is to help you raise funds and elevate your project..",
+   coloredTitle:'Every',   
+    title: "legacy begins with a story",
+    text: "our mission is to turn everyday people into legacy brands by making personal branding education accessible, practical, and transformative.",
   },
 ];
 
@@ -68,7 +68,7 @@ const Mission = () => {
     },[])
 
   return (
-    <section ref={sectionRef} className='py-22 lg:py-28 w-full min-h-screen  '>
+    <section ref={sectionRef} className='py-22 lg:py-28 w-full min-h-screen'>
         <div className='max-w-7xl mx-auto px-4 lg:px-8'>
 
             <div className="relative flex flex-col md:flex-row items-start gap-8">
@@ -76,7 +76,8 @@ const Mission = () => {
                  {/* {/* Left column: Headline */}
                  <div ref={containerRef} className="w-full lg:w-1/2 pr-8">
                      <h1 className="text-4xl md:text-5xl font-semibold leading-tight">
-                    Our mission is simple: Help founders achieve their vision
+                    Our mission is simple: to turn everyday people into legacy brands.
+
                     </h1>
                  </div>
 
