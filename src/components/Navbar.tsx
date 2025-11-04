@@ -116,8 +116,8 @@ const navLinks =[
         </ul>
 
         <div className='hidden md:flex space-x-6'>
-            <Button className='w-[100px] py-5 bg-white text-black'>Login</Button>
-            <Button className='bg-[#7852A9] w-[100px] py-5'>Signup</Button>
+            <Button disabled className='w-[100px] py-5 bg-white text-black'>Login</Button>
+            <Button disabled className='bg-[#7852A9] w-[100px] py-5'>Signup</Button>
         </div>
 
          <div onClick={toggleMenu} className='md:hidden bg-white size-12 z-50 flex flex-col gap-1 justify-center items-center md:size-20 transition-all duration-300 rounded-full cursor-pointer'>

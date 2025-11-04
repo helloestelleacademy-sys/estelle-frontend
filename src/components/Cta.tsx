@@ -11,9 +11,8 @@ const Cta = () => {
             <p className='text-2xl text-gray-100 max-w-xl font-light tracking-wide'>Let your personal brand become a legacy with <span className='font-bold text-white'>Estelle</span></p>
             </div>
         
+         <a href='https://whatsapp.com/channel/0029VbBA6IzHVvTfvZMufU3M' className=' hover:opacity-90 flex items-center justify-center bg-white text-[#7852A9] hover:bg-[#eeedef] py-4 rounded-2xl font-semibold w-full md:w-[200px]'>Start Learning</a>
 
-        <Button className='text-2xl px-5 py-7 bg-white text-[#7852A9] font-semibold hover:bg-[#eeedef]'>Start Learning</Button>
-        
         </div>
 
       </div>
