@@ -1,4 +1,3 @@
-import { BadgeDollarSign, Book, ChartNoAxesCombined, TimerIcon } from 'lucide-react'
 import React from 'react'
 import CourseCard from './main/CourseCard'
 import { featuredCourses } from '@/constants'

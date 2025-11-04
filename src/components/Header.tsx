@@ -1,5 +1,4 @@
 'use client';
-import Image from 'next/image'
 import React, { useRef } from 'react'
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -17,7 +16,7 @@ const Header = () => {
     },{scope:containerRef})
 
   return (
-    <section className="relative min-h-screen w-full overflow-hidden bg-[#F7F0FF] flex items-center justify-center px-6 md:px-16 lg:px-24 py-20">
+    <section className="relative min-h-screen w-full overflow-hidden bg-[#F7F0FF] flex items-center justify-center px-6 md:px-16 lg:px-24 py-26">
         
         <div className='max-w-7xl w-full grid grid-cols-1 lg:grid-cols-2 gap-10 items-center'>
 

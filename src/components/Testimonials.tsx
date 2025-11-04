@@ -5,10 +5,11 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { testimonials } from '@/constants'
 
 const Testimonials = () => {
-    const scrollRef = useRef(null);
+    const scrollRef = useRef<HTMLDivElement | null>(null);
 
     useEffect(()=>{
         const container = scrollRef.current
+          if (!container) return;
         const totalWidth = container.scrollWidth / 2
 
         gsap.to(container, {

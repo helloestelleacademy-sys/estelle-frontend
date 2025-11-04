@@ -72,7 +72,7 @@ const Values = () => {
   }, [])
 
   return (
-    <section ref={sectionRef} className="relative py-22 lg:py-28 w-full min-h-screen bg-[#f3f4ed] overflow-hidden ">
+    <section ref={sectionRef} className="relative py-22 lg:py-28 w-full min-h-screen bg-[#F7F0FF] overflow-hidden ">
          <h2 className="headerText text-4xl md:text-5xl lg:text-5xl font-semibold mt-6 text-center max-w-xl mx-auto mb-10 opacity-0 translate-y-10">Why Estelle? Our Core <span className="gradient-bg bg-clip-text text-transparent">Values</span></h2>
           {/* <p className='paragraph text-sm text-center max-w-xl mx-auto mb-10 text-neutral-500 opacity-0 translate-y-10'>At Estelle, our mission is to turn everyday people into legacy brands by making personal branding education accessible, practical, and transformative.
           We empower individuals and organizations to discover their unique voice, build meaningful influence, and create impact that lasts.</p> */}
@@ -82,7 +82,7 @@ const Values = () => {
         {steps.map((step, index) => (
           <div
             key={index}
-            className="flex flex-col items-center justify-center text-center bg-[#f3f3ed] rounded-2xl min-w-[400px] p-10 shadow-xl hover:scale-105 transition-transform duration-300"
+            className="flex flex-col items-center justify-center text-center bg-[#F7F0FF] rounded-2xl min-w-[400px] p-10 shadow-xl hover:scale-105 transition-transform duration-300"
           >
             <div className="gradient-bg p-4 rounded-xl mb-6 flex items-center justify-center">
               {step.icon}

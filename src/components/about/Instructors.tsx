@@ -3,7 +3,6 @@ import React, { useRef } from 'react'
 import gsap from "gsap"
 import { SplitText } from "gsap/all"
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { useGSAP } from '@gsap/react'
 
 gsap.registerPlugin(SplitText, ScrollTrigger)
 
@@ -11,13 +10,9 @@ const instructors =[
     {
         name: "Stella Nwosu",
         role: "Personal Branding Strategist",
-        image: "/assets/stella2.jpg",
+        image: "/assets/stella.jpg",
     },
-    {
-        name: "Stella Nwosu",
-        role: "Personal Branding Strategist",
-        image: "/assets/stella2.jpg",
-    },
+
     {
         name: "Brenda Blanche",
         role: "Personal Branding Coach",  

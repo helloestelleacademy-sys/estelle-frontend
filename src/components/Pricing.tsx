@@ -7,7 +7,7 @@ import pricingImg1 from "@/assets/pricing1.svg"
 import pricingImg2 from "@/assets/pricing2.svg"
 import pricingImg3 from "@/assets/pricing3.svg"
 import { useGSAP } from '@gsap/react'
-import { ScrollTrigger, SplitText } from 'gsap/all'
+import { ScrollTrigger} from 'gsap/all'
 import gsap from 'gsap'
 import naira from '@/assets/naira.png'
 
@@ -21,7 +21,8 @@ const pricing =[
             "Lifetime Access to 6 courses",
             "Earn a certificate upon completion",
             "Tailored quizzes for practical learning",
-        ]
+        ],
+        buttonLink:'https://mainstack.store/stellanwosu/O7XDUpkdLOhk'
     },
     {
         title:"Premium ",
@@ -34,7 +35,8 @@ const pricing =[
             "1-1 hands-on mentorship access with tutors",
             "Save money 5% of your money when you pay",
             "Enjoy maximum flexible learning at your own pace ",
-        ]
+        ],
+         buttonLink:'https://mainstack.store/stellanwosu/premium-plan'
     },
     {
         title:"Organizations",
@@ -50,7 +52,8 @@ const pricing =[
             "Admin dashboard to track employee learning progress",
             "Free personal branding resources, templates and toolkits",
             "Dedicated customer success team and strategic implementation service",
-        ]
+        ],
+         buttonLink:'https://mainstack.store/stellanwosu/O7XDUpkdLOhk'
     },
 ]
 const Pricing = () => {
@@ -58,7 +61,7 @@ const Pricing = () => {
     const priceRef =useRef<(HTMLDivElement | null)[]>([])
 
     useGSAP(()=>{
-        const paragraphSplit =SplitText.create('.price-paragraph', {type:'words'})
+        // const paragraphSplit =SplitText.create('.price-paragraph', {type:'words'})
 
         const priceTl =gsap.timeline({
             scrollTrigger:{
@@ -111,10 +114,11 @@ const Pricing = () => {
                         {/* <p className='text-gray-400 max-w-[250px] text-sm mt-6'>{item.desc}</p> */}
 
                         <div className='flex justify-between items-center max-w-[200px] mx-auto mt-8    '>
-                        <button className='gradient-bg w-full px-8 py-4 rounded-4xl shadow-lg shadow-[#ebccfd] text-sm flex justify-center items-center text-white gap-2'>
+
+                        <a href={item.buttonLink} className='gradient-bg w-full px-8 py-4 rounded-4xl shadow-lg shadow-[#ebccfd] text-sm flex justify-center items-center text-white gap-2'>
                             <Image src={fuelIcon} alt='img' />
                             <p>Buy Now</p>
-                        </button>
+                        </a>
                         </div>
 
                         <div className='mt-8'>
@@ -133,8 +137,8 @@ const Pricing = () => {
                 ))}
             </div>
             
-            <p className='text-center text-sm mt-10 leading-6 text-gray-500 max-w-[450px] mx-auto'>Not ready to pay yet? Try the free demo with 600 icons. Same styles, same
-            features, same flexibility. It also includes full preview.</p>
+            {/* <p className='text-center text-sm mt-10 leading-6 text-gray-500 max-w-[450px] mx-auto'>Not ready to pay yet? Try the free demo with 600 icons. Same styles, same
+            features, same flexibility. It also includes full preview.</p> */}
 
 
         </div>

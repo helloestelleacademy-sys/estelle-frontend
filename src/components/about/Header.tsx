@@ -26,18 +26,21 @@ const Header = () => {
     },[])
 
   return (
-    <section className="header relative min-h-[80vh] overflow-hidden bg-neutral-950">
-        <Image ref={containerRef} src={'/assets/aboutImage.png'} alt="auth-image" className="absolute inset-0 object-cover w-full motion-safe:scale-125 bg-image h-[100vh] opacity-0 " width={800} height={300} />
-        <div className="absolute inset-0 bg-[#39373b] mix-blend-multiply"></div>
+    <section className="header relative min-h-[100vh] overflow-hidden bg-neutral-950 py-26">
+        <Image ref={containerRef} src={'/assets/bgrec.png'} alt="auth-image" className="absolute inset-0 object-cover w-full motion-safe:scale-125 bg-image h-[150vh] opacity-0 " width={800} height={300} />
+        <div className="absolute inset-0 bg-[#3e1963] mix-blend-multiply"></div>
         
-        <div className='relative z-10 flex flex-col justify-center max-w-7xl mx-auto text-white min-h-[80vh] px-4 lg:px-8'>
-            <h1 className='heroText text-4xl lg:text-7xl font-bold mb-6'>About Estellte</h1>
-            <p className='paragraph1 text-lg lg:text-2xl mb-4 max-w-2xl'>Building a Personal Brand that Becomes a Legacy</p>
-            <p className='paragraph2 text-sm  mb-8 max-w-2xl'>Learn from experts, gain practical skills, and transform your personal brand through guided courses and resources.</p>
-            {/* <div className='flex flex-col sm:flex-row items-center gap-4'>
-                <button className='gradient-bg hover:opacity-90 w-[200px] py-4 rounded-full font-semibold'>Get Started</button>
-                <button className='border border-white hover:bg-white hover:text-black transition w-[200px] py-4 rounded-full font-semibold'>Learn More</button>
-            </div> */}
+        <div className='relative z-10 flex flex-col justify-center items-center max-w-7xl mx-auto text-white min-h-[100vh] px-4 lg:px-8'>
+            <h1 className='heroText text-4xl lg:text-5xl font-bold mb-6 text-center '>Learn Personal branding. Get Certified. Stand Out</h1>
+            <p className='paragraph1 text-lg lg:text-lg mb-4 max-w-2xl text-center'>
+                Estelle is an e-learning platform designed to make personal branding education universally accessible. Through curated courses, expert mentorship, and interactive learning experiences, we empower individuals
+                 and teams to define their voice, showcase their value, and build influence that matters.
+            </p>
+
+            <p className='paragraph1 text-sm lg:text-lg mb-4 max-w-2xl mt-4 text-center'>
+                Every legacy begins with a story. At Estelle, we help you discover yours and turn it into a brand that outlives trends. We’re more than an e-learning platform, we’re a movement empowering individuals to find their voice, share their story, 
+                and build influence that lasts through interactive courses, community learning, and expert guidance, we are shaping a new generation of thinkers, doers, and dreamers who build brands that live beyond them
+            </p>
         </div>
       
     </section>
