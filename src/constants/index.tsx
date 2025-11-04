@@ -66,7 +66,7 @@ export const testimonials = [
 
 export const featuredCourses =[
   {
-    title:'Building Your Personal Brand from Scratch',
+    title:'Identifying your unfair advantage ',
     img:'/assets/courseImg.png',
     time:'1 hour, 30mins',
     price:'35,000',
@@ -74,7 +74,7 @@ export const featuredCourses =[
     modules:'10 modules',
   },
   {
-    title:'Building Your Personal Brand from Scratch',
+    title:' AI & SEO Linkedln visibility ',
     img:'/assets/courseImg.png',
     time:'1 hour, 30mins',
     price:'55,000',
@@ -82,7 +82,7 @@ export const featuredCourses =[
     modules:'10 modules',
   },
   {
-    title:'Building Your Personal Brand from Scratch',
+    title:'Client Converting Personal brand',
     img:'/assets/courseImg2.jpg',
     time:'1 hour, 30mins',
     price:'40,000',

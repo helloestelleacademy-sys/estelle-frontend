@@ -2,7 +2,7 @@ import React from 'react'
 import { Input } from './ui/input'
 import { Button } from './ui/button'
 import Image from 'next/image'
-import { Instagram, Linkedin, TwitchIcon, X, Youtube } from 'lucide-react'
+import { Instagram, Linkedin, TwitchIcon, Youtube } from 'lucide-react'
 
 const Links1 =[
     {
@@ -67,8 +67,8 @@ const Footer = () => {
             <div className='flex flex-col gap-6'>
                 <h2 className='font-semibold text-sm'>Subscribe</h2>
 
-                <p className='text-xs max-w-md'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae aspernatur rerum molestias minima mollitia? 
-                Laborum fugit accusamus iure nam vitae quis libero ea, cum perspiciatis dolorum maxime. Culpa, fuga reiciendis.</p>
+                <p className='text-xs max-w-md'>Estelle is an e-learning platform designed to make personal branding education universally accessible. Through curated courses, expert mentorship, 
+                    and interactive learning experiences, we empower individuals and teams to define their voice, showcase their value, and build influence that matters.</p>
 
                 <div className='space-y-4'>
                     <Input className='py-6 text-[#7851A9] pl-2 bg-gray-200' placeholder='Email here'/>

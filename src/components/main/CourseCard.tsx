@@ -12,7 +12,7 @@ type CourseProp ={
     modules:string,
 }
 
-const CourseCard = ({title, time, img, price, level, modules}:CourseProp) => {
+const CourseCard = ({title, img,}:CourseProp) => {
   return (
     <div className='rounded-xl shadow-md hover:shadow-lg transition duration-300 relative'>
         <Image src={img} alt='Image' width={200} height={150} className='w-full h-[200px] rounded-2xl inset-0 object-cover' />

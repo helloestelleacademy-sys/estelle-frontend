@@ -4,7 +4,7 @@ import { Button } from './ui/button'
 const Cta = () => {
   return (
     <section className='py-18 lg:py-20'>
-      <div className='max-w-7xl mx-auto'>
+      <div className='max-w-7xl mx-auto px-10 md:px-6'>
         <div className='bg-[#7852A9] px-10 py-12 rounded-3xl flex flex-col md:flex-row justify-start items-center gap-15 lg:h-[350px]'>
             <div className='space-y-5'>
             <h2 className='text-4xl md:text-5xl lg:text-6xl font-bold max-w-2xl tracking-wide text-white'>Ready to build your Personal Brand?</h2>
@@ -12,7 +12,7 @@ const Cta = () => {
             </div>
         
 
-        <Button className='text-2xl px-5 py-7 bg-white text-[#7852A9] font-semibold'>Start Learning</Button>
+        <Button className='text-2xl px-5 py-7 bg-white text-[#7852A9] font-semibold hover:bg-[#eeedef]'>Start Learning</Button>
         
         </div>
 

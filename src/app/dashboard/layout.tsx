@@ -11,7 +11,7 @@ const layout =async ({
 }>) => {
 
     const cookieStore = await cookies()
-  const defaultOpen = cookieStore.get("sidebar_state")?.value === "true"
+  // const defaultOpen = cookieStore.get("sidebar_state")?.value === "true"
 
   return (
     <SidebarProvider>

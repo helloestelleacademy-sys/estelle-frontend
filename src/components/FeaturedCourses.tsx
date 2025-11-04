@@ -16,7 +16,7 @@ const FeaturedCourses = () => {
                 {/* right */}
                 <div>
                     <p className='max-w-2xl text-[#7851A9]'>Estelle Academy focuses heavily on practical real world skills, ensuring your teams stay prepared with the top abilities
-                        needed to tackle tomorrow's digital challenges
+                        needed to tackle tomorrow&apos;s digital challenges
                     </p>
                 </div>
             </div>

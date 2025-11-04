@@ -60,7 +60,7 @@ const Login = () => {
             </div>
         </div>
 
-        <p className='mt-8 tracking-wide'>Don't have an account? <Link href='/register' className='text-[#7852A9] pl-2 underline'>Create an account</Link></p>
+        <p className='mt-8 tracking-wide'>Don&apos;t have an account? <Link href='/register' className='text-[#7852A9] pl-2 underline'>Create an account</Link></p>
 
     <div className='mt-6'>
         <Form {...form}>

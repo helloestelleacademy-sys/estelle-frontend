@@ -53,7 +53,7 @@ const pricing =[
             "Free personal branding resources, templates and toolkits",
             "Dedicated customer success team and strategic implementation service",
         ],
-         buttonLink:'https://mainstack.store/stellanwosu/O7XDUpkdLOhk'
+         buttonLink:'https://mainstack.store/stellanwosu/Y31l1e4NVIhj'
     },
 ]
 const Pricing = () => {

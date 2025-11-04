@@ -20,7 +20,7 @@ const Courses = () => {
       <div className='max-w-7xl mx-auto px-4 md:px-6'>
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-18'>
             {AllCourses.map((course, index)=>(
-              <div className='' ref={(el)=>{cardRef.current[index]= el}}>
+              <div key={index} className='' ref={(el)=>{cardRef.current[index]= el}}>
                 <CourseCard key={index} img={course.img} title={course.title} time={course.time} level={course.level} modules={course.modules} price={course.price} />
               </div>
             ))}        
