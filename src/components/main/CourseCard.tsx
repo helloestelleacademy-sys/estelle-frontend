@@ -10,9 +10,10 @@ type CourseProp ={
     price:string,
     level:string,
     modules:string,
+    courseType?:string,
 }
 
-const CourseCard = ({title, img,}:CourseProp) => {
+const CourseCard = ({title, img, courseType}:CourseProp) => {
   return (
     <div className='rounded-xl shadow-md hover:shadow-lg transition duration-300 relative'>
         <Image src={img} alt='Image' width={200} height={150} className='w-full h-[200px] rounded-2xl inset-0 object-cover' />
@@ -33,7 +34,7 @@ const CourseCard = ({title, img,}:CourseProp) => {
                 </div> */}
                 {/* <hr className='mt-4' /> */}
                 <div className='flex items-center justify-between gap-6 mt-4 px-8'>
-                    <Button className='bg-[#EEE0FF] w-[120px] text-black hover:bg-[#dbc2fa]'>Basic</Button>
+                    <Button className='bg-[#EEE0FF] w-[120px] text-black hover:bg-[#dbc2fa]'>{courseType}</Button>
 
                     <h2 className='text-sm'>30 minutes</h2>
                 </div>

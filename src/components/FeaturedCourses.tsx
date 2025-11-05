@@ -25,7 +25,7 @@ const FeaturedCourses = () => {
             {/* courses */}
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-18'>
                 {featuredCourses.map((course, index)=>(
-                    <CourseCard key={index} img={course.img} title={course.title} time={course.time} level={course.level} modules={course.modules} price={course.price} />
+                    <CourseCard key={index} img={course.img} title={course.title} time={course.time} courseType={course.courseType} level={course.level} modules={course.modules} price={course.price} />
                 ))}
                 
             </div>

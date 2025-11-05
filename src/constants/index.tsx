@@ -72,6 +72,7 @@ export const featuredCourses =[
     price:'35,000',
     level:'Beginner level',
     modules:'10 modules',
+    courseType:'Basic'
   },
   {
     title:' AI & SEO Linkedln visibility ',
@@ -80,6 +81,7 @@ export const featuredCourses =[
     price:'55,000',
     level:'Intermediate level',
     modules:'10 modules',
+    courseType:'Premium'
   },
   {
     title:'Client Converting Personal brand',
@@ -88,6 +90,7 @@ export const featuredCourses =[
     price:'40,000',
     level:'Beginner level',
     modules:'10 modules',
+    courseType:'Organizaitions'
   },
 ]
 

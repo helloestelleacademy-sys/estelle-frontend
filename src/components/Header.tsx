@@ -27,8 +27,8 @@ const Header = () => {
                 
                 <p className='text-sm mb-8 font-semibold'> <span className='gradient-bg bg-clip-text text-transparent'>35,000 naira/ basic plan </span>, lifetime access</p>
                 <div className='flex flex-col sm:flex-row items-start gap-4'>
-                    <button className=' bg-[#37296D] hover:opacity-90 text-white py-4 rounded-full font-semibold w-full md:w-[200px]'>Start Learning</button>
-                    <button className='gradient-bg text-white hover:bg-white hover:text-black transition w-full  md:w-[200px] py-4 rounded-full font-semibold'>Learn More</button>
+                    <a href='https://mainstack.store/stellanwosu/w2RdFBdyAPo7' className='flex items-center justify-center bg-[#37296D] hover:opacity-90 text-white py-4 rounded-full font-semibold w-full md:w-[200px]'>Start Learning</a>
+                    <a href='https://mainstack.store/stellanwosu/w2RdFBdyAPo7' className='flex items-center justify-center gradient-bg text-white hover:bg-white hover:text-black transition w-full  md:w-[200px] py-4 rounded-full font-semibold'>Learn More</a>
                 </div>
                 <p className='text-sm mt-6 font-semibold'> <span className='gradient-bg bg-clip-text text-transparent'>210,000 naira/ Premium plan </span>, instant 5% cash back guarantee</p>
             </div>

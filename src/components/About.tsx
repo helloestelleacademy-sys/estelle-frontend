@@ -4,6 +4,7 @@ import { Button } from './ui/button'
 import Image from 'next/image'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
+import Link from 'next/link'
 
 
 const About = () => {
@@ -60,9 +61,9 @@ const About = () => {
                 </div>
             </div> */}
             
-            <div className='button'>
+            <Link href='/about' className='button'>
             <Button className='bg-gradient-to-r gradient-bg  hover:opacity-90 w-[200px] py-6 text-lg'>Read More</Button>
-            </div>
+            </Link>
         </div>
 
         {/* right */}
