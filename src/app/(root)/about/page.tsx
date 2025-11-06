@@ -14,7 +14,6 @@ const page = () => {
       <Details />
       <Values />
       <Instructors />
-      <Footer />
     </div>
   )
 }

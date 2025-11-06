@@ -83,7 +83,7 @@ const Footer = () => {
         </div>
 
         <div className='max-w-7xl mx-auto px-2 flex flex-wrap justify-between mt-10'>
-             <Image src={'/assets/estelleLogoColor.svg'} alt='Logo' width={100} height={100}/>
+             <Image src={'/assets/Estellelogonew2.png'} alt='Logo' width={100} height={100}/>
 
              <div className='space-x-4 flex items-center'>
                 <Linkedin />

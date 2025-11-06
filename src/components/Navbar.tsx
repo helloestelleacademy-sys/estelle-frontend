@@ -112,13 +112,13 @@ const navLinks =[
           <Link href={'/about'}>
             <li className={clsx('text-[16px] font-semibold tracking-wide  cursor-pointer', !isScrolled && 'text-[#37296D]')}>About</li>
           </Link>
-          <Link href={'/courses'}>
+          <a href={'https://mainstack.store/stellanwosu/w2RdFBdyAPo7'}>
             <li className={clsx('text-[16px] font-semibold tracking-wide  cursor-pointer', !isScrolled && 'text-[#37296D]')}>Pricing</li>
-          </Link>
-          <Link href={'/courses'}>
+          </a>
+          {/* <Link href={'/courses'}>
             <li className={clsx('text-[16px] font-semibold tracking-wide  cursor-pointer', !isScrolled && 'text-[#37296D]')}>Courses</li>
           </Link>
-            <li className={clsx('text-[16px] font-semibold tracking-wide  cursor-pointer', !isScrolled && 'text-[#37296D]')}>Subjects</li>
+            <li className={clsx('text-[16px] font-semibold tracking-wide  cursor-pointer', !isScrolled && 'text-[#37296D]')}>Subjects</li> */}
         </ul>
 
         <div className='hidden md:flex space-x-6'>

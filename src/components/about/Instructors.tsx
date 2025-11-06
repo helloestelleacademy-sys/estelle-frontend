@@ -41,7 +41,7 @@ const Instructors = () => {
         <div className='max-w-7xl mx-auto px-4 lg:px-8 text-white'>
              <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold mt-6 text-center max-w-xl mx-auto mb-10">Our Instructors</h2>
 
-             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10'>
+             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-10'>
               {instructors.map((instructor, index)=>(
 
                 <div  key={index}
