@@ -54,6 +54,12 @@ const Navbar = () => {
         }, "<")
     },[])
 
+  const onNavLinkClose =()=>{
+        menuTl.current?.reverse()
+        setIsOpen(false)
+         iconTl!.current!.reverse()
+  }
+
   const toggleMenu =()=>{
         if(isOpen){
             menuTl.current?.reverse()
@@ -77,26 +83,26 @@ const navLinks =[
         title:"About",
         link:"/about",
     },
-    {
-        title:"Courses",
-        link:"/courses",
-    },
+    // {
+    //     title:"Courses",
+    //     link:"/courses",
+    // },
 
 ]
 
   return (
-    <nav className={`w-full py-5 fixed top-0 left-0  z-50 transition-all duration-300 bg-blur ${isScrolled ? '  backdrop-blur-glass bg-[#7851A9]' :
+    <nav className={`w-full py-3 fixed top-0 left-0  z-50 transition-all duration-300 bg-blur ${isScrolled ? '  backdrop-blur-glass bg-[#7851A9]' :
         'bg-transparent'}`}>
       <div className='flex items-center justify-between max-w-6xl mx-auto px-2'>
         {/* logo */}
         {isScrolled ?(
           <Link href={'/'} className=''>
-            <Image src={'/assets/estellteLogo.svg'} alt='Logo' width={100} height={100}/>
+            <Image src={'/assets/Estellelogonew.png'} alt='Logo' width={120} height={100} />
         </Link>
         ) 
         :(
           <Link href={'/'} className=''>
-            <Image src={'/assets/estelleLogoColor.svg'} alt='Logo' width={100} height={100}/>
+            <Image src={'/assets/Estellelogonew2.png'} alt='Logo' width={120} height={100}/>
         </Link>
         )
       }
@@ -131,7 +137,7 @@ const navLinks =[
             <div className='flex flex-col gap-y-6 text-3xl'>
                 {navLinks.map((item, index)=>(
                     <Link href={item.link} key={index} ref={(el)=>{linkRef.current[index] = el }} className=''>
-                        <span className='transition-all duration-300 text-white  hover:text-white font-semibold cursor-pointer'>
+                        <span onClick={onNavLinkClose} className='transition-all duration-300 text-white  hover:text-white font-semibold cursor-pointer'>
                             {item.title}
                         </span>
                     </Link>

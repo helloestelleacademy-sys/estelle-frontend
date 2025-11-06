@@ -53,7 +53,7 @@ const Details = () => {
             {/* right */}
 
             <div className='serviceImage w-full md:w-1/2'>
-                <Image src={'/assets/serviceImg.png'} alt='image' width={200} height={150} className='object-cover w-full'/>
+                <Image src={'/assets/heroImg.jpg'} alt='image' width={200} height={150} className='object-cover w-full'/>
             </div>
            
         </div>
