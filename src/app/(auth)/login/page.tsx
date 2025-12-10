@@ -1,6 +1,6 @@
 "use client"
 import Image from 'next/image'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
@@ -19,6 +19,10 @@ import google from '@/assets/Google.svg'
 import linkedin from '@/assets/LinkedIn.svg'
 import teams from '@/assets/Teams.svg'
 import Link from 'next/link'
+import { useLoginMutation } from '@/redux/api/authApi'
+import { useRouter } from 'next/navigation'
+import { toast } from 'sonner'
+import { Loader2 } from 'lucide-react'
 
 
  
@@ -33,6 +37,8 @@ const formSchema = z.object({
  
 
 const Login = () => {
+      const router =useRouter()
+    const [login, {isLoading, error, isSuccess}]=useLoginMutation()
     
     const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -42,11 +48,26 @@ const Login = () => {
     },
   })
 
-   function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values)
-  }
+    const onSubmit =async (values: z.infer<typeof formSchema>)=>{
+        console.log(values)
+        try {
+            const res = await login(values)
+        } catch (error) {
+             console.error('Login failed', error);
+        }
+    }
+
+    useEffect(()=>{
+        if(error){
+            toast.error("Login failed: " + error!)
+        }
+
+        if(isSuccess){
+            toast.success("Login successful")
+            form.reset()
+            router.push("/")
+        }
+    }, [isSuccess])
 
 
   return (
@@ -78,26 +99,26 @@ const Login = () => {
                         </FormItem>
                     )}
                     />
-                 {/* <FormField
-                    control={form.control}
-                    name="password"
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel className='font-light'>Password</FormLabel>
-                            <FormControl>
-                                <Input placeholder="******" className='py-6' {...field} />
+              <FormField 
+                control={form.control}
+                name="password"
+                render={({field})=>(
+                    <FormItem>
+                        <FormLabel>Password</FormLabel>
+                        <FormControl>
+                            <Input type="password" placeholder="password" {...field} />
                             </FormControl>
                             <FormMessage />
-                        </FormItem>
-                    )}
-                    /> */}
+                    </FormItem>
+                )}
+              />
 
                 <div className="flex items-center gap-3 mt-4">
                     <Checkbox id="terms" className='border-[#7851A9]'/>
                     <p className='font-light text-sm'>I agree to platforms <span className='text-[#7851A9] font-semibold'>Terms of service</span> and <span className='text-[#7851A9] font-semibold'>Privacy Policy</span></p>
                 </div>
 
-                <Button type="submit" className='w-full py-6 bg-[#7851A9] hover:bg-[#563382] transition duration-300'> Continue</Button>
+                <Button type="submit" className='w-full py-6 bg-[#7851A9] hover:bg-[#563382] transition duration-300'> {isLoading? <Loader2 className="animate-spin" /> :"Continue"}</Button>
 
             </form>
         </Form>

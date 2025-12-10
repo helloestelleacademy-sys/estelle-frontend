@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import {Inter, Source_Serif_4} from "next/font/google";
+import { Toaster } from "@/components/ui/sonner"
 import "./globals.css";
+import StoreProvider from "@/StoreProvider";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -31,7 +33,10 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${source.variable} antialiased`}
       >
-        {children}
+        <StoreProvider>
+          {children}
+          <Toaster />
+        </StoreProvider>
       </body>
     </html>
   );

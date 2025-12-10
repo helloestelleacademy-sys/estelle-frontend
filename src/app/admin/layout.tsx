@@ -1,7 +1,7 @@
 import AppSidebar from '@/components/dashboard/AppSidebar';
 import DashNavbar from '@/components/dashboard/DashNavbar';
 import { SidebarProvider } from '@/components/ui/sidebar';
-import { NavItems, NavItems2 } from '@/constants';
+import {NavItemsAdmin, NavItemsAdmin2 } from '@/constants';
 import { cookies } from 'next/headers';
 import React from 'react'
 
@@ -16,7 +16,7 @@ const layout =async ({
 
   return (
     <SidebarProvider>
-        <AppSidebar NavLinks1={NavItems} NavLinks2={NavItems2} />
+        <AppSidebar NavLinks1={NavItemsAdmin} NavLinks2={NavItemsAdmin2} />
         <div className='w-full min-h-screen bg-[#f3ebf9] flex flex-col gap-10 py-4 pl-3 md:pl-6'>
             <DashNavbar />
             <div className=' px-2 md:px-10 lg:px-12 py-4 font-sans '>

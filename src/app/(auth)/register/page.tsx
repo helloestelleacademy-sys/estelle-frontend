@@ -1,6 +1,6 @@
 "use client"
 import Image from 'next/image'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
@@ -19,10 +19,15 @@ import google from '@/assets/Google.svg'
 import linkedin from '@/assets/LinkedIn.svg'
 import teams from '@/assets/Teams.svg'
 import Link from 'next/link'
-
+import { useRegisterMutation } from '@/redux/api/authApi'
+import { toast } from "sonner"
+import { Loader2 } from 'lucide-react'
+import { useRouter } from 'next/navigation'
 
  
 const formSchema = z.object({
+  firstName: z.string().min(1, "First name is required"),
+  lastName: z.string().min(1, "First name is required"),
   email: z.string().min(2, {
     message: "email must be at least 2 characters.",
   }),
@@ -33,25 +38,44 @@ const formSchema = z.object({
  
 
 const Register = () => {
+    const router =useRouter()
+   const [register, {isLoading, error, isSuccess}] =useRegisterMutation()
     
     const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
+      firstName:"",
+      lastName:"",
       email: "",
       password: "",
     },
   })
 
-   function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values)
-  }
+const onSubmit =async (values: z.infer<typeof formSchema>)=>{
+            try {
+                const res = await register(values)
+            } catch (error) {
+                 console.error('Registration failed', error);
+                 toast.error("Registration failed" + error)
+            }
+    }
+
+    useEffect(()=>{
+        if(error){
+        toast.error("Register failed: " + error!)
+        }
+    
+        if(isSuccess){
+        toast.success("Registered successful")
+        form.reset()
+        router.push("/login")
+    }
+    }, [isSuccess])
 
 
   return (
-    <div className='relative  min-h-screen flex justify-end px-2 md:px-20 py-8 md:py-12'>
-      <div className='bg-white py-10  md:py-15 w-full md:max-w-[600px] px-10 md:px-16 rounded-2xl'>
+    <div className='relative  min-h-screen overflow-auto flex justify-end px-2 md:px-20 py-8 md:py-6'>
+      <div className='bg-white py-6  md:py-15 w-full md:max-w-[600px] px-10 md:px-16 rounded-2xl'>
         
         <div className='flex items-center justify-between'>
             <h2 className='font-semibold text-3xl'>Sign Up</h2>
@@ -65,6 +89,33 @@ const Register = () => {
     <div className='mt-6'>
         <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+              <FormField 
+                control={form.control}
+                name="firstName"
+                render={({field})=>(
+                    <FormItem>
+                        <FormLabel>First Name</FormLabel>
+                         <FormControl>
+                            <Input placeholder="firstname" {...field} />
+                        </FormControl>
+                       
+                        <FormMessage />
+                    </FormItem>
+                )}
+            />
+            <FormField 
+                control={form.control}
+                name="lastName"
+                render={({field})=>(
+                    <FormItem>
+                        <FormLabel>Last Name</FormLabel>
+                         <FormControl>
+                            <Input placeholder="lastname" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                    </FormItem>
+                )}
+            />
                  <FormField
                     control={form.control}
                     name="email"
@@ -97,7 +148,7 @@ const Register = () => {
                     <p className='font-light text-sm'>I agree to platforms <span className='text-[#7851A9] font-semibold'>Terms of service</span> and <span className='text-[#7851A9] font-semibold'>Privacy Policy</span></p>
                 </div>
 
-                <Button type="submit" className='w-full py-6 bg-[#7851A9] hover:bg-[#563382] transition duration-300'> Continue</Button>
+                <Button type="submit" className='w-full py-6 bg-[#7851A9] hover:bg-[#563382] transition duration-300'> {isLoading? <Loader2 className="animate-spin" /> :"Continue"}</Button>
 
             </form>
         </Form>
