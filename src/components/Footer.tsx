@@ -2,7 +2,7 @@ import React from 'react'
 import { Input } from './ui/input'
 import { Button } from './ui/button'
 import Image from 'next/image'
-import { Instagram, Linkedin, TwitchIcon, Youtube } from 'lucide-react'
+import { Facebook, Instagram, Linkedin, TwitchIcon, Youtube } from 'lucide-react'
 
 const Links1 =[
     {
@@ -10,32 +10,10 @@ const Links1 =[
         href:'/'
     },
     {
-        title:'Services',
-        href:'/'
-    },
-    {
-        title:'Support',
-        href:'/'
-    },
-    {
-        title:'Privacy Policy',
-        href:'/'
-    },
-    {
-        title:'Terms of Use',
-        href:'/'
-    },
-]
-const Links2 =[
-    {
         title:'Contact us',
         href:'/'
     },
-    {
-        title:'Blog',
-        href:'/'
-    },
-    {
+        {
         title:'FAQs',
         href:'/'
     },
@@ -43,11 +21,15 @@ const Links2 =[
         title:'Testimonials',
         href:'/'
     },
-    {
-        title:'Careers',
-        href:'/'
-    },
 ]
+// const Links2 =[
+
+//     {
+//         title:'Blog',
+//         href:'/'
+//     },
+
+// ]
 
 const Footer = () => {
   return (
@@ -58,11 +40,11 @@ const Footer = () => {
                     <li key={link.title} className='font-semibold text-sm tracking-wide'>{link.title}</li>
                 ))}
             </ul>
-            <ul className='flex flex-col gap-4 '>
+            {/* <ul className='flex flex-col gap-4 '>
                 {Links2.map((link)=>(
                     <li key={link.title} className='font-semibold text-sm tracking-wide'>{link.title}</li>
                 ))}
-            </ul>
+            </ul> */}
 
             <div className='flex flex-col gap-6'>
                 <h2 className='font-semibold text-sm'>Subscribe</h2>
@@ -77,7 +59,7 @@ const Footer = () => {
             </div>
 
             <div className='space-y-4'>
-                <h3 className='font-semibold text-sm'>info.estelleglobal@gmail.com</h3>
+                <a href='support@estellelearning.com' className='font-semibold text-sm'>support@estellelearning.com</a>
                 {/* <p className='font-semibold text-sm'>+234 803 069 6738</p> */}
             </div>
         </div>
@@ -86,10 +68,11 @@ const Footer = () => {
              <Image src={'/assets/Estellelogonew2.png'} alt='Logo' width={100} height={100}/>
 
              <div className='space-x-4 flex items-center'>
+                <Facebook />
                 <Linkedin />
                 <Instagram />
                 <Youtube />
-                <TwitchIcon />
+                
              </div>
         </div>
         

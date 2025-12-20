@@ -18,13 +18,13 @@ export default function Home() {
     <>
       <Header />
       <About />
-      <Mission />
       <FeaturedCourses />
-      <Features />
       <Pricing />
+      <Mission />
       <Testimonials />
       <Service />
       <FAQSection />
+      <Features />
       <Cta />
     </>
   );

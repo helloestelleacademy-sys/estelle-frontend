@@ -1,6 +1,7 @@
 'use client'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
+import { Mail } from 'lucide-react'
 import Image from 'next/image'
 import React from 'react'
 
@@ -28,7 +29,10 @@ const Service = () => {
             <div className='w-full md:w-1/2 flex flex-col gap-4'>
                 <h2 className='text-3xl md:text-4xl lg:text-5xl mt-2 font-semibold max-w-2xl'>Want personalized services in building your personal brand? </h2>
                 <p className='text-xl tracking-wide font-medium'>Send a mail to</p>
+                <div className='flex items-center gap-2 text-[#7851A9]'>
+                  <Mail />
                 <a href='https://info.estelleglobal.com'>info.estelleglobal@gmail.com</a>
+                </div>
             </div>
             {/* right */}
             <div className='serviceImage w-full md:w-1/2'>

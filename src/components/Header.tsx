@@ -12,8 +12,33 @@ const Header = () => {
     // },{scope:containerRef})
 
   return (
-    <section id='header' className="relative min-h-screen w-full overflow-hidden bg-[#F7F0FF] flex items-center justify-center px-6 md:px-16 lg:px-24 py-28">
-        
+    <section id='header' className='flex flex-col' >
+        <div className='w-full bg-red-600 py-8 px-2'>
+            <div className='max-w-6xl mx-auto flex items-center text-white text-sm md:text-2xl lg:text-3xl justify-between'>
+                <h2 className=''>30% Discount!!!</h2>
+
+                <h2>DON'T MISS THIS OFFER</h2>
+
+                <div className='flex items-center gap-4 md:gap-8'>
+                    <div className='flex flex-col items-center'>
+                        <h2 className='font-semibold'>24</h2>
+                        <p className='text-sm '>hours</p>
+                    </div>
+                    <div className='flex flex-col items-center'>
+                        <h2 className='font-semibold'>36</h2>
+                        <p className='text-sm '>mins</p>
+                    </div>
+                    <div className='flex flex-col items-center'>
+                        <h2 className='font-semibold'>14</h2>
+                        <p className='text-sm '>seconds</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div className="relative min-h-screen w-full overflow-hidden bg-[#F7F0FF] flex items-center justify-center px-6 md:px-16 lg:px-24 py-28">
+
         <div className='max-w-7xl w-full grid grid-cols-1 lg:grid-cols-2 gap-10 items-center'>
 
             <div className='flex flex-col justify-center lg:text-left text-black'>
@@ -46,6 +71,8 @@ const Header = () => {
             {/* <div className='flex-1'>
                  <Image ref={containerRef} src={'/assets/headerImg.png'} alt="auth-image" width={200} height={150} className='w-[400px] h-full object-cover' />
             </div> */}
+        </div>
+
         </div>
       
     </section>

@@ -68,37 +68,79 @@ const Mission = () => {
     },[])
 
   return (
-    <section ref={sectionRef} className='py-22 lg:py-28 w-full min-h-screen'>
-        <div className='max-w-7xl mx-auto px-4 lg:px-8'>
+     <section className="w-full bg-white py-20 px-4">
+      <div className="max-w-6xl mx-auto">
+        {/* Heading */}
+        <h2 className="text-center text-2xl md:text-3xl font-semibold text-gray-900 mb-12">
+          Our mission is simple: to turn everyday <br className="hidden md:block" />
+          people into legacy brands.
+        </h2>
 
-            <div className="relative flex flex-col md:flex-row items-start gap-8">
+        {/* Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {/* Card 1 */}
+          <div className="relative bg-[#F3E8FF] rounded-xl p-6 shadow-sm">
+            <span className="absolute top-4 left-4 flex items-center justify-center w-12 h-12 rounded-full bg-white text-sm font-semibold text-gray-900">
+              1
+            </span>
 
-                 {/* {/* Left column: Headline */}
-                 <div ref={containerRef} className="w-full lg:w-1/2 pr-8">
-                     <h1 className="text-4xl md:text-5xl font-semibold leading-tight">
-                    Our mission is simple: to turn everyday people into legacy brands.
+            <h3 className="mt-14 text-lg font-semibold text-gray-900 mb-2">
+              Become a thought leader
+            </h3>
+            <p className="text-sm text-gray-700 leading-relaxed">
+              Learn how to tell your story that becomes a legacy.
+              Get seen and make an impact.
+            </p>
+          </div>
 
-                    </h1>
-                 </div>
+          {/* Card 2 */}
+          <div className="relative bg-[#F3E8FF] rounded-xl p-6 shadow-sm">
+            <span className="absolute top-4 left-4 flex items-center justify-center w-12 h-12 rounded-full bg-white text-sm font-semibold text-gray-900">
+              2
+            </span>
 
-                  {/* Right column: Centered pinned media area */}
-                  <div className="w-full lg:w-1/2 pr-8 space-y-6">
-                    {features.map((feature, index)=>(
-                        <div key={index}
-                        ref={(el)=> {featuresContainer.current[index]=el}}
-                        className='border-l border-neutral-700 px-6 py-2'>
-                            <p className='text-sm'>{feature.num}</p>
+            <h3 className="mt-14 text-lg font-semibold text-gray-900 mb-2">
+              Expert led courses
+            </h3>
+            <p className="text-sm text-gray-700 leading-relaxed">
+              Access to valuable knowledge and mentorship
+              that improves your visibility.
+            </p>
+          </div>
 
-                            <div className='mt-6 space-y-6'>
-                                <h2 className='text-2xl md:text-3xl max-w-lg'><span className='gradient-bg bg-clip-text text-transparent'>{feature.coloredTitle}</span>{" "}{feature.title}</h2>
-                                <h3 className='max-w-2xl text-balance'>{feature.text}</h3>
-                            </div>
-                        </div>
-                    ))}
-                  </div>
+          {/* Card 3 */}
+          <div className="relative bg-[#F3E8FF] rounded-xl p-6 shadow-sm">
+            <span className="absolute top-4 left-4 flex items-center justify-center w-12 h-12 rounded-full bg-white text-sm font-semibold text-gray-900">
+              3
+            </span>
 
-            </div>
+            <h3 className="mt-14 text-lg font-semibold text-gray-900 mb-2">
+              Earn valuable credentials
+            </h3>
+            <p className="text-sm text-gray-700 leading-relaxed">
+              Get certified and boost your chances of being
+              trusted by clients & recruiters.
+            </p>
+          </div>
+
+          {/* Card 4 */}
+          <div className="relative bg-[#F3E8FF] rounded-xl p-6 shadow-sm">
+            <span className="absolute top-4 left-4 flex items-center justify-center w-12 h-12 rounded-full bg-white text-sm font-semibold text-gray-900">
+              4
+            </span>
+
+            <h3 className="mt-14 text-lg font-semibold text-gray-900 mb-2">
+              Every legacy begins with a story
+            </h3>
+            <p className="text-sm text-gray-700 leading-relaxed">
+              Our mission is to turn everyday people into
+              legacy brands by making personal branding
+              education accessible, practical, and
+              transformative.
+            </p>
+          </div>
         </div>
+      </div>
     </section>
   )
 }

@@ -38,7 +38,7 @@ const formSchema = z.object({
 
 const Login = () => {
       const router =useRouter()
-    const [login, {isLoading, error, isSuccess}]=useLoginMutation()
+    const [login, {isLoading, isError, isSuccess}]=useLoginMutation()
     
     const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -58,8 +58,9 @@ const Login = () => {
     }
 
     useEffect(()=>{
-        if(error){
-            toast.error("Login failed: " + error!)
+        if(isError){
+            // toast.error(error.data?.message || "Login failed")
+            toast.error("Login failed: " + isError!)
         }
 
         if(isSuccess){

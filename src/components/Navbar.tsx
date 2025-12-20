@@ -6,8 +6,12 @@ import Link from 'next/link'
 import clsx from 'clsx'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
+import { useSelector } from 'react-redux'
+import { useUserProfileQuery } from '@/redux/api/userApi'
+// import { useUserProfileQuery } from '@/redux/api/userApi'
 
 const Navbar = () => {
+  const {isLoading, data} =useUserProfileQuery()
   const [isScrolled, setIsScrolled] =useState(false);
   const [isOpen, setIsOpen] =useState(false); 
   const mobileMenuRef =useRef(null);
@@ -16,6 +20,9 @@ const Navbar = () => {
   const topLineRef = useRef(null);
   const bottomLineRef = useRef(null);
   const menuTl = useRef<gsap.core.Timeline | null>(null)
+
+  const {user} =useSelector((state:any)=> state.auth)
+  console.log("Navbar user:", user, user?.lastName)
 
   useEffect(()=>{
         const handleScroll =()=>{
@@ -91,18 +98,17 @@ const navLinks =[
 ]
 
   return (
-    <nav className={`w-full py-3 fixed top-0 left-0  z-50 transition-all duration-300 bg-blur ${isScrolled ? '  backdrop-blur-glass bg-[#7851A9]' :
-        'bg-transparent'}`}>
+    <nav className={`w-full py-3  z-50 transition-all duration-300 bg-blur bg-white`}>
       <div className='flex items-center justify-between max-w-6xl mx-auto px-2'>
         {/* logo */}
         {isScrolled ?(
           <Link href={'/'} className=''>
-            <Image src={'/assets/Estellelogonew.png'} alt='Logo' width={120} height={100} />
+            <Image src={'/assets/Estellelogonew.png'} alt='Logo' width={78} height={80} />
         </Link>
         ) 
         :(
           <Link href={'/'} className=''>
-            <Image src={'/assets/Estellelogonew2.png'} alt='Logo' width={120} height={100}/>
+            <Image src={'/assets/Estellelogonew2.png'} alt='Logo' width={78} height={80}/>
         </Link>
         )
       }
@@ -122,14 +128,23 @@ const navLinks =[
         </ul>
 
         <div className='hidden md:flex space-x-6'>
-            <Button disabled className='w-[100px] py-5 bg-white text-black'>Login</Button>
-            <Button disabled className='bg-[#7852A9] w-[100px] py-5'>Signup</Button>
+            {!user && <>
+              <Button  className='w-[100px] py-5 bg-white text-black'>Login</Button>
+              <Button  className='bg-[#7852A9] w-[100px] hover:bg-[#5e3e87] py-5'>Signup</Button>
+            </>
+            }
+            <a href='/dashboard' >
+            <Button className='bg-[#4e2286] hover:bg-[#5e3e87] w-[100px] py-5 cursor-pointer'>Dashboard</Button>
+            </a>
+
         </div>
 
          <div onClick={toggleMenu} className='md:hidden bg-white size-12 z-50 flex flex-col gap-1 justify-center items-center md:size-20 transition-all duration-300 rounded-full cursor-pointer'>
                 <span ref={topLineRef} className='block w-8 h-0.5 bg-black rounded-full origin-center'></span>
                 <span ref={bottomLineRef} className='block w-8 h-0.5 bg-black rounded-full origin-center'></span>
           </div>
+
+          {/* <h2>{user.firstname}</h2> */}
 
       </div>
 

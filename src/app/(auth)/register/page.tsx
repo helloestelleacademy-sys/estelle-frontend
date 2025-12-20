@@ -136,7 +136,7 @@ const onSubmit =async (values: z.infer<typeof formSchema>)=>{
                         <FormItem>
                             <FormLabel className='font-light'>Password</FormLabel>
                             <FormControl>
-                                <Input placeholder="******" className='py-6' {...field} />
+                                <Input type='password' placeholder="******" className='py-6' {...field} />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
@@ -144,7 +144,7 @@ const onSubmit =async (values: z.infer<typeof formSchema>)=>{
                     />
 
                 <div className="flex items-center gap-3 mt-4">
-                    <Checkbox id="terms" className='border-[#7851A9]'/>
+                    <Checkbox id="terms" checked className='border-[#7851A9]'/>
                     <p className='font-light text-sm'>I agree to platforms <span className='text-[#7851A9] font-semibold'>Terms of service</span> and <span className='text-[#7851A9] font-semibold'>Privacy Policy</span></p>
                 </div>
 

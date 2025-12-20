@@ -3,6 +3,7 @@ import {Inter, Source_Serif_4} from "next/font/google";
 import { Toaster } from "@/components/ui/sonner"
 import "./globals.css";
 import StoreProvider from "@/StoreProvider";
+import { PersistLogin } from "@/components/PersistLogin";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -34,8 +35,10 @@ export default function RootLayout({
         className={`${inter.variable} ${source.variable} antialiased`}
       >
         <StoreProvider>
+          <PersistLogin>
           {children}
           <Toaster />
+          </PersistLogin>
         </StoreProvider>
       </body>
     </html>

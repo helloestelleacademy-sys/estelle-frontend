@@ -1,6 +1,6 @@
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react'
-import { UserDetails } from '../features/authSlice';
-import { userApi } from './userApi';
+import { AuthResponse, setUser, setAccessToken  } from '../features/authSlice';
+import type { RootState } from "../store";
 
 type LoginCredentials = {
     email: string;
@@ -17,43 +17,64 @@ type RegisterUser = {
 
 
 export const authApi = createApi({
-    reducerPath: 'authApi',
-    baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:4000/api/v1', credentials: 'include', }),
-    endpoints: (builder) => ({
-        login: builder.mutation<UserDetails, LoginCredentials>({
-            query: (credentials) => ({
-                url: '/auth/login',
-                method: 'POST',
-                body: credentials,
-            }),
-                async onQueryStarted(_, {dispatch, queryFulfilled}){
-                try {
-                    await queryFulfilled;
-                    await dispatch(userApi.endpoints.userProfile.initiate(null));
-                   
-                } catch (error) {
-                    console.log(error)
-                }
-            },
-        }),
+  reducerPath: "authApi",
+  baseQuery: fetchBaseQuery({
+    baseUrl: "http://localhost:4000/api/v1",
+    credentials: "include",
+    prepareHeaders: (headers, { getState }) => {
+      const token = (getState() as RootState).auth.accessToken;
+      if (token) headers.set("authorization", `Bearer ${token}`);
+      return headers;
+    },
+  }),
+  endpoints: (builder) => ({
+    login: builder.mutation<AuthResponse, LoginCredentials>({
+      query: (credentials) => ({
+        url: "/auth/login",
+        method: "POST",
+        body: credentials,
+      }),
+      async onQueryStarted(_, { dispatch, queryFulfilled }) {
+        try {
+          const { data } = await queryFulfilled;
+          dispatch(setUser({ user: data.user, accessToken: data.accessToken, message: data.message }));
+        } catch (error) {
+          console.log(error);
+        }
+      },
+    }),
 
-        register: builder.mutation<UserDetails, RegisterUser>({
-            query: (userData) =>({
-                url: '/auth/register',
-                method: 'POST',
-                body: userData,
-            }),
-            async onQueryStarted(_, {dispatch, queryFulfilled}){
-                try {
-                    await queryFulfilled;
-                    await dispatch(userApi.endpoints.userProfile.initiate(null));                   
-                } catch (error) {
-                    console.log(error)
-                }
-            }
-        })
+    register: builder.mutation<AuthResponse, RegisterUser>({
+      query: (userData) => ({
+        url: "/auth/register",
+        method: "POST",
+        body: userData,
+      }),
+      async onQueryStarted(_, { dispatch, queryFulfilled }) {
+        try {
+          const { data } = await queryFulfilled;
+          dispatch(setUser({ user: data.user, accessToken: data.accessToken, message: data.message }));
+        } catch (error) {
+          console.log(error);
+        }
+      },
+    }),
 
-    })
-})
+    refresh: builder.query<AuthResponse, void>({
+      query: () => ({
+        url: "/auth/refresh-token",
+        method: "GET",
+      }),
+      async onQueryStarted(_, { dispatch, queryFulfilled }) {
+        try {
+          const { data } = await queryFulfilled;
+          dispatch(setUser({ user: data.user, accessToken: data.accessToken, message: data.message}));
+        } catch (err) {
+          dispatch(setAccessToken(null as any)); // or clearAuth
+        }
+      },
+    }),
+  }),
+});
 
-export const { useLoginMutation, useRegisterMutation } = authApi;
+export const { useLoginMutation, useRegisterMutation, useLazyRefreshQuery } = authApi;

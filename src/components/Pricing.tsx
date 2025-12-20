@@ -10,6 +10,7 @@ import { useGSAP } from '@gsap/react'
 import { ScrollTrigger} from 'gsap/all'
 import gsap from 'gsap'
 import naira from '@/assets/naira.png'
+import clsx from 'clsx'
 
 gsap.registerPlugin(ScrollTrigger)
 const pricing =[
@@ -22,7 +23,8 @@ const pricing =[
             "Earn a certificate upon completion",
             "Tailored quizzes for practical learning",
         ],
-        buttonLink:'https://mainstack.store/stellanwosu/O7XDUpkdLOhk'
+        buttonLink:'https://mainstack.store/stellanwosu/O7XDUpkdLOhk',
+        buttonColor:"bg-[#8a55cf]"
     },
     {
         title:"Premium ",
@@ -36,7 +38,8 @@ const pricing =[
             "Save money 5% of your money when you pay",
             "Enjoy maximum flexible learning at your own pace ",
         ],
-         buttonLink:'https://mainstack.store/stellanwosu/premium-plan'
+         buttonLink:'https://mainstack.store/stellanwosu/premium-plan',
+         buttonColor:"bg-[#7852A9]"
     },
     {
         title:"Organizations",
@@ -53,7 +56,8 @@ const pricing =[
             "Free personal branding resources, templates and toolkits",
             "Dedicated customer success team and strategic implementation service",
         ],
-         buttonLink:'https://mainstack.store/stellanwosu/Y31l1e4NVIhj'
+         buttonLink:'https://mainstack.store/stellanwosu/Y31l1e4NVIhj',
+         buttonColor:"bg-[#8a55cf]"
     },
 ]
 const Pricing = () => {
@@ -66,7 +70,7 @@ const Pricing = () => {
         const priceTl =gsap.timeline({
             scrollTrigger:{
                 trigger:'.pricing-section',
-                start:'top 60%'
+                start:'top 75%'
             }
         })
 
@@ -74,20 +78,20 @@ const Pricing = () => {
       duration:1,
       clipPath:'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
       ease:'circ.out'})
-      .to('.price-paragraph', {opacity:1, duration:1}, '-=0.6')
+    //   .to('.price-paragraph', {opacity:1, duration:1}, '-=0.6')
     .from(priceRef.current, { //animating 
         y: 100,
-        delay:0.6,
+        delay:0.2,
         opacity: 0,
         duration: 0.6,
-        stagger: 0.3,
+        stagger: 0.1,
         ease: "back.out",
       },'-=0.3');
 
     },[])
 
   return (
-    <section className='pricing-section py-28 lg:py-32 bg-white'>
+    <section className='pricing-section py-18 lg:py-22 bg-white'>
         <div className='max-w-6xl mx-auto max-lg:p-3'>
 
             <div className='flex justify-center items-center'>
@@ -101,26 +105,24 @@ const Pricing = () => {
             license once, and all future updates are free for you forever.</p> */}
 
 
-            <div className='mt-10 flex flex-col md:flex-row gap-8 justify-center'>
-                {pricing.map((item, index)=>(
-
-               
-                <div key={item.title} ref={(el)=>{priceRef.current[index] = el}} className='bg-white border relative border-gray-100 p-6 rounded-2xl shadow-lg text-black'>
-                    <Image src={item.image} alt='img' className='absolute top-0 right-0'/>
+            <div className='mt-16 flex flex-col md:flex-row gap-8 justify-center'>
+                {pricing.map((item, index)=>{
+                    
+                    const isHighlighted = index === 1;
+                return(
+                <div key={item.title} ref={(el)=>{priceRef.current[index] = el}} className='flex flex-col'>
+                  {isHighlighted && <div className='w-full px-10 py-6 rounded-2xl flex items-center justify-center text-white bg-[#7852A9] scale-105'>
+                        <h2 className='text-xl'>Most Popular</h2>
+                    </div>}
+                <div  className= {`bg-white border relative  p-6 rounded-2xl shadow-lg text-black ${isHighlighted ? ' scale-105 border-6 rounded-t-none rounded-b-2xl border-[#7852A9]' : 'border-gray-100' }`}>
                     <div>
-                        <h2 className='text-[#ffffff] px-4 py-2 rounded-lg text-sm bg-[#7852A9] max-w-min'>{item.title}</h2>
-
-                        <h2 className='font-bold text-3xl md:text-5xl mt-6 flex'><span className='text-gray-400 text-2xl'> <Image src={naira} alt='naira'  /></span> {item.price}</h2>
-                        {/* <p className='text-gray-400 max-w-[250px] text-sm mt-6'>{item.desc}</p> */}
-
-                        <div className='flex justify-between items-center max-w-[200px] mx-auto mt-8    '>
-
-                        <a href={item.buttonLink} className='gradient-bg w-full px-8 py-4 rounded-4xl shadow-lg shadow-[#ebccfd] text-sm flex justify-center items-center text-white gap-2'>
-                            <Image src={fuelIcon} alt='img' />
-                            <p>Buy Now</p>
-                        </a>
+                        <div className='flex justify-between'>
+                            <h2 className='text-[#7852A9] px-4 py-2 rounded-lg text-sm  max-w-min'>{item.title}</h2>
+                            <h2 className='text-[#ffffff] px-4 py-2 rounded-lg text-sm bg-[#7852A9] max-w-min'>-5%</h2>
                         </div>
 
+                        <h2 className='font-bold text-3xl md:text-4xl mt-6 flex'><span className='text-gray-400 text-2xl'> <Image src={naira} alt='naira'  /></span> {item.price}</h2>
+  
                         <div className='mt-8'>
                             <ul className='flex flex-col gap-2'>
                                 {item.features.map((feature, index)=>(
@@ -131,15 +133,20 @@ const Pricing = () => {
                                 ))}
                             </ul>
                         </div>
+
+                        <div className='flex justify-between items-center max-w-[200px] mx-auto mt-8    '>
+
+                        <a href={item.buttonLink} className={clsx( 'w-full px-8 py-4 rounded-4xl shadow text-sm flex justify-center items-center text-white gap-2', item.buttonColor )}>
+                            <Image src={fuelIcon} alt='img' />
+                            <p>Buy Now</p>
+                        </a>
+                        </div>
                     </div>
                 </div>
-
-                ))}
             </div>
-            
-            {/* <p className='text-center text-sm mt-10 leading-6 text-gray-500 max-w-[450px] mx-auto'>Not ready to pay yet? Try the free demo with 600 icons. Same styles, same
-            features, same flexibility. It also includes full preview.</p> */}
-
+            )
+            })}
+            </div>
 
         </div>
       

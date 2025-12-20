@@ -24,21 +24,9 @@ const Instructors = () => {
 
   const cardsRef =useRef<Array<HTMLDivElement | null>>([])
 
-  // useGSAP(()=>{
-  //   const tl = gsap.timeline({
-  //     scrollTrigger:{
-  //       trigger:'.instructors',
-  //       start:'top center',
-  //       markers:true,
-  //     }
-  //   })
-
-  //   tl.from(cardsRef.current, { yPercent:50, opacity:0, stagger:0.2, ease:'power1.inOut', duration:0.8})
-  // },[])
-
   return (
-    <section className='instructors py-22 lg:py-28 w-full min-h-screen bg-black' >
-        <div className='max-w-7xl mx-auto px-4 lg:px-8 text-white'>
+    <section className='instructors py-22 lg:py-28 w-full min-h-screen' >
+        <div className='max-w-7xl mx-auto px-4 lg:px-8'>
              <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold mt-6 text-center max-w-xl mx-auto mb-10">Our Instructors</h2>
 
              <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-10'>
@@ -51,7 +39,7 @@ const Instructors = () => {
                         <img src={instructor.image} alt='Instructor 1' className='w-full h-full object-cover' />
                     </div>
                     <h3 className='text-3xl font-semibold'>{instructor.name}</h3>
-                    <p className='text-sm text-gray-300 mt-2'>{instructor.role}</p>
+                    <p className='text-sm text-gray-500 mt-2'>{instructor.role}</p>
                 </div>
               ))}
 
