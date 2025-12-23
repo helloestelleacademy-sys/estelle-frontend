@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
-import {Inter, Source_Serif_4} from "next/font/google";
+// import {Inter, Source_Serif_4} from "next/font/google"; // Disabled due to build network error
 import { Toaster } from "@/components/ui/sonner"
 import "./globals.css";
 import StoreProvider from "@/StoreProvider";
 import { PersistLogin } from "@/components/PersistLogin";
 
+/*
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
@@ -16,7 +17,7 @@ const source = Source_Serif_4({
   subsets: ["latin"],
   display: "swap",
 });
-
+*/
 
 
 export const metadata: Metadata = {
@@ -32,12 +33,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} ${source.variable} antialiased`}
+        className={`antialiased font-sans`}
       >
         <StoreProvider>
           <PersistLogin>
-          {children}
-          <Toaster />
+            {children}
+            <Toaster />
           </PersistLogin>
         </StoreProvider>
       </body>
