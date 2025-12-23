@@ -61,7 +61,7 @@ export const courseApi = createApi({
     reducerPath: "courseApi",
     tagTypes: ["Courses", "Enrollments"],
     baseQuery: fetchBaseQuery({
-        baseUrl: "http://localhost:4000/api/v1",
+        baseUrl: "https://estelle-backend.onrender.com/api/v1",
         credentials: "include",
         prepareHeaders: (headers, { getState }) => {
             const token = (getState() as RootState).auth.accessToken;
