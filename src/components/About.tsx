@@ -5,7 +5,7 @@ import Image from 'next/image'
 const About = () => {
 
   return (
-    <section id='about' className='py-18 lg:py-20'>
+    <section id='about' className='py-16 lg:py-18'>
       <div className='flex flex-col'>
             <h3 className='subText font-bold text-3xl mb-10 text-center'>Trusted by hundreds of learners in 10+ countries around the world</h3>
 

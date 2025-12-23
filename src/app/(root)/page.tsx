@@ -21,7 +21,7 @@ export default function Home() {
       <FeaturedCourses />
       <Pricing />
       <Mission />
-      <Testimonials />
+      {/* <Testimonials /> */}
       <Service />
       <FAQSection />
       <Features />

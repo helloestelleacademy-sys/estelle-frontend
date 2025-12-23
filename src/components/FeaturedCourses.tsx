@@ -6,7 +6,7 @@ import { ArrowBigRight, ArrowRight } from 'lucide-react'
 
 const FeaturedCourses = () => {
   return (
-    <section className='py-18 lg:py-20 min-h-screen'>
+    <section className='py-16 lg:py-18 min-h-screen'>
         <div className='max-w-7xl mx-auto px-4 md:px-6'>
             <div className='flex justify-center'>
                 <Button className='bg-[#7851A9] px-8 py-6 text-lg'>Featured Courses</Button>
@@ -20,8 +20,8 @@ const FeaturedCourses = () => {
                 
             </div>
 
-            <div className='w-fit flex justify-end mt-8 items-center gap-2'>
-                <button className='text-[#7851A9] cursor-pointer'>View More </button>
+            <div className='flex justify-end mt-8 items-center gap-2 text-[#7851A9] '>
+                <button className='cursor-pointer font-semibold'>View More </button>
                 <ArrowRight /> 
             </div>
         </div>
