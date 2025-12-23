@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import React from "react";
 
 interface CircularProgressProps {
@@ -50,10 +51,12 @@ const CircularProgressBar: React.FC<CircularProgressProps> = ({ progress, imageU
 
       {/* Profile image in center */}
       <div className="absolute flex items-center justify-center">
-        <img
+        <Image
           src={imageUrl}
           alt="Profile"
           className="w-20 h-20 rounded-full border-4 border-white shadow-lg object-cover"
+          width={80}
+          height={80}
         />
       </div>
 

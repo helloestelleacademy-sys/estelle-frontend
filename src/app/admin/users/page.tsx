@@ -16,21 +16,21 @@ async function getData(): Promise<Users[]> {
       id: "728ed52f",
       name: 'Enoch',
       email: "m@example.com",
-        phoneNo: "123-456-7890",
+      phoneNo: "123-456-7890",
       address: "123 Main St, City, Country",
     },
     {
       id: "728ed52f",
       name: 'Enoch',
       email: "m@example.com",
-    phoneNo: "123-456-7890",
+      phoneNo: "123-456-7890",
       address: "123 Main St, City, Country",
     },
     {
       id: "728ed52f",
       name: 'Enoch',
       email: "m@example.com",
-        phoneNo: "123-456-7890",
+      phoneNo: "123-456-7890",
       address: "123 Main St, City, Country",
     },
 
@@ -38,11 +38,11 @@ async function getData(): Promise<Users[]> {
 }
 
 export default async function DemoPage() {
-  const data = await getData()
+  // const data = await getData()
 
   return (
     <div className="container mx-auto py-10 bg-white rounded-2xl px-8 ">
-      <DataTable columns={columns} data={UsersDetails} /> 
+      <DataTable columns={columns} data={UsersDetails} />
     </div>
   )
 }

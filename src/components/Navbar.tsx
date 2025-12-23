@@ -7,112 +7,111 @@ import clsx from 'clsx'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { useSelector } from 'react-redux'
-import { useUserProfileQuery } from '@/redux/api/userApi'
-// import { useUserProfileQuery } from '@/redux/api/userApi'
+import { RootState } from '@/redux/store'
 
 const Navbar = () => {
-  const {isLoading, data} =useUserProfileQuery()
-  const [isScrolled, setIsScrolled] =useState(false);
-  const [isOpen, setIsOpen] =useState(false); 
-  const mobileMenuRef =useRef(null);
-  const linkRef = useRef<(HTMLAnchorElement  | null)[]>([]);
+  // const { isLoading, data } = useUserProfileQuery()
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const mobileMenuRef = useRef(null);
+  const linkRef = useRef<(HTMLAnchorElement | null)[]>([]);
   const iconTl = useRef<gsap.core.Timeline | null>(null);
   const topLineRef = useRef(null);
   const bottomLineRef = useRef(null);
   const menuTl = useRef<gsap.core.Timeline | null>(null)
 
-  const {user} =useSelector((state:any)=> state.auth)
+  const { user } = useSelector((state: RootState) => state.auth)
   console.log("Navbar user:", user, user?.lastName)
 
-  useEffect(()=>{
-        const handleScroll =()=>{
-            setIsScrolled(window.scrollY > 20) // this checks if the page is scrolled more than 20px, if so it sets isScrolled to true
-        };
-        window.addEventListener('scroll', handleScroll) // add the event listener to the window object
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20) // this checks if the page is scrolled more than 20px, if so it sets isScrolled to true
+    };
+    window.addEventListener('scroll', handleScroll) // add the event listener to the window object
 
-        return()=> window.removeEventListener('scroll', handleScroll) // cleanup function to remove the event listener when the component unmounts
-    },[])
+    return () => window.removeEventListener('scroll', handleScroll) // cleanup function to remove the event listener when the component unmounts
+  }, [])
 
-  useGSAP(()=>{
+  useGSAP(() => {
 
-        gsap.set(mobileMenuRef.current, {yPercent:-200})
-        gsap.set(linkRef.current, {autoAlpha:0})
+    gsap.set(mobileMenuRef.current, { yPercent: -200 })
+    gsap.set(linkRef.current, { autoAlpha: 0 })
 
-        menuTl.current =gsap.timeline({
-            paused:true
-        })
-        .to(mobileMenuRef.current, {yPercent:0,opacity:1, duration:0.8, ease:'power3.out'})
-        .to(linkRef.current, {autoAlpha:1, stagger:0.08, duration:0.8, ease:'power2.out'})
-        
-        iconTl.current =gsap.timeline({
-            paused:true
-        })
-        .to([topLineRef.current], {
-            rotation:45,
-            y:3.3,
-            duration:0.5,
-            ease:"power2.inOut",
-        })
-        .to([bottomLineRef.current], {
-            rotation:-45,
-            y:-3.3,
-             duration:0.5,
-            ease:"power2.inOut",
-        }, "<")
-    },[])
+    menuTl.current = gsap.timeline({
+      paused: true
+    })
+      .to(mobileMenuRef.current, { yPercent: 0, opacity: 1, duration: 0.8, ease: 'power3.out' })
+      .to(linkRef.current, { autoAlpha: 1, stagger: 0.08, duration: 0.8, ease: 'power2.out' })
 
-  const onNavLinkClose =()=>{
-        menuTl.current?.reverse()
-        setIsOpen(false)
-         iconTl!.current!.reverse()
+    iconTl.current = gsap.timeline({
+      paused: true
+    })
+      .to([topLineRef.current], {
+        rotation: 45,
+        y: 3.3,
+        duration: 0.5,
+        ease: "power2.inOut",
+      })
+      .to([bottomLineRef.current], {
+        rotation: -45,
+        y: -3.3,
+        duration: 0.5,
+        ease: "power2.inOut",
+      }, "<")
+  }, [])
+
+  const onNavLinkClose = () => {
+    menuTl.current?.reverse()
+    setIsOpen(false)
+    iconTl!.current!.reverse()
   }
 
-  const toggleMenu =()=>{
-        if(isOpen){
-            menuTl.current?.reverse()
-            setIsOpen(false)
-             iconTl!.current!.reverse()
-        }else{
-            menuTl.current?.play()
-            setIsOpen(true)
-             iconTl.current?.play()
-        }
-
+  const toggleMenu = () => {
+    if (isOpen) {
+      menuTl.current?.reverse()
+      setIsOpen(false)
+      iconTl!.current!.reverse()
+    } else {
+      menuTl.current?.play()
+      setIsOpen(true)
+      iconTl.current?.play()
     }
 
-  
-const navLinks =[
+  }
+
+
+  const navLinks = [
     {
-        title:"Home",
-        link:"/",
+      title: "Home",
+      link: "/",
     },
     {
-        title:"About",
-        link:"/about",
+      title: "About",
+      link: "/about",
     },
     // {
     //     title:"Courses",
     //     link:"/courses",
     // },
 
-]
+  ]
 
   return (
     <nav className={`w-full py-3  z-50 transition-all duration-300 bg-blur bg-white`}>
       <div className='flex items-center justify-between max-w-6xl mx-auto px-2'>
         {/* logo */}
-        {isScrolled ?(
+        {isScrolled ? (
           <Link href={'/'} className=''>
             <Image src={'/assets/Estellelogonew.png'} alt='Logo' width={78} height={80} />
-        </Link>
-        ) 
-        :(
-          <Link href={'/'} className=''>
-            <Image src={'/assets/Estellelogonew2.png'} alt='Logo' width={78} height={80}/>
-        </Link>
+          </Link>
         )
-      }
-        
+          : (
+            <Link href={'/'} className=''>
+              <Image src={'/assets/Estellelogonew2.png'} alt='Logo' width={78} height={80} />
+            </Link>
+          )
+        }
+
 
         <ul className='hidden sm:flex gap-6 items-center text-white'>
           <Link href={'/about'}>
@@ -128,37 +127,37 @@ const navLinks =[
         </ul>
 
         <div className='hidden md:flex space-x-6'>
-            {!user && <>
-              <Button  className='w-[100px] py-5 bg-white text-black'>Login</Button>
-              <Button  className='bg-[#7852A9] w-[100px] hover:bg-[#5e3e87] py-5'>Signup</Button>
-            </>
-            }
-            <a href='/dashboard' >
+          {!user && <>
+            <Button className='w-[100px] py-5 bg-white text-black'>Login</Button>
+            <Button className='bg-[#7852A9] w-[100px] hover:bg-[#5e3e87] py-5'>Signup</Button>
+          </>
+          }
+          <a href='/dashboard' >
             <Button className='bg-[#4e2286] hover:bg-[#5e3e87] w-[100px] py-5 cursor-pointer'>Dashboard</Button>
-            </a>
+          </a>
 
         </div>
 
-         <div onClick={toggleMenu} className='md:hidden bg-white size-12 z-50 flex flex-col gap-1 justify-center items-center md:size-20 transition-all duration-300 rounded-full cursor-pointer'>
-                <span ref={topLineRef} className='block w-8 h-0.5 bg-black rounded-full origin-center'></span>
-                <span ref={bottomLineRef} className='block w-8 h-0.5 bg-black rounded-full origin-center'></span>
-          </div>
+        <div onClick={toggleMenu} className='md:hidden bg-white size-12 z-50 flex flex-col gap-1 justify-center items-center md:size-20 transition-all duration-300 rounded-full cursor-pointer'>
+          <span ref={topLineRef} className='block w-8 h-0.5 bg-black rounded-full origin-center'></span>
+          <span ref={bottomLineRef} className='block w-8 h-0.5 bg-black rounded-full origin-center'></span>
+        </div>
 
-          {/* <h2>{user.firstname}</h2> */}
+        {/* <h2>{user.firstname}</h2> */}
 
       </div>
 
       <div ref={mobileMenuRef} className='md:hidden fixed inset-0 border border-white/15 w-full h-[screen] bg-black/30 z-30 flex flex-col items-center justify-between text-white/80 py-22 px-10 gap-y-10 backdrop-blur opacity-0 '>
-            <div className='flex flex-col gap-y-6 text-3xl'>
-                {navLinks.map((item, index)=>(
-                    <Link href={item.link} key={index} ref={(el)=>{linkRef.current[index] = el }} className=''>
-                        <span onClick={onNavLinkClose} className='transition-all duration-300 text-white  hover:text-white font-semibold cursor-pointer'>
-                            {item.title}
-                        </span>
-                    </Link>
-                ))}
-            </div>
-        </div>   
+        <div className='flex flex-col gap-y-6 text-3xl'>
+          {navLinks.map((item, index) => (
+            <Link href={item.link} key={index} ref={(el) => { linkRef.current[index] = el }} className=''>
+              <span onClick={onNavLinkClose} className='transition-all duration-300 text-white  hover:text-white font-semibold cursor-pointer'>
+                {item.title}
+              </span>
+            </Link>
+          ))}
+        </div>
+      </div>
     </nav>
   )
 }

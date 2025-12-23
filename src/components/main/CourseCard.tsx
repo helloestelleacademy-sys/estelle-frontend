@@ -3,22 +3,22 @@ import Image from 'next/image'
 import React from 'react'
 import { Button } from '../ui/button'
 
-type CourseProp ={
-    title:string,
-    img:string,
-    time:string,
-    price:string,
-    level:string,
-    modules:string,
-    courseType?:string,
+type CourseProp = {
+    title: string,
+    img: string,
+    time: string,
+    price: string | number,
+    level: string,
+    modules: string,
+    courseType?: string,
 }
 
-const CourseCard = ({title, img, courseType}:CourseProp) => {
-  return (
-    <div className='rounded-xl shadow-md hover:shadow-lg transition duration-300 relative'>
-        <Image src={img} alt='Image' width={200} height={150} className='w-full h-[200px] rounded-2xl inset-0 object-cover' />
+const CourseCard = ({ title, img, courseType }: CourseProp) => {
+    return (
+        <div className='rounded-xl shadow-md hover:shadow-lg transition duration-300 relative'>
+            <Image src={img} alt='Image' width={200} height={150} className='w-full h-[200px] rounded-2xl inset-0 object-cover' />
 
-        <div className='py-6 px-4 bg-white rounded-2xl -mt-2'>
+            <div className='py-6 px-4 bg-white rounded-2xl -mt-2'>
                 <h2 className='font-semibold text-lg'>{title}</h2>
 
                 {/* <div className='flex items-center mt-2'>
@@ -53,8 +53,8 @@ const CourseCard = ({title, img, courseType}:CourseProp) => {
                     </div>
                 </div> */}
             </div>
-    </div>
-  )
+        </div>
+    )
 }
 
 export default CourseCard

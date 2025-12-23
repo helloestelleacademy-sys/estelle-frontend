@@ -1,18 +1,18 @@
-import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react'
-import { AuthResponse, setUser, setAccessToken  } from '../features/authSlice';
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { AuthResponse, setUser, setAccessToken } from '../features/authSlice';
 import type { RootState } from "../store";
 
 type LoginCredentials = {
-    email: string;
-    password: string;
+  email: string;
+  password: string;
 };
 
 type RegisterUser = {
-    firstName: string;   
-    lastName: string;
-    email: string;
-    password: string;
-    role?: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  role?: string;
 };
 
 
@@ -37,9 +37,10 @@ export const authApi = createApi({
       async onQueryStarted(_, { dispatch, queryFulfilled }) {
         try {
           const { data } = await queryFulfilled;
+          console.log("Login successful:", data);
           dispatch(setUser({ user: data.user, accessToken: data.accessToken, message: data.message }));
         } catch (error) {
-          console.log(error);
+          console.log("Login error:", error);
         }
       },
     }),
@@ -53,9 +54,10 @@ export const authApi = createApi({
       async onQueryStarted(_, { dispatch, queryFulfilled }) {
         try {
           const { data } = await queryFulfilled;
+          console.log("Registration successful:", data);
           dispatch(setUser({ user: data.user, accessToken: data.accessToken, message: data.message }));
         } catch (error) {
-          console.log(error);
+          console.log("Registration error:", error);
         }
       },
     }),
@@ -68,9 +70,11 @@ export const authApi = createApi({
       async onQueryStarted(_, { dispatch, queryFulfilled }) {
         try {
           const { data } = await queryFulfilled;
-          dispatch(setUser({ user: data.user, accessToken: data.accessToken, message: data.message}));
-        } catch (err) {
-          dispatch(setAccessToken(null as any)); // or clearAuth
+          console.log("Refresh successful:", data);
+          dispatch(setUser({ user: data.user, accessToken: data.accessToken, message: data.message }));
+        } catch (error) {
+          console.log("Refresh error:", error);
+          dispatch(setAccessToken(null)); // or clearAuth
         }
       },
     }),

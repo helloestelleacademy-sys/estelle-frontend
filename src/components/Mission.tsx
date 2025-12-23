@@ -4,71 +4,46 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
-const features = [
-  {
-    num:'01',
-    coloredTitle:'Become',
-    title: "a thought leader",
-    text: "Learn how to tell your story that becomes a legacy. Get seen and make an impact.",
-  },
-  {
-    num:'02',
-    coloredTitle:'Expert',
-    title: "led courses",
-    text: "Access to valuable knowledge and mentorship that improves your visibility",
-  },
-  {
-    num:'03',
-    coloredTitle:'Earn',    
-    title: "valuable credentials",
-    text: "Get certified and boost your chances of being trusted by clients & recruiters.",
-  },
-  {
-    num:'04',
-   coloredTitle:'Every',   
-    title: "legacy begins with a story",
-    text: "our mission is to turn everyday people into legacy brands by making personal branding education accessible, practical, and transformative.",
-  },
-];
+
 
 const Mission = () => {
-    const sectionRef = useRef(null);
-    const featuresContainer = useRef<(HTMLDivElement | null)[]>([]);
-    const containerRef = useRef(null);
+  const sectionRef = useRef(null);
+  const featuresContainer = useRef<(HTMLDivElement | null)[]>([]);
+  const containerRef = useRef(null);
 
-    useEffect(()=>{
-        const ctx =gsap.context(()=>{
-            // we are going to pin the container ref when the section comes into view
-            ScrollTrigger.create({
-                trigger: sectionRef.current,
-                start: "top top",
-                end: "bottom 60%",
-                pin: containerRef.current,
-                pinSpacing: true,
-                scrub: true,
-                markers: false,
-            });
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // we are going to pin the container ref when the section comes into view
+      ScrollTrigger.create({
+        trigger: sectionRef.current,
+        start: "top top",
+        end: "bottom 60%",
+        pin: containerRef.current,
+        pinSpacing: true,
+        scrub: true,
+        markers: false,
+      });
 
-            gsap.from(featuresContainer.current, {
-                x: 80,
-                opacity:0,
-                stagger: 0.3,
-                duration: 1,
-                ease: "power2.out",
-                scrollTrigger: {
-                    trigger: sectionRef.current,
-                    start: "top center",    
-                    end: "bottom 20%",
-                    markers: false,
-                }
-            });
-            
-        },  sectionRef)
-         return () => ctx.revert();
-    },[])
+      gsap.from(featuresContainer.current, {
+        x: 80,
+        opacity: 0,
+        stagger: 0.3,
+        duration: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top center",
+          end: "bottom 20%",
+          markers: false,
+        }
+      });
+
+    }, sectionRef)
+    return () => ctx.revert();
+  }, [])
 
   return (
-     <section className="w-full bg-white py-20 px-4">
+    <section className="w-full bg-white py-20 px-4">
       <div className="max-w-6xl mx-auto">
         {/* Heading */}
         <h2 className="text-center text-2xl md:text-3xl font-semibold text-gray-900 mb-12">
