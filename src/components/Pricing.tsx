@@ -18,6 +18,7 @@ const pricing =[
         title:"Basic",
         image: pricingImg1,
         price: '35,000',
+        slashPrice: '50,000',
         features:[
             "Lifetime Access to 6 courses",
             "Earn a certificate upon completion",
@@ -74,10 +75,7 @@ const Pricing = () => {
             }
         })
 
-        priceTl.to('.price-title', {opacity:1,
-      duration:1,
-      clipPath:'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
-      ease:'circ.out'})
+        priceTl.from('.price-title', {opacity:0, duration:0.5, ease:'power1.in'})
     //   .to('.price-paragraph', {opacity:1, duration:1}, '-=0.6')
     .from(priceRef.current, { //animating 
         y: 100,
@@ -91,37 +89,41 @@ const Pricing = () => {
     },[])
 
   return (
-    <section className='pricing-section py-18 lg:py-22 bg-white'>
+    <section className='pricing-section py-16 lg:py-18 bg-white'>
         <div className='max-w-6xl mx-auto max-lg:p-3'>
 
             <div className='flex justify-center items-center'>
                 <h2 className='text-[#ffffff] px-4 py-2 rounded-lg text-sm bg-[#7852A9]'>Pricing</h2>
             </div>
 
-            <h1  style={{
-          clipPath:'polygon(50% 0, 50% 0, 50% 100%, 50% 100%)'
-        }} className='price-title mt-4 text-center font-light text-lg md:text-2xl lg:text-3xl text-black max-w-xl mx-auto'>Turn your story Into a Legacy-brand <br /><span className='font-semibold'>pay once, life time access</span></h1>
-            {/* <p className='price-paragraph mt-4 max-md:text-sm text-gray-400 text-center max-w-[500px] mx-auto opacity-0'>Flexible pricing for any team size. It&apos;s a one-time payment — you only buy a
-            license once, and all future updates are free for you forever.</p> */}
-
-
+            <h1 className='price-title mt-4 text-center font-light text-lg md:text-2xl lg:text-3xl text-black max-w-xl mx-auto'>Turn your story Into a Legacy-brand <br /><span className='font-semibold'>pay once, life time access</span></h1>
+            
             <div className='mt-16 flex flex-col md:flex-row gap-8 justify-center'>
                 {pricing.map((item, index)=>{
                     
                     const isHighlighted = index === 1;
                 return(
                 <div key={item.title} ref={(el)=>{priceRef.current[index] = el}} className='flex flex-col'>
-                  {isHighlighted && <div className='w-full px-10 py-6 rounded-2xl flex items-center justify-center text-white bg-[#7852A9] scale-105'>
+                  {isHighlighted && <div className='w-full px-10 py-4 rounded-2xl flex items-center justify-center text-white bg-[#7852A9] scale-105'>
                         <h2 className='text-xl'>Most Popular</h2>
                     </div>}
                 <div  className= {`bg-white border relative  p-6 rounded-2xl shadow-lg text-black ${isHighlighted ? ' scale-105 border-6 rounded-t-none rounded-b-2xl border-[#7852A9]' : 'border-gray-100' }`}>
                     <div>
                         <div className='flex justify-between'>
                             <h2 className='text-[#7852A9] px-4 py-2 rounded-lg text-sm  max-w-min'>{item.title}</h2>
-                            <h2 className='text-[#ffffff] px-4 py-2 rounded-lg text-sm bg-[#7852A9] max-w-min'>-5%</h2>
+                            <h2 className='text-[#ffffff] px-4 py-2 rounded-lg text-sm bg-[#FE401C] max-w-min'>-30%</h2>
                         </div>
 
-                        <h2 className='font-bold text-3xl md:text-4xl mt-6 flex'><span className='text-gray-400 text-2xl'> <Image src={naira} alt='naira'  /></span> {item.price}</h2>
+                        <div className={`${index === 0 && `flex items-center justify-center flex-col`} `}>
+                            <h2 className='font-bold text-3xl md:text-4xl mt-6 flex'>
+                                <span className='text-gray-400 text-2xl'> <Image src={naira} alt='naira'  /></span> {item.price}
+                            
+                            </h2>
+                        { index === 0 && <h2 className='font-medium text-2xl md:text-3xl mt-6 flex line-through'>
+                                <span className='text-gray-400 text-2xl'> <Image src={naira} alt='naira'  /></span> {item.slashPrice}
+                            
+                            </h2>}
+                        </div>
   
                         <div className='mt-8'>
                             <ul className='flex flex-col gap-2'>
