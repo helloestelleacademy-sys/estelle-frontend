@@ -28,8 +28,8 @@ const Header = () => {
                         <p className='text-sm mt-6 font-semibold'> <span className='gradient-bg bg-clip-text text-transparent'>Life time learning access</span> to Courses and AI resources</p>
                     </div>
 
-                    <div className="flex justify-center lg:justify-end relative">
-                        <div className="relative w-72 h-72 md:w-110 md:h-96">
+                    <div className="flex justify-center lg:justify-end relative mt-10 lg:mt-0">
+                        <div className="relative w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] lg:w-[500px] lg:h-[500px]">
                             {/* Background Circle */}
                             <div className="absolute inset-0 rounded-full bg-[#D9B3FF]"></div>
 
@@ -37,9 +37,10 @@ const Header = () => {
                             <Image
                                 src="/assets/headerImg.png"
                                 alt="Hero Person"
-                                className="absolute -bottom-30 right-0 w-[120%] h-auto object-contain"
+                                className="absolute -bottom-44 left-1/2 -translate-x-1/2 w-[110%] max-w-none h-auto object-contain z-10"
                                 width={600}
                                 height={600}
+                                priority
                             />
                         </div>
                     </div>
