@@ -75,7 +75,7 @@ export default function FAQSection() {
         {faqs.map((faq, index) => (
           <div
             key={index}
-            ref={(el) => {itemsRef.current[index] = el}}
+            ref={(el) => { itemsRef.current[index] = el }}
             className="border border-gray-200 rounded-2xl overflow-hidden shadow-sm"
           >
             <button
@@ -84,9 +84,8 @@ export default function FAQSection() {
             >
               <span>{faq.question}</span>
               <ChevronDown
-                className={`w-6 h-6 transform transition-transform duration-300 ${
-                  activeIndex === index ? "rotate-180 text-purple-500" : "rotate-0"
-                }`}
+                className={`w-6 h-6 transform transition-transform duration-300 ${activeIndex === index ? "rotate-180 text-purple-500" : "rotate-0"
+                  }`}
               />
             </button>
 

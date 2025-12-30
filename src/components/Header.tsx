@@ -10,7 +10,7 @@ const Header = () => {
     return (
         <section id='header' className='flex flex-col' >
             <DiscountBanner />
-            <div className="relative min-h-screen w-full overflow-hidden bg-[#F7F0FF] flex items-center justify-center px-6 md:px-16 lg:px-24 py-28">
+            <div className="relative min-h-screen w-full overflow-hidden bg-[#F7F0FF] flex flex-col lg:flex-row items-center justify-center px-6 md:px-16 lg:px-24 py-28">
 
                 <div className='flex flex-col justify-center lg:text-left text-black'>
                     <h1 className='text-4xl lg:text-[56px] font-bold mb-6 max-w-3xl'>Build a <span className='text-[#7852A9]'>Personal brand</span> that becomes a {' '}

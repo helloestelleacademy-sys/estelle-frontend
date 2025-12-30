@@ -6,9 +6,9 @@ const THIRTY_DAYS_IN_SECONDS = 30 * 24 * 60 * 60
 
 const DiscountBanner = () => {
 
-     const [timeLeft, setTimeLeft] = useState<number>(0)
+  const [timeLeft, setTimeLeft] = useState<number>(0)
 
-     useEffect(() => {
+  useEffect(() => {
     // Persist end time so refresh doesn't reset countdown
     let endTime = localStorage.getItem('promo_end_time')
 
@@ -39,29 +39,29 @@ const DiscountBanner = () => {
 
 
   return (
-        <div className='w-full bg-red-600 py-8 px-2'>
-            <div className='max-w-6xl mx-auto flex items-center text-white text-sm md:text-2xl lg:text-3xl justify-between'>
-                <h2 className=''>30% Discount!!!</h2>
+    <div className='w-full bg-red-600 py-8 px-2'>
+      <div className='max-w-6xl mx-auto flex items-center text-white text-sm md:text-2xl lg:text-3xl justify-between'>
+        <h2 className=''>30% Discount!!!</h2>
 
-                <h2>DON'T MISS THIS OFFER</h2>
+        <h2>DON'T MISS THIS OFFER</h2>
 
-                <div className='flex items-center gap-4 md:gap-8'>
-                    <div className='flex flex-col items-center'>
-                        <h2 className='font-semibold'>{format(hours)}</h2>
-                        <p className='text-sm '>hours</p>
-                    </div>
-                    <div className='flex flex-col items-center'>
-                        <h2 className='font-semibold'>{format(minutes)}</h2>
-                        <p className='text-sm '>mins</p>
-                    </div>
-                    <div className='flex flex-col items-center'>
-                        <h2 className='font-semibold'>{format(seconds)}</h2>
-                        <p className='text-sm '>seconds</p>
-                    </div>
-                </div>
-            </div>
-
+        <div className='flex items-center gap-4 md:gap-8'>
+          <div className='flex flex-col items-center'>
+            <h2 className='font-semibold'>{format(hours)}</h2>
+            <p className='text-sm '>hours</p>
+          </div>
+          <div className='flex flex-col items-center'>
+            <h2 className='font-semibold'>{format(minutes)}</h2>
+            <p className='text-sm '>mins</p>
+          </div>
+          <div className='flex flex-col items-center'>
+            <h2 className='font-semibold'>{format(seconds)}</h2>
+            <p className='text-sm '>seconds</p>
+          </div>
         </div>
+      </div>
+
+    </div>
   )
 }
 

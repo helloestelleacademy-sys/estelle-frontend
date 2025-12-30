@@ -28,7 +28,7 @@ export const NavItems = [
   },
 ]
 
-export const NavItems2 =[
+export const NavItems2 = [
   {
     title: "Account",
     url: "/dashboard/profile",
@@ -69,7 +69,7 @@ export const NavItemsAdmin = [
   },
 ]
 
-export const NavItemsAdmin2 =[
+export const NavItemsAdmin2 = [
   {
     title: "Account",
     url: "/admin/profile",
@@ -105,89 +105,89 @@ export const testimonials = [
   // },
 ]
 
-export const featuredCourses =[
+export const featuredCourses = [
   {
-    title:'Identifying your unfair advantage ',
-    img:'/assets/courseImg.png',
-    time:'1 hour, 30mins',
-    price:'35,000',
-    level:'Beginner level',
-    modules:'10 modules',
-    courseType:'Basic'
+    title: 'Identifying your unfair advantage ',
+    img: '/assets/courseImg.png',
+    time: '1 hour, 30mins',
+    price: '35,000',
+    level: 'Beginner level',
+    modules: '10 modules',
+    courseType: 'Basic'
   },
   {
-    title:' AI & SEO Linkedln visibility ',
-    img:'/assets/courseImg.png',
-    time:'1 hour, 30mins',
-    price:'55,000',
-    level:'Intermediate level',
-    modules:'10 modules',
-    courseType:'Premium'
+    title: ' AI & SEO Linkedln visibility ',
+    img: '/assets/courseImg.png',
+    time: '1 hour, 30mins',
+    price: '55,000',
+    level: 'Intermediate level',
+    modules: '10 modules',
+    courseType: 'Premium'
   },
   {
-    title:'Client Converting Personal brand',
-    img:'/assets/courseImg2.jpg',
-    time:'1 hour, 30mins',
-    price:'40,000',
-    level:'Beginner level',
-    modules:'10 modules',
-    courseType:'Organizaitions'
-  },
-]
-
-export const AllCourses =[
-  {
-    title:'Building Your Personal Brand from Scratch',
-    img:'/assets/courseImg.png',
-    time:'1 hour, 30mins',
-    price:'35,000',
-    level:'Beginner level',
-    modules:'10 modules',
-  },
-  {
-    title:'Building Your Personal Brand from Scratch',
-    img:'/assets/courseImg.png',
-    time:'1 hour, 30mins',
-    price:'55,000',
-    level:'Intermediate level',
-    modules:'10 modules',
-  },
-  {
-    title:'Building Your Personal Brand from Scratch',
-    img:'/assets/courseImg2.jpg',
-    time:'1 hour, 30mins',
-    price:'40,000',
-    level:'Beginner level',
-    modules:'10 modules',
-  },
-  {
-    title:'Building Your Personal Brand from Scratch',
-    img:'/assets/courseImg2.jpg',
-    time:'1 hour, 30mins',
-    price:'40,000',
-    level:'Beginner level',
-    modules:'10 modules',
-  },
-  {
-    title:'Building Your Personal Brand from Scratch',
-    img:'/assets/courseImg2.jpg',
-    time:'1 hour, 30mins',
-    price:'40,000',
-    level:'Beginner level',
-    modules:'10 modules',
-  },
-  {
-    title:'Building Your Personal Brand from Scratch',
-    img:'/assets/courseImg2.jpg',
-    time:'1 hour, 30mins',
-    price:'40,000',
-    level:'Beginner level',
-    modules:'10 modules',
+    title: 'Client Converting Personal brand',
+    img: '/assets/courseImg2.jpg',
+    time: '1 hour, 30mins',
+    price: '40,000',
+    level: 'Beginner level',
+    modules: '10 modules',
+    courseType: 'Organizaitions'
   },
 ]
 
+export const AllCourses = [
+  {
+    title: 'Building Your Personal Brand from Scratch',
+    img: '/assets/courseImg.png',
+    time: '1 hour, 30mins',
+    price: '35,000',
+    level: 'Beginner level',
+    modules: '10 modules',
+  },
+  {
+    title: 'Building Your Personal Brand from Scratch',
+    img: '/assets/courseImg.png',
+    time: '1 hour, 30mins',
+    price: '55,000',
+    level: 'Intermediate level',
+    modules: '10 modules',
+  },
+  {
+    title: 'Building Your Personal Brand from Scratch',
+    img: '/assets/courseImg2.jpg',
+    time: '1 hour, 30mins',
+    price: '40,000',
+    level: 'Beginner level',
+    modules: '10 modules',
+  },
+  {
+    title: 'Building Your Personal Brand from Scratch',
+    img: '/assets/courseImg2.jpg',
+    time: '1 hour, 30mins',
+    price: '40,000',
+    level: 'Beginner level',
+    modules: '10 modules',
+  },
+  {
+    title: 'Building Your Personal Brand from Scratch',
+    img: '/assets/courseImg2.jpg',
+    time: '1 hour, 30mins',
+    price: '40,000',
+    level: 'Beginner level',
+    modules: '10 modules',
+  },
+  {
+    title: 'Building Your Personal Brand from Scratch',
+    img: '/assets/courseImg2.jpg',
+    time: '1 hour, 30mins',
+    price: '40,000',
+    level: 'Beginner level',
+    modules: '10 modules',
+  },
+]
 
-export const UsersDetails =[
+
+export const UsersDetails = [
   {
     "id": '1',
     "name": "Jordan Matthews",
