@@ -1,18 +1,18 @@
-import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react'
-import { AuthResponse, setUser, setAccessToken  } from '../features/authSlice';
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { AuthResponse, setUser, setAccessToken } from '../features/authSlice';
 import type { RootState } from "../store";
 
 type LoginCredentials = {
-    email: string;
-    password: string;
+  email: string;
+  password: string;
 };
 
 type RegisterUser = {
-    firstName: string;   
-    lastName: string;
-    email: string;
-    password: string;
-    role?: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  role?: string;
 };
 
 
@@ -68,9 +68,9 @@ export const authApi = createApi({
       async onQueryStarted(_, { dispatch, queryFulfilled }) {
         try {
           const { data } = await queryFulfilled;
-          dispatch(setUser({ user: data.user, accessToken: data.accessToken, message: data.message}));
-        } catch (err) {
-          dispatch(setAccessToken(null as any)); // or clearAuth
+          dispatch(setUser({ user: data.user, accessToken: data.accessToken, message: data.message }));
+        } catch {
+          dispatch(setAccessToken(null)); // or clearAuth
         }
       },
     }),
