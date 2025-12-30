@@ -11,7 +11,7 @@ import { Button } from "@/components/ui/button";
 
 function Pricing() {
     return (
-        <div id="pricing" className="w-full py-20 lg:py-40">
+        <div id="pricing" className="w-full py-20 lg:py-24">
             <div className="container mx-auto">
                 <div className="flex text-center justify-center items-center gap-4 flex-col">
                     <Badge className="bg-[#7852A9] hover:bg-[#5e3e87] px-4 py-1 text-sm">Pricing</Badge>
@@ -64,7 +64,7 @@ function Pricing() {
                                 </div>
                                 <div className="pt-8">
                                     <a href="https://mainstack.store/stellanwosu/O7XDUpkdLOhk" target="_blank" rel="noopener noreferrer">
-                                        <Button variant="outline" className="w-full gap-4 rounded-full py-6 border-[#7852A9] text-[#7852A9] hover:bg-[#7852A9]/10">
+                                        <Button variant="outline" className="w-full gap-4 rounded-md py-6 border-[#7852A9] text-[#7852A9] hover:bg-black hover:text-white hover:border-black transition-colors duration-300">
                                             Buy Now <MoveRight className="w-4 h-4" />
                                         </Button>
                                     </a>
@@ -125,7 +125,7 @@ function Pricing() {
                                     </div>
                                     <div className="pt-8">
                                         <a href="https://mainstack.store/stellanwosu/premium-plan" target="_blank" rel="noopener noreferrer">
-                                            <Button className="w-full gap-4 bg-[#7852A9] hover:bg-[#5e3e87] rounded-full py-6 text-lg shadow-xl shadow-[#7852A9]/20">
+                                            <Button className="w-full gap-4 bg-[#7852A9] hover:bg-black rounded-md py-6 text-lg shadow-xl shadow-[#7852A9]/20 transition-colors duration-300">
                                                 Buy Now <MoveRight className="w-4 h-4" />
                                             </Button>
                                         </a>
@@ -183,7 +183,7 @@ function Pricing() {
                                 </div>
                                 <div className="pt-8">
                                     <a href="https://mainstack.store/stellanwosu/Y31l1e4NVIhj" target="_blank" rel="noopener noreferrer">
-                                        <Button variant="outline" className="w-full gap-4 rounded-full py-6 border-[#7852A9] text-[#7852A9] hover:bg-[#7852A9]/10">
+                                        <Button variant="outline" className="w-full gap-4 rounded-md py-6 border-[#7852A9] text-[#7852A9] hover:bg-black hover:text-white hover:border-black transition-colors duration-300">
                                             Book a meeting <MoveRight className="w-4 h-4" />
                                         </Button>
                                     </a>

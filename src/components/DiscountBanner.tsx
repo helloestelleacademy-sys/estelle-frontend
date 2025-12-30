@@ -51,7 +51,7 @@ const DiscountBanner = () => {
 
 
   return (
-    <div className='absolute top-[90px] left-0 w-full h-20 z-[40] overflow-visible pointer-events-none flex items-center justify-center '>
+    <div className='sticky top-[5.6rem] -mt-[56px] w-full h-20 z-[40] overflow-visible pointer-events-none flex items-center justify-center '>
       <style>{`
         @keyframes scroll {
           0% { transform: translateX(0); }
@@ -61,7 +61,7 @@ const DiscountBanner = () => {
           animation: scroll 20s linear infinite;
         }
       `}</style>
-      <div className='w-[105%] bg-[#D00000] py-3 -rotate-1 shadow-xl flex items-center border-y-2 border-yellow-400 overflow-hidden'>
+      <div className='w-full bg-[#D00000] py-3 shadow-xl flex items-center border-y-2 border-yellow-400 overflow-hidden z-50'>
         {/* Marquee Track: Contains TWO sets of content. We slide the whole thing by 50% */}
         <div className='flex animate-scroll gap-6 md:gap-12 '>
           {/* Set 1 */}

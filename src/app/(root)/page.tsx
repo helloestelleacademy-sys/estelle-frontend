@@ -1,5 +1,6 @@
 import About from "@/components/About";
 import Cta from "@/components/Cta";
+import DiscountBanner from "@/components/DiscountBanner";
 import FAQSection from "@/components/Faq";
 import FeaturedCourses from "@/components/FeaturedCourses";
 import Features from "@/components/Features";
@@ -17,11 +18,12 @@ export default function Home() {
   return (
     <>
       <Header />
+      <DiscountBanner />
       <About />
       <FeaturedCourses />
       <Pricing />
       <Mission />
-      {/* <Testimonials /> */}
+      <Testimonials />
       <Service />
       <FAQSection />
       <Features />

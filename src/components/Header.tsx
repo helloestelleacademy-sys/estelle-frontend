@@ -11,7 +11,7 @@ gsap.registerPlugin(ScrollTrigger);
 const Header = () => {
     return (
         <section id='header' className='flex flex-col' >
-            <DiscountBanner />
+
             <HeroGeometric className="bg-[#F7F0FF]">
                 <div className="relative min-h-screen w-full overflow-hidden flex flex-col lg:flex-row items-center justify-center px-6 md:px-16 lg:px-24 py-28">
 
@@ -22,8 +22,8 @@ const Header = () => {
 
                         <p className='text-sm mb-8 font-semibold'> <span className='gradient-bg bg-clip-text text-transparent'>210,000 naira/ Premium plan, </span>instant 30% cash back guarantee</p>
                         <div className='flex flex-col sm:flex-row items-start gap-4'>
-                            <Link href='/register' className='flex items-center justify-center bg-white text-[#7852A9] hover:opacity-90  py-4 rounded-lg font-bold w-full md:w-[200px]'>Start Learning</Link>
-                            <a href='https://mainstack.store/stellanwosu/w2RdFBdyAPo7' className='flex items-center justify-center gradient-bg text-white hover:bg-white hover:text-black transition w-full  md:w-[200px] py-4 rounded-lg font-bold'>Learn More</a>
+                            <Link href='/register' className='flex items-center justify-center bg-white text-[#7852A9] hover:opacity-90  py-4 rounded-md font-bold w-full md:w-[200px]'>Start Learning</Link>
+                            <Link href='/about' className='flex items-center justify-center gradient-bg text-white hover:bg-black active:bg-black hover:text-white transition w-full  md:w-[200px] py-4 rounded-md font-bold'>Learn More</Link>
                         </div>
                         <p className='text-sm mt-6 font-semibold'> <span className='gradient-bg bg-clip-text text-transparent'>Life time learning access</span> to Courses and AI resources</p>
                     </div>

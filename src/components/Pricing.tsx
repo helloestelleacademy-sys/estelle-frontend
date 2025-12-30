@@ -138,7 +138,7 @@ const Pricing = () => {
 
                                         <div className='flex justify-between items-center max-w-[200px] mx-auto mt-8    '>
 
-                                            <a href={item.buttonLink} className={clsx('w-full px-8 py-4 rounded-4xl shadow text-sm flex justify-center items-center text-white gap-2', item.buttonColor)}>
+                                            <a href={item.buttonLink} className={clsx('w-full px-8 py-4 rounded-md shadow text-sm flex justify-center items-center text-white gap-2 hover:bg-black active:bg-black transition-colors duration-300', item.buttonColor)}>
                                                 <Image src={fuelIcon} alt='img' />
                                                 <p>Buy Now</p>
                                             </a>

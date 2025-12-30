@@ -107,8 +107,8 @@ export const testimonials = [
 
 export const featuredCourses = [
   {
-    title: 'Identifying your unfair advantage ',
-    img: '/assets/courseImg.png',
+    title: 'Building your personal brand from scratch',
+    img: '/assets/featured1.png',
     time: '1 hour, 30mins',
     price: '35,000',
     level: 'Beginner level',
@@ -116,8 +116,8 @@ export const featuredCourses = [
     courseType: 'Basic'
   },
   {
-    title: ' AI & SEO Linkedln visibility ',
-    img: '/assets/courseImg.png',
+    title: 'Becoming a thought leader on LinkedIn',
+    img: '/assets/featured2.png',
     time: '1 hour, 30mins',
     price: '55,000',
     level: 'Intermediate level',
@@ -125,8 +125,8 @@ export const featuredCourses = [
     courseType: 'Premium'
   },
   {
-    title: 'Client Converting Personal brand',
-    img: '/assets/courseImg2.jpg',
+    title: 'AI and SEO LinkedIn visibility',
+    img: '/assets/featured3.png',
     time: '1 hour, 30mins',
     price: '40,000',
     level: 'Beginner level',

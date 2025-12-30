@@ -109,36 +109,28 @@ const Navbar = () => {
   ]
 
   return (
-    <nav className={`w-full py-3  z-50 transition-all duration-300 bg-blur bg-white relative`}>
+    <nav className={`w-full py-3  z-50 transition-all duration-300 bg-blur bg-white fixed top-0`}>
       <div className='flex items-center justify-between max-w-6xl mx-auto px-2'>
         {/* logo */}
-        {isScrolled ? (
-          <Link href={'/'} className=''>
-            <Image src={'/assets/Estellelogonew.png'} alt='Logo' width={78} height={80} />
-          </Link>
-        )
-          : (
-            <Link href={'/'} className=''>
-              <Image src={'/assets/Estellelogonew2.png'} alt='Logo' width={78} height={80} />
-            </Link>
-          )
-        }
+        <Link href={'/'} className=''>
+          <Image src={'/assets/Estellelogonew2.png'} alt='Logo' width={78} height={80} />
+        </Link>
 
 
-        <ul className='hidden sm:flex gap-6 items-center text-white'>
+        <ul className='hidden sm:flex gap-6 items-center text-[#37296D]'>
           <Link href={'/about'}>
-            <li className={clsx('text-[16px] font-semibold tracking-wide  cursor-pointer', !isScrolled && 'text-[#37296D]')}>About</li>
+            <li className={clsx('text-[16px] font-semibold tracking-wide  cursor-pointer')}>About</li>
           </Link>
           <Link href={'/#pricing'}>
-            <li className={clsx('text-[16px] font-semibold tracking-wide  cursor-pointer', !isScrolled && 'text-[#37296D]')}>Pricing</li>
+            <li className={clsx('text-[16px] font-semibold tracking-wide  cursor-pointer')}>Pricing</li>
           </Link>
           <Link href={'#footer'}>
-            <li className={clsx('text-[16px] font-semibold tracking-wide  cursor-pointer', !isScrolled && 'text-[#37296D]')}>Support</li>
+            <li className={clsx('text-[16px] font-semibold tracking-wide  cursor-pointer')}>Support</li>
           </Link>
           {/* <Link href={'/courses'}>
-            <li className={clsx('text-[16px] font-semibold tracking-wide  cursor-pointer', !isScrolled && 'text-[#37296D]')}>Courses</li>
+            <li className={clsx('text-[16px] font-semibold tracking-wide  cursor-pointer')}>Courses</li>
           </Link>
-            <li className={clsx('text-[16px] font-semibold tracking-wide  cursor-pointer', !isScrolled && 'text-[#37296D]')}>Subjects</li> */}
+            <li className={clsx('text-[16px] font-semibold tracking-wide  cursor-pointer')}>Subjects</li> */}
         </ul>
 
         <div className='hidden md:flex space-x-6'>
@@ -147,11 +139,11 @@ const Navbar = () => {
               <Button className='w-[100px] py-5 bg-white text-black'>Login</Button>
             </Link>
             <Link href='/register'>
-              <Button className='bg-[#7852A9] w-[100px] hover:bg-[#5e3e87] py-5'>Signup</Button>
+              <Button className='bg-[#7852A9] w-[100px] hover:bg-black active:bg-black transition-colors py-5'>Sign Up</Button>
             </Link>
           </>) :
             <a href='/dashboard' >
-              <Button className='bg-[#4e2286] hover:bg-[#5e3e87] w-[100px] py-5 cursor-pointer'>Dashboard</Button>
+              <Button className='bg-[#4e2286] hover:bg-black active:bg-black transition-colors w-[100px] py-5 cursor-pointer'>Dashboard</Button>
             </a>
           }
 

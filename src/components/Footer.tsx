@@ -2,52 +2,40 @@ import React from 'react'
 import { Input } from './ui/input'
 import { Button } from './ui/button'
 import Image from 'next/image'
-import { Facebook, Instagram, Linkedin, Youtube } from 'lucide-react'
+import { Facebook, Instagram, Linkedin, Twitter, Youtube } from 'lucide-react'
 
 const Links1 = [
     {
         title: 'About us',
-        href: '/'
+        href: '/about'
     },
     {
-        title: 'Contact us',
-        href: '/'
-    },
-    {
-        title: 'FAQs',
-        href: '/'
+        title: 'FAQ',
+        href: '/#faq'
     },
     {
         title: 'Testimonials',
-        href: '/'
+        href: '/#testimonials'
     },
 ]
-// const Links2 =[
-
-//     {
-//         title:'Blog',
-//         href:'/'
-//     },
-
-// ]
 
 const Footer = () => {
     return (
-        <footer id='footer' className='py-18 lg:py-20 w-full'>
+        <footer id='footer' className='py-20 lg:py-24 w-full'>
             <div className='max-w-7xl mx-auto flex flex-wrap gap-8 justify-between px-4'>
                 <ul className='flex flex-col gap-4 '>
                     {Links1.map((link) => (
-                        <li key={link.title} className='font-semibold text-sm tracking-wide'>{link.title}</li>
+                        <a href={link.href} key={link.title}>
+                            <li className='font-semibold text-sm tracking-wide hover:text-[#7851A9] transition-colors'>{link.title}</li>
+                        </a>
                     ))}
                 </ul>
-                {/* <ul className='flex flex-col gap-4 '>
-                {Links2.map((link)=>(
-                    <li key={link.title} className='font-semibold text-sm tracking-wide'>{link.title}</li>
-                ))}
-            </ul> */}
 
                 <div className='flex flex-col gap-6'>
-                    <h2 className='font-semibold text-sm'>Subscribe</h2>
+                    <div className='space-y-2'>
+                        <h2 className='font-semibold text-sm'>Sign up on our Newsletter</h2>
+                        <p className='text-sm font-medium text-[#7851A9]'>Be the first to know our update!</p>
+                    </div>
 
                     <p className='text-xs max-w-md'>Estelle is an e-learning platform designed to make personal branding education universally accessible. Through curated courses, expert mentorship,
                         and interactive learning experiences, we empower individuals and teams to define their voice, showcase their value, and build influence that matters.</p>
@@ -58,9 +46,10 @@ const Footer = () => {
                     </div>
                 </div>
 
-                <div className='space-y-4'>
-                    <a href='support@estellelearning.com' className='font-semibold text-sm'>support@estellelearning.com</a>
-                    {/* <p className='font-semibold text-sm'>+234 803 069 6738</p> */}
+                <div className='space-y-4 flex flex-col'>
+                    <h2 className='font-semibold text-sm'>Contact Us</h2>
+                    <a href='mailto:info@estellelearning.com' className='font-semibold text-sm hover:text-[#7851A9] underline'>info@estellelearning.com</a>
+                    <a href='mailto:support@estellelearning.com' className='font-semibold text-sm hover:text-[#7851A9] underline'>support@estellelearning.com</a>
                 </div>
             </div>
 
@@ -68,11 +57,15 @@ const Footer = () => {
                 <Image src={'/assets/Estellelogonew2.png'} alt='Logo' width={78} height={80} />
 
                 <div className='space-x-4 flex items-center'>
-                    <Facebook />
-                    <Linkedin />
-                    <Instagram />
-                    <Youtube />
-
+                    <a href="https://www.linkedin.com/company/estellelearning/" target="_blank" rel="noopener noreferrer" className='hover:text-[#7851A9] transition-colors'>
+                        <Linkedin />
+                    </a>
+                    <a href="https://www.instagram.com/estellelearning?utm_source=qr" target="_blank" rel="noopener noreferrer" className='hover:text-[#7851A9] transition-colors'>
+                        <Instagram />
+                    </a>
+                    <a href="https://x.com/estellelearning?s=21" target="_blank" rel="noopener noreferrer" className='hover:text-[#7851A9] transition-colors'>
+                        <Twitter />
+                    </a>
                 </div>
             </div>
 

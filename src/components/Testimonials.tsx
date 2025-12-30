@@ -5,29 +5,29 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { testimonials } from '@/constants'
 
 const Testimonials = () => {
-    const scrollRef = useRef<HTMLDivElement | null>(null);
+  const scrollRef = useRef<HTMLDivElement | null>(null);
 
-    useEffect(()=>{
-        const container = scrollRef.current
-          if (!container) return;
-        const totalWidth = container.scrollWidth / 2
+  useEffect(() => {
+    const container = scrollRef.current
+    if (!container) return;
+    const totalWidth = container.scrollWidth / 2
 
-        gsap.to(container, {
-             x: -totalWidth,
-             duration: 25, 
-             ease: 'linear',
-             repeat: -1,
-             modifiers: {
-                x: gsap.utils.unitize((x) => parseFloat(x) % totalWidth), // resets position smoothly
-            },
-        })
-        
-        
-    },[])
+    gsap.to(container, {
+      x: -totalWidth,
+      duration: 25,
+      ease: 'linear',
+      repeat: -1,
+      modifiers: {
+        x: gsap.utils.unitize((x) => parseFloat(x) % totalWidth), // resets position smoothly
+      },
+    })
+
+
+  }, [])
 
   return (
-    <section className='py-18 lg:py-24'>
-      <div className='max-w-7xl mx-auto flex flex-col items-center justify-center px-4'> 
+    <section id='testimonials' className='py-20 lg:py-24'>
+      <div className='max-w-7xl mx-auto flex flex-col items-center justify-center px-4'>
 
         <h2 className='text-2xl md:text-3xl lg:text-5xl text-center font-semibold lg:max-w-2xl pb-12'>What our learners are acheiving through learning</h2>
 

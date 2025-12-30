@@ -43,7 +43,7 @@ const Mission = () => {
   }, [])
 
   return (
-    <section className="w-full bg-white py-20 px-4">
+    <section className="w-full bg-white py-20 lg:py-24 px-4">
       <div className="max-w-6xl mx-auto">
         {/* Heading */}
         <h2 className="text-center text-2xl md:text-3xl font-semibold text-gray-900 mb-12">
