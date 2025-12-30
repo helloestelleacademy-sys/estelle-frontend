@@ -105,7 +105,7 @@ const Navbar = () => {
   ]
 
   return (
-    <nav className={`w-full py-3  z-50 transition-all duration-300 bg-blur bg-white`}>
+    <nav className={`w-full py-3  z-50 transition-all duration-300 bg-blur bg-white relative`}>
       <div className='flex items-center justify-between max-w-6xl mx-auto px-2'>
         {/* logo */}
         {isScrolled ? (
@@ -159,7 +159,7 @@ const Navbar = () => {
 
       </div>
 
-      <div ref={mobileMenuRef} className='md:hidden fixed inset-0 border border-white/15 w-full h-[screen] bg-black/30 z-30 flex flex-col items-center justify-between text-white/80 py-22 px-10 gap-y-10 backdrop-blur opacity-0 '>
+      <div ref={mobileMenuRef} className='md:hidden fixed inset-0 border border-white/15 w-full h-[screen] bg-black/30 z-[100] flex flex-col items-center justify-between text-white/80 py-22 px-10 gap-y-10 backdrop-blur opacity-0 '>
         <div className='flex flex-col gap-y-6 text-3xl'>
           {navLinks.map((item, index) => (
             <Link href={item.link} key={index} ref={(el) => { linkRef.current[index] = el }} className=''>

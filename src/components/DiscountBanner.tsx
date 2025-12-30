@@ -51,7 +51,7 @@ const DiscountBanner = () => {
 
 
   return (
-    <div className='absolute top-[90px] left-0 w-full h-20 z-[50] overflow-visible pointer-events-none flex items-center justify-center '>
+    <div className='absolute top-[90px] left-0 w-full h-20 z-[40] overflow-visible pointer-events-none flex items-center justify-center '>
       <style>{`
         @keyframes scroll {
           0% { transform: translateX(0); }
