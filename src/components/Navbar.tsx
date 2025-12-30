@@ -90,6 +90,14 @@ const navLinks =[
         title:"About",
         link:"/about",
     },
+    {
+        title:"Pricing",
+        link:"/",
+    },
+    {
+        title:"Courses",
+        link:"/",
+    },
     // {
     //     title:"Courses",
     //     link:"/courses",
@@ -128,14 +136,14 @@ const navLinks =[
         </ul>
 
         <div className='hidden md:flex space-x-6'>
-            {!user && <>
+            {!user ?  (<>
               <Button  className='w-[100px] py-5 bg-white text-black'>Login</Button>
               <Button  className='bg-[#7852A9] w-[100px] hover:bg-[#5e3e87] py-5'>Signup</Button>
-            </>
-            }
+            </>) :
             <a href='/dashboard' >
             <Button className='bg-[#4e2286] hover:bg-[#5e3e87] w-[100px] py-5 cursor-pointer'>Dashboard</Button>
             </a>
+            }
 
         </div>
 
