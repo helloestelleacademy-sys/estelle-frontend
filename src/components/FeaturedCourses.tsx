@@ -1,13 +1,10 @@
-'use client'
 import React from 'react'
 import CourseCard from './main/CourseCard'
-import { useGetFeaturedCoursesQuery } from '@/redux/api/courseApi'
+import { featuredCourses } from '@/constants'
 import { Button } from './ui/button'
-import { ArrowRight } from 'lucide-react'
+import { ArrowBigRight, ArrowRight } from 'lucide-react'
 
 const FeaturedCourses = () => {
-    const { data, isLoading, error } = useGetFeaturedCoursesQuery();
-
     return (
         <section className='py-18 lg:py-20 min-h-screen'>
             <div className='max-w-7xl mx-auto px-4 md:px-6'>
@@ -17,10 +14,8 @@ const FeaturedCourses = () => {
 
                 {/* courses */}
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-18'>
-                    {isLoading && <p className="text-center col-span-full">Loading courses...</p>}
-                    {error && <p className="text-center col-span-full text-red-500">Error loading courses</p>}
-                    {data && data.courses && data.courses.map((course, index) => (
-                        <CourseCard key={course._id || index} img={course.image} title={course.title} time={course.duration} courseType={course.courseType} level={course.level} modules={`${course.modules?.length} modules`} price={course.price} />
+                    {featuredCourses.map((course, index) => (
+                        <CourseCard key={index} img={course.img} title={course.title} time={course.time} courseType={course.courseType} level={course.level} modules={course.modules} price={course.price} />
                     ))}
 
                 </div>
