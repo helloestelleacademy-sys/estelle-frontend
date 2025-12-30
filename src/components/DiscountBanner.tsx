@@ -37,30 +37,49 @@ const DiscountBanner = () => {
 
   const format = (value: number) => value.toString().padStart(2, '0')
 
+  const MarqueeContent = () => (
+    <div className='flex items-center gap-6 md:gap-12 text-white font-bold text-sm md:text-lg uppercase w-max tracking-widest shrink-0'>
+      <span className='text-yellow-300'>⚠️ FLASH SALE</span>
+      <span>30% OFF PREMIUM PLAN</span>
+      <span className='text-yellow-300'>★</span>
+      <span>OFFER ENDS IN: <span className='font-mono bg-black/20 px-2 py-1 rounded'>{format(hours)}:{format(minutes)}:{format(seconds)}</span></span>
+      <span className='text-yellow-300'>★</span>
+      <span>DON'T MISS OUT</span>
+      <span className='text-yellow-300'>★</span>
+    </div>
+  )
+
 
   return (
-    <div className='w-full bg-red-600 py-8 px-2'>
-      <div className='max-w-6xl mx-auto flex items-center text-white text-sm md:text-2xl lg:text-3xl justify-between'>
-        <h2 className=''>30% Discount!!!</h2>
-
-        <h2>DON'T MISS THIS OFFER</h2>
-
-        <div className='flex items-center gap-4 md:gap-8'>
-          <div className='flex flex-col items-center'>
-            <h2 className='font-semibold'>{format(hours)}</h2>
-            <p className='text-sm '>hours</p>
+    <div className='absolute top-[90px] left-0 w-full h-20 z-[50] overflow-visible pointer-events-none flex items-center justify-center '>
+      <style>{`
+        @keyframes scroll {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        .animate-scroll {
+          animation: scroll 20s linear infinite;
+        }
+      `}</style>
+      <div className='w-[105%] bg-[#D00000] py-3 -rotate-1 shadow-xl flex items-center border-y-2 border-yellow-400 overflow-hidden'>
+        {/* Marquee Track: Contains TWO sets of content. We slide the whole thing by 50% */}
+        <div className='flex animate-scroll gap-6 md:gap-12 '>
+          {/* Set 1 */}
+          <div className='flex gap-6 md:gap-12 shrink-0'>
+            <MarqueeContent />
+            <MarqueeContent />
+            <MarqueeContent />
+            <MarqueeContent />
           </div>
-          <div className='flex flex-col items-center'>
-            <h2 className='font-semibold'>{format(minutes)}</h2>
-            <p className='text-sm '>mins</p>
-          </div>
-          <div className='flex flex-col items-center'>
-            <h2 className='font-semibold'>{format(seconds)}</h2>
-            <p className='text-sm '>seconds</p>
+          {/* Set 2 (Duplicate) */}
+          <div className='flex gap-6 md:gap-12 shrink-0'>
+            <MarqueeContent />
+            <MarqueeContent />
+            <MarqueeContent />
+            <MarqueeContent />
           </div>
         </div>
       </div>
-
     </div>
   )
 }
