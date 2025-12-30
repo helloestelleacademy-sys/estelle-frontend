@@ -3,6 +3,7 @@ import Image from "next/image"
 import React from 'react'
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import gsap from 'gsap';
+import Link from 'next/link';
 import DiscountBanner from './DiscountBanner';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -19,7 +20,7 @@ const Header = () => {
 
                     <p className='text-sm mb-8 font-semibold'> <span className='gradient-bg bg-clip-text text-transparent'>210,000 naira/ Premium plan, </span>instant 30% cash back guarantee</p>
                     <div className='flex flex-col sm:flex-row items-start gap-4'>
-                        <a href='https://mainstack.store/stellanwosu/w2RdFBdyAPo7' className='flex items-center justify-center bg-white text-[#7852A9] hover:opacity-90  py-4 rounded-lg font-bold w-full md:w-[200px]'>Start Learning</a>
+                        <Link href='/register' className='flex items-center justify-center bg-white text-[#7852A9] hover:opacity-90  py-4 rounded-lg font-bold w-full md:w-[200px]'>Start Learning</Link>
                         <a href='https://mainstack.store/stellanwosu/w2RdFBdyAPo7' className='flex items-center justify-center gradient-bg text-white hover:bg-white hover:text-black transition w-full  md:w-[200px] py-4 rounded-lg font-bold'>Learn More</a>
                     </div>
                     <p className='text-sm mt-6 font-semibold'> <span className='gradient-bg bg-clip-text text-transparent'>Life time learning access</span> to Courses and AI resources</p>

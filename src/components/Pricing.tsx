@@ -89,7 +89,7 @@ const Pricing = () => {
     }, [])
 
     return (
-        <section className='pricing-section py-16 lg:py-18 bg-white'>
+        <section id='pricing' className='pricing-section py-16 lg:py-18 bg-white'>
             <div className='max-w-6xl mx-auto max-lg:p-3'>
 
                 <div className='flex justify-center items-center'>

@@ -91,7 +91,7 @@ const Navbar = () => {
     },
     {
       title: "Pricing",
-      link: "/",
+      link: "/#pricing",
     },
     {
       title: "Courses",
@@ -125,9 +125,9 @@ const Navbar = () => {
           <Link href={'/about'}>
             <li className={clsx('text-[16px] font-semibold tracking-wide  cursor-pointer', !isScrolled && 'text-[#37296D]')}>About</li>
           </Link>
-          <a href={'https://mainstack.store/stellanwosu/w2RdFBdyAPo7'}>
+          <Link href={'/#pricing'}>
             <li className={clsx('text-[16px] font-semibold tracking-wide  cursor-pointer', !isScrolled && 'text-[#37296D]')}>Pricing</li>
-          </a>
+          </Link>
           {/* <Link href={'/courses'}>
             <li className={clsx('text-[16px] font-semibold tracking-wide  cursor-pointer', !isScrolled && 'text-[#37296D]')}>Courses</li>
           </Link>
@@ -136,8 +136,12 @@ const Navbar = () => {
 
         <div className='hidden md:flex space-x-6'>
           {!user ? (<>
-            <Button className='w-[100px] py-5 bg-white text-black'>Login</Button>
-            <Button className='bg-[#7852A9] w-[100px] hover:bg-[#5e3e87] py-5'>Signup</Button>
+            <Link href='/login'>
+              <Button className='w-[100px] py-5 bg-white text-black'>Login</Button>
+            </Link>
+            <Link href='/register'>
+              <Button className='bg-[#7852A9] w-[100px] hover:bg-[#5e3e87] py-5'>Signup</Button>
+            </Link>
           </>) :
             <a href='/dashboard' >
               <Button className='bg-[#4e2286] hover:bg-[#5e3e87] w-[100px] py-5 cursor-pointer'>Dashboard</Button>

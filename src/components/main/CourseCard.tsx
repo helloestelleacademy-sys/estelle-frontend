@@ -1,5 +1,6 @@
 // import { BadgeDollarSign, Book, ChartNoAxesCombined, TimerIcon } from 'lucide-react'
 import Image from 'next/image'
+import Link from 'next/link'
 import React from 'react'
 import { Button } from '../ui/button'
 
@@ -39,7 +40,9 @@ const CourseCard = ({ title, img, courseType }: CourseProp) => {
                     <h2 className='text-sm'>30 minutes</h2>
                 </div>
                 <div className='mt-4 w-full flex justify-center px-6'>
-                    <Button className='w-full bg-[#37296D] py-6 hover:bg-[#302362]'>Start Learning</Button>
+                    <Link href='/register' className='w-full'>
+                        <Button className='w-full bg-[#37296D] py-6 hover:bg-[#302362]'>Start Learning</Button>
+                    </Link>
                 </div>
                 {/* <div className='flex justify-between  mt-2'>
                     <div className='flex items-center gap-2'>
