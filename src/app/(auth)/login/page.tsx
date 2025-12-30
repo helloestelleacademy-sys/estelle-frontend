@@ -78,7 +78,7 @@ const Login = () => {
         <div className='flex items-center justify-between'>
           <h2 className='font-semibold text-3xl'>Sign In</h2>
           <div className=''>
-            <Image src={'/assets/estelleLogoColor.svg'} alt='Logo' width={100} height={100} />
+            <Image src={'/assets/Estellelogonew2.png'} alt='Logo' width={78} height={80} />
           </div>
         </div>
 

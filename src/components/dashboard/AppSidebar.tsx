@@ -33,7 +33,7 @@ const AppSidebar = ({ NavLinks1, NavLinks2 }: NavLinks) => {
     <Sidebar>
       <SidebarHeader className='px-10 py-2'>
         <Link href={'/'} className=''>
-          <Image src={'/assets/Estellelogonew2.png'} alt='Logo' width={100} height={60} />
+          <Image src={'/assets/Estellelogonew2.png'} alt='Logo' width={78} height={80} />
         </Link>
       </SidebarHeader>
 
