@@ -33,7 +33,7 @@ const Links1 = [
 
 const Footer = () => {
     return (
-        <footer className='py-18 lg:py-20 w-full'>
+        <footer id='footer' className='py-18 lg:py-20 w-full'>
             <div className='max-w-7xl mx-auto flex flex-wrap gap-8 justify-between px-4'>
                 <ul className='flex flex-col gap-4 '>
                     {Links1.map((link) => (

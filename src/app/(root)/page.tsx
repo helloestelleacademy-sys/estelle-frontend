@@ -5,7 +5,7 @@ import FeaturedCourses from "@/components/FeaturedCourses";
 import Features from "@/components/Features";
 import Header from "@/components/Header";
 import Mission from "@/components/Mission";
-import Pricing from "@/components/Pricing";
+import Pricing from "@/components/ui/pricing-cards";
 import Service from "@/components/Service";
 import Testimonials from "@/components/Testimonials";
 import { gsap } from 'gsap';

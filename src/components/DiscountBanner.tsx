@@ -42,7 +42,7 @@ const DiscountBanner = () => {
       <span className='text-yellow-300'>⚠️ FLASH SALE</span>
       <span>30% OFF PREMIUM PLAN</span>
       <span className='text-yellow-300'>★</span>
-      <span>OFFER ENDS IN: <span className='font-mono bg-black/20 px-2 py-1 rounded'>{format(hours)}:{format(minutes)}:{format(seconds)}</span></span>
+      <span>OFFER ENDS IN: <span className='font-mono bg-black/20 px-2 py-1 rounded'>{format(hours)}H : {format(minutes)}M : {format(seconds)}S</span></span>
       <span className='text-yellow-300'>★</span>
       <span>DON'T MISS OUT</span>
       <span className='text-yellow-300'>★</span>
