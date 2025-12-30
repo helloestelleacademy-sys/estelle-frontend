@@ -31,7 +31,7 @@ const Service = () => {
             <p className='text-xl tracking-wide font-medium'>Send a mail to</p>
             <div className='flex items-center gap-2 text-[#7851A9]'>
               <Mail />
-              <a href='https://info.estelleglobal.com'>info.estelleglobal@gmail.com</a>
+              <a href='mailto:Info@estellelearning.com'>Info@estellelearning.com</a>
             </div>
           </div>
           {/* right */}

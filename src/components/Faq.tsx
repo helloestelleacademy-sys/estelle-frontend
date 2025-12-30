@@ -16,7 +16,7 @@ const faqs = [
   {
     question: "Will i save money with Estelle?",
     answer:
-      "Yes, you can save 5% of your money when you subscribe to our premium plan",
+      "Yes, you can save 30% of your money when you subscribe to our premium plan",
   },
   {
     question: "How many courses are in the basic plan?",

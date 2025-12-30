@@ -36,7 +36,7 @@ const pricing = [
             "Earn a certificate upon completion",
             "Tailored quizzes for practical learning",
             "1-1 hands-on mentorship access with tutors",
-            "Save money 5% of your money when you pay",
+            "Save money 30% of your money when you pay",
             "Enjoy maximum flexible learning at your own pace ",
         ],
         buttonLink: 'https://mainstack.store/stellanwosu/premium-plan',
