@@ -13,7 +13,7 @@ const Header = () => {
         <section id='header' className='flex flex-col' >
 
             <HeroGeometric className="bg-[#F7F0FF]">
-                <div className="relative min-h-screen w-full overflow-hidden flex flex-col lg:flex-row items-center justify-center px-6 md:px-16 lg:px-24 py-28">
+                <div className="relative min-h-[90dvh] w-full overflow-hidden flex flex-col lg:flex-row items-center justify-center px-6 md:px-16 lg:px-24 pt-32 pb-12">
 
                     <div className='flex flex-col justify-center lg:text-left text-black'>
                         <h1 className='text-4xl lg:text-[56px] font-bold mb-6 max-w-3xl'>Build a <span className='text-[#7852A9]'>Personal brand</span> that becomes a {' '}
