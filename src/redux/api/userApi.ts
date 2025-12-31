@@ -7,7 +7,7 @@ export const userApi = createApi({
     reducerPath: "userApi",
     tagTypes: ["User"],
     baseQuery: fetchBaseQuery({
-        baseUrl: 'https://estelle-backend.onrender.com/api/v1', credentials: 'include',
+        baseUrl: process.env.NEXT_PUBLIC_BACKEND_URL || "https://estelle-backend.onrender.com/api/v1", credentials: 'include',
         prepareHeaders: (headers, { getState }) => {
             const token = (getState() as RootState).auth.accessToken;
             if (token) headers.set("authorization", `Bearer ${token}`);

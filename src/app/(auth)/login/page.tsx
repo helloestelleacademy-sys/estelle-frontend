@@ -66,7 +66,7 @@ const Login = () => {
     if (isSuccess) {
       toast.success("Login successful")
       form.reset()
-      router.push("/")
+      router.push("/dashboard")
     }
   }, [isSuccess])
 
@@ -132,13 +132,13 @@ const Login = () => {
         </div>
 
         <div className='mt-6 flex items-center gap-10 justify-center'>
-          <div className='cursor-pointer' onClick={() => window.location.href = `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/auth/google`}>
+          <div className='cursor-pointer' onClick={() => window.location.href = `${process.env.NEXT_PUBLIC_BACKEND_URL || "https://estelle-backend.onrender.com"}/api/v1/auth/google`}>
             <Image src={google} alt='google-icon' className='w-[50px]' />
           </div>
-          <div className='cursor-pointer' onClick={() => window.location.href = `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/auth/linkedin`}>
+          <div className='cursor-pointer' onClick={() => window.location.href = `${process.env.NEXT_PUBLIC_BACKEND_URL || "https://estelle-backend.onrender.com"}/api/v1/auth/linkedin`}>
             <Image src={linkedin} alt='linkedin-icon' className='w-[50px]' />
           </div>
-          <div className='cursor-pointer' onClick={() => window.location.href = `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/auth/microsoft`}>
+          <div className='cursor-pointer' onClick={() => window.location.href = `${process.env.NEXT_PUBLIC_BACKEND_URL || "https://estelle-backend.onrender.com"}/api/v1/auth/microsoft`}>
             <Image src={teams} alt='teams-icon' className='w-[50px]' />
           </div>
         </div>

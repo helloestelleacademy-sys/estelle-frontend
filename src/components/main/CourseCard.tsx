@@ -5,6 +5,7 @@ import React from 'react'
 import { Button } from '../ui/button'
 
 type CourseProp = {
+    id: string,
     title: string,
     img: string,
     time: string,
@@ -14,7 +15,7 @@ type CourseProp = {
     courseType?: string,
 }
 
-const CourseCard = ({ title, img, courseType }: CourseProp) => {
+const CourseCard = ({ id, title, img, courseType }: CourseProp) => {
     return (
         <div className='rounded-xl shadow-md hover:shadow-lg transition duration-300 relative'>
             <Image src={img} alt='Image' width={200} height={150} className='w-full h-[200px] rounded-2xl inset-0 object-cover' />
@@ -40,7 +41,7 @@ const CourseCard = ({ title, img, courseType }: CourseProp) => {
                     <h2 className='text-sm'>30 minutes</h2>
                 </div>
                 <div className='mt-4 w-full flex justify-center px-6'>
-                    <Link href='/register' className='w-full'>
+                    <Link href={`/dashboard/courses/${id}`} className='w-full'>
                         <Button className='w-full bg-[#37296D] py-6 hover:bg-[#302362]'>Start Learning</Button>
                     </Link>
                 </div>

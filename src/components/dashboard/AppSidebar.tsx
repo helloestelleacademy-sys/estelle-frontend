@@ -44,10 +44,10 @@ const AppSidebar = ({ NavLinks1, NavLinks2 }: NavLinks) => {
               {NavLinks1.map((item) => (
                 <SidebarMenuItem key={item.title} className='hover:bg-gray-200 transition duration-300 cursor-pointer w-full rounded-2xl'>
                   <SidebarMenuButton asChild className='font-medium py-5'>
-                    <a href={item.url}>
+                    <Link href={item.url}>
                       <item.icon />
                       <span>{item.title}</span>
-                    </a>
+                    </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
@@ -62,10 +62,10 @@ const AppSidebar = ({ NavLinks1, NavLinks2 }: NavLinks) => {
               {NavLinks2.map((item) => (
                 <SidebarMenuItem key={item.title} className='hover:bg-gray-200 transition duration-300 cursor-pointer w-full rounded-2xl'>
                   <SidebarMenuButton asChild className='font-medium py-5'>
-                    <a href={item.url}>
+                    <Link href={item.url}>
                       <item.icon />
                       <span>{item.title}</span>
-                    </a>
+                    </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}

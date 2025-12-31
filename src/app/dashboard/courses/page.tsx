@@ -29,6 +29,7 @@ const Courses = () => {
         {data?.enrollments.map((enrollment) => (
           <CourseCard
             key={enrollment._id}
+            id={enrollment.course._id}
             title={enrollment.course.title}
             img={enrollment.course.image}
             time={enrollment.course.duration}

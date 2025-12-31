@@ -1,4 +1,6 @@
-import { Check, MoveRight, PhoneCall } from "lucide-react";
+"use client";
+
+import { Check, MoveRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import {
     Card,
@@ -8,8 +10,35 @@ import {
     CardTitle,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { useInitializePaymentMutation } from "@/redux/api/paymentApi";
+import { toast } from "sonner";
+import { Loader2 } from "lucide-react";
 
 function Pricing() {
+    const [initializePayment, { isLoading }] = useInitializePaymentMutation();
+
+    const handlePayment = async (amount: number, planType: string) => {
+        try {
+            toast.loading("Initializing payment...");
+            const response = await initializePayment({
+                amount,
+                currency: "NGN",
+                metadata: { planType }
+            }).unwrap();
+
+            if (response.success && response.authorization_url) {
+                window.location.href = response.authorization_url;
+            } else {
+                toast.dismiss();
+                toast.error("Failed to initialize payment");
+            }
+        } catch (error) {
+            toast.dismiss();
+            toast.error("Payment failed. Please ensure you are logged in.");
+            console.error(error);
+        }
+    };
+
     return (
         <div id="pricing" className="w-full py-20 lg:py-24">
             <div className="container mx-auto">
@@ -63,11 +92,14 @@ function Pricing() {
                                     </div>
                                 </div>
                                 <div className="pt-8">
-                                    <a href="https://mainstack.store/stellanwosu/O7XDUpkdLOhk" target="_blank" rel="noopener noreferrer">
-                                        <Button variant="outline" className="w-full gap-4 rounded-md py-6 border-[#7852A9] text-[#7852A9] hover:bg-black hover:text-white hover:border-black transition-colors duration-300">
-                                            Buy Now <MoveRight className="w-4 h-4" />
-                                        </Button>
-                                    </a>
+                                    <Button
+                                        onClick={() => handlePayment(35000, "Basic")}
+                                        disabled={isLoading}
+                                        variant="outline"
+                                        className="w-full gap-4 rounded-md py-6 border-[#7852A9] text-[#7852A9] hover:bg-black hover:text-white hover:border-black transition-colors duration-300"
+                                    >
+                                        {isLoading ? <Loader2 className="animate-spin" /> : <>Buy Now <MoveRight className="w-4 h-4" /></>}
+                                    </Button>
                                 </div>
                             </CardContent>
                         </Card>
@@ -124,11 +156,13 @@ function Pricing() {
                                         </div>
                                     </div>
                                     <div className="pt-8">
-                                        <a href="https://mainstack.store/stellanwosu/premium-plan" target="_blank" rel="noopener noreferrer">
-                                            <Button className="w-full gap-4 bg-[#7852A9] hover:bg-black rounded-md py-6 text-lg shadow-xl shadow-[#7852A9]/20 transition-colors duration-300">
-                                                Buy Now <MoveRight className="w-4 h-4" />
-                                            </Button>
-                                        </a>
+                                        <Button
+                                            onClick={() => handlePayment(210000, "Premium")}
+                                            disabled={isLoading}
+                                            className="w-full gap-4 bg-[#7852A9] hover:bg-black rounded-md py-6 text-lg shadow-xl shadow-[#7852A9]/20 transition-colors duration-300"
+                                        >
+                                            {isLoading ? <Loader2 className="animate-spin" /> : <>Buy Now <MoveRight className="w-4 h-4" /></>}
+                                        </Button>
                                     </div>
                                 </CardContent>
                             </Card>

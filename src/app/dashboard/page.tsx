@@ -53,6 +53,7 @@ const Dashboard = () => {
                             featuredCourses.slice(0, 3).map((course, idx) => (
                                 <CourseCard
                                     key={course._id || idx}
+                                    id={course._id}
                                     img={course.image}
                                     title={course.title}
                                     time={course.duration}

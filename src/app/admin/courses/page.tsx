@@ -28,7 +28,7 @@ const Courses = () => {
           {error && <p className="text-center col-span-full text-red-500">Error loading courses</p>}
           {data && data.courses && data.courses.map((course, index) => (
             <div key={course._id || index} className='' ref={(el) => { cardRef.current[index] = el }}>
-              <CourseCard key={course._id || index} img={course.image} title={course.title} time={course.duration} level={course.level} modules={`${course.modules?.length} modules`} price={course.price} />
+              <CourseCard key={course._id || index} id={course._id} img={course.image} title={course.title} time={course.duration} level={course.level} modules={`${course.modules?.length} modules`} price={course.price} />
             </div>
           ))}
         </div>

@@ -3,6 +3,7 @@ import authReducer from "@/redux/features/authSlice";
 import { authApi } from "@/redux/api/authApi";
 import { userApi } from "@/redux/api/userApi";
 import { courseApi } from "@/redux/api/courseApi";
+import { paymentApi } from "@/redux/api/paymentApi";
 // import {api} from "@/redux/api/api";
 
 export const makeStore = () => {
@@ -12,11 +13,12 @@ export const makeStore = () => {
       [authApi.reducerPath]: authApi.reducer,
       [userApi.reducerPath]: userApi.reducer,
       [courseApi.reducerPath]: courseApi.reducer,
+      [paymentApi.reducerPath]: paymentApi.reducer,
       //   [api.reducerPath]: api.reducer,
     },
     middleware: (getDefaultMiddleware) => {
       return getDefaultMiddleware()
-        .concat([authApi.middleware, userApi.middleware, courseApi.middleware])
+        .concat([authApi.middleware, userApi.middleware, courseApi.middleware, paymentApi.middleware])
     }
   })
 }

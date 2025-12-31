@@ -61,7 +61,7 @@ export const courseApi = createApi({
     reducerPath: "courseApi",
     tagTypes: ["Courses", "Enrollments"],
     baseQuery: fetchBaseQuery({
-        baseUrl: "https://estelle-backend.onrender.com/api/v1",
+        baseUrl: process.env.NEXT_PUBLIC_BACKEND_URL || "https://estelle-backend.onrender.com/api/v1",
         credentials: "include",
         prepareHeaders: (headers, { getState }) => {
             const token = (getState() as RootState).auth.accessToken;
@@ -104,7 +104,10 @@ export const courseApi = createApi({
             query: () => "/courses/my-courses",
             providesTags: ["Enrollments"],
         }),
-        // Optionally add getCourseBySlug, updateCourse, deleteCourse if needed later
+        getCourseById: builder.query<SingleCourseResponse, string>({
+            query: (id) => `/courses/${id}`,
+            providesTags: (result, error, id) => [{ type: "Courses", id }],
+        }),
     }),
 });
 
@@ -113,5 +116,6 @@ export const {
     useGetFeaturedCoursesQuery,
     useCreateCourseMutation,
     useEnrollCourseMutation,
-    useGetEnrolledCoursesQuery
+    useGetEnrolledCoursesQuery,
+    useGetCourseByIdQuery,
 } = courseApi;

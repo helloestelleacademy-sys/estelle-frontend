@@ -9,7 +9,8 @@ export const PersistLogin: React.FC<{ children: React.ReactNode }> = ({ children
   useEffect(() => {
     const refreshUser = async () => {
       try {
-        const res = await fetch("https://estelle-backend.onrender.com/api/v1/auth/refresh-token", {
+        const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || "https://estelle-backend.onrender.com/api/v1";
+        const res = await fetch(`${backendUrl}/auth/refresh-token`, {
           method: "GET",
           credentials: "include", // send refresh token cookie
         });

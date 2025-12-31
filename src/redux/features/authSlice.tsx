@@ -9,6 +9,7 @@ export interface User {
   img?: string;
   phoneNo?: string;
   address?: string;
+  plan?: string;
 }
 export interface Tokens {
   accessToken: string;
