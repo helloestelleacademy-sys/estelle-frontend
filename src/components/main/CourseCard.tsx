@@ -1,4 +1,5 @@
-// import { BadgeDollarSign, Book, ChartNoAxesCombined, TimerIcon } from 'lucide-react'
+"use client";
+
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
@@ -15,47 +16,43 @@ type CourseProp = {
     courseType?: string,
 }
 
-const CourseCard = ({ id, title, img, courseType }: CourseProp) => {
+const CourseCard = ({ id, title, img, courseType, time }: CourseProp) => {
     return (
-        <div className='rounded-xl shadow-md hover:shadow-lg transition duration-300 relative'>
-            <Image src={img} alt='Image' width={200} height={150} className='w-full h-[200px] rounded-2xl inset-0 object-cover' />
+        <div className='bg-[#FFFBF2] rounded-[32px] p-2 flex flex-col shadow-sm border border-stone-50 overflow-hidden group hover:shadow-md transition-shadow duration-300 h-full'>
+            {/* Course Image */}
+            <div className="relative w-full aspect-video rounded-[24px] overflow-hidden bg-white flex items-center justify-center">
+                <Image
+                    src={img}
+                    alt={title}
+                    fill
+                    className='object-contain p-2 rounded-[24px] group-hover:scale-105 transition-transform duration-500'
+                />
+            </div>
 
-            <div className='py-6 px-4 bg-white rounded-2xl -mt-2'>
-                <h2 className='font-semibold text-lg'>{title}</h2>
-
-                {/* <div className='flex items-center mt-2'>
-                    <div className='flex items-center gap-2'>
-                        <TimerIcon  className='text-gray-400' size={18}  />
-                        <p className='text-xs text-neutral-400 mt-2'>{time}</p>
+            <div className='px-4 pt-6 pb-6 flex flex-col flex-1 justify-between'>
+                <div>
+                    <div className='flex items-center gap-2 mb-3'>
+                        <span className='px-3 py-1 bg-[#EEE0FF] text-[#7851A9] text-xs font-semibold rounded-full uppercase tracking-wide'>
+                            {courseType || 'Course'}
+                        </span>
                     </div>
 
-                        <p className='pl-3 text-xl flex items-center gap-2'>
-                            <BadgeDollarSign className='text-gray-400' size={18} />
-                                {price}
-                        </p>
-                </div> */}
-                {/* <hr className='mt-4' /> */}
-                <div className='flex items-center justify-between gap-6 mt-4 px-8'>
-                    <Button className='bg-[#EEE0FF] w-[120px] text-black hover:bg-[#dbc2fa]'>{courseType}</Button>
+                    <h2 className='text-[20px] font-semibold text-gray-900 leading-tight mb-2 line-clamp-2'>
+                        {title}
+                    </h2>
 
-                    <h2 className='text-sm'>30 minutes</h2>
+                    <p className='text-[#E0B0FF] font-medium text-sm mb-4'>
+                        {time || '1 hour'},
+                    </p>
                 </div>
-                <div className='mt-4 w-full flex justify-center px-6'>
-                    <Link href={`/dashboard/courses/${id}`} className='w-full'>
-                        <Button className='w-full bg-[#37296D] py-6 hover:bg-[#302362]'>Start Learning</Button>
+
+                <div className='mt-auto w-full'>
+                    <Link href={`/dashboard/courses/${id}`} className='block w-full'>
+                        <Button className='w-full bg-[#37296D] hover:bg-[#302362] text-white text-lg font-medium py-6 rounded-xl shadow-lg shadow-purple-900/10 transition-all'>
+                            Start Learning
+                        </Button>
                     </Link>
                 </div>
-                {/* <div className='flex justify-between  mt-2'>
-                    <div className='flex items-center gap-2'>
-                            <ChartNoAxesCombined  className='text-gray-400' size={18}  />
-                            <p className='text-xs text-neutral-400 mt-2'>{level}</p>
-                    </div>
-
-                    <div className='flex items-center gap-2'>
-                        <Book className='text-gray-400' size={18}  />
-                        <p className='text-xs text-neutral-400 mt-2'>{modules}</p>
-                    </div>
-                </div> */}
             </div>
         </div>
     )

@@ -1,44 +1,55 @@
 'use client'
-import CourseCard from '@/components/main/CourseCard'
-import { useGetEnrolledCoursesQuery } from '@/redux/api/courseApi'
 import React from 'react'
-import Link from 'next/link'
-import { Button } from '@/components/ui/button'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { useGetEnrolledCoursesQuery, useGetAllCoursesQuery } from '@/redux/api/courseApi'
+import EnrolledCoursesList from '@/components/dashboard/EnrolledCoursesList'
+import SuggestedCoursesList from '@/components/dashboard/SuggestedCoursesList'
 
 const Courses = () => {
-  const { data, isLoading, error } = useGetEnrolledCoursesQuery();
+  const { data: enrolledData, isLoading: isEnrolledLoading } = useGetEnrolledCoursesQuery();
+  const { data: allCoursesData, isLoading: isAllCoursesLoading } = useGetAllCoursesQuery({});
+
+  const enrollments = enrolledData?.enrollments || [];
+  const allCourses = allCoursesData?.courses || [];
 
   return (
-    <section className='py-8 bg-white min-h-screen px-6'>
-      <h1 className="text-2xl font-bold mb-6">My Courses</h1>
-
-      {isLoading && <p>Loading your courses...</p>}
-
-      {error && <p className="text-red-500">Error loading courses.</p>}
-
-      {!isLoading && data?.enrollments.length === 0 && (
-        <div className="flex flex-col items-center justify-center py-10">
-          <p className="text-gray-500 mb-4">You have not enrolled in any courses yet.</p>
-          <Link href="/courses">
-            <Button>Browse Courses</Button>
-          </Link>
+    <section className='py-8 min-h-screen px-6'>
+      <div className="flex flex-col gap-6">
+        <div>
+          <h1 className="text-3xl font-bold text-gray-900">Courses</h1>
+          <p className="text-gray-500 mt-1">Manage your learning and explore new skills.</p>
         </div>
-      )}
 
-      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6'>
-        {data?.enrollments.map((enrollment) => (
-          <CourseCard
-            key={enrollment._id}
-            id={enrollment.course._id}
-            title={enrollment.course.title}
-            img={enrollment.course.image}
-            time={enrollment.course.duration}
-            level={enrollment.course.level}
-            modules={`${enrollment.course.modules?.length || 0} modules`}
-            price={enrollment.course.price}
-            courseType={enrollment.course.courseType}
-          />
-        ))}
+        <Tabs defaultValue="all" className="w-full">
+          <TabsList className="mb-6 bg-transparent p-0 border-b w-full justify-start rounded-none h-auto">
+            <TabsTrigger
+              value="all"
+              className="rounded-none border-b-2 border-transparent px-4 py-2 text-base font-medium text-gray-500 data-[state=active]:border-[#7852A9] data-[state=active]:text-[#7852A9] data-[state=active]:shadow-none hover:text-[#7852A9]/80 transition-colors"
+            >
+              All Courses
+            </TabsTrigger>
+            <TabsTrigger
+              value="my-courses"
+              className="rounded-none border-b-2 border-transparent px-4 py-2 text-base font-medium text-gray-500 data-[state=active]:border-[#7852A9] data-[state=active]:text-[#7852A9] data-[state=active]:shadow-none hover:text-[#7852A9]/80 transition-colors"
+            >
+              My Courses
+            </TabsTrigger>
+          </TabsList>
+
+          <TabsContent value="all" className="mt-0">
+            <SuggestedCoursesList
+              courses={allCourses}
+              isLoading={isAllCoursesLoading}
+            />
+          </TabsContent>
+
+          <TabsContent value="my-courses" className="mt-0">
+            <EnrolledCoursesList
+              enrollments={enrollments}
+              isLoading={isEnrolledLoading}
+            />
+          </TabsContent>
+        </Tabs>
       </div>
     </section>
   )

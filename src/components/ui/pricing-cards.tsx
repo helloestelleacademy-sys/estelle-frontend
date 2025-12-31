@@ -13,9 +13,12 @@ import { Button } from "@/components/ui/button";
 import { useInitializePaymentMutation } from "@/redux/api/paymentApi";
 import { toast } from "sonner";
 import { Loader2 } from "lucide-react";
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
 
 function Pricing() {
     const [initializePayment, { isLoading }] = useInitializePaymentMutation();
+    const { user } = useSelector((state: RootState) => state.auth);
 
     const handlePayment = async (amount: number, planType: string) => {
         try {
@@ -38,6 +41,9 @@ function Pricing() {
             console.error(error);
         }
     };
+
+    const isBasic = user?.plan === 'Basic' || user?.plan === 'Premium'; // If Basic or Premium, disable Basic
+    const isPremium = user?.plan === 'Premium';
 
     return (
         <div id="pricing" className="w-full py-20 lg:py-24">
@@ -94,12 +100,15 @@ function Pricing() {
                                 <div className="pt-8">
                                     <Button
                                         onClick={() => handlePayment(35000, "Basic")}
-                                        disabled={isLoading}
+                                        disabled={isLoading || isBasic}
                                         variant="outline"
                                         className="w-full gap-4 rounded-md py-6 border-[#7852A9] text-[#7852A9] hover:bg-black hover:text-white hover:border-black transition-colors duration-300"
                                     >
-                                        {isLoading ? <Loader2 className="animate-spin" /> : <>Buy Now <MoveRight className="w-4 h-4" /></>}
+                                        {isLoading ? <Loader2 className="animate-spin" /> : isBasic ? "Current Plan (or Upgrade)" : <>Buy Now <MoveRight className="w-4 h-4" /></>}
                                     </Button>
+                                    {isBasic && user?.plan === 'Basic' && (
+                                        <p className="text-center text-xs text-gray-500 mt-2">You are on the Basic Plan.</p>
+                                    )}
                                 </div>
                             </CardContent>
                         </Card>
@@ -158,10 +167,10 @@ function Pricing() {
                                     <div className="pt-8">
                                         <Button
                                             onClick={() => handlePayment(210000, "Premium")}
-                                            disabled={isLoading}
+                                            disabled={isLoading || isPremium}
                                             className="w-full gap-4 bg-[#7852A9] hover:bg-black rounded-md py-6 text-lg shadow-xl shadow-[#7852A9]/20 transition-colors duration-300"
                                         >
-                                            {isLoading ? <Loader2 className="animate-spin" /> : <>Buy Now <MoveRight className="w-4 h-4" /></>}
+                                            {isLoading ? <Loader2 className="animate-spin" /> : isPremium ? "Current Plan" : <>Buy Now <MoveRight className="w-4 h-4" /></>}
                                         </Button>
                                     </div>
                                 </CardContent>

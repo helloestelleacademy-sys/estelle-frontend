@@ -4,10 +4,10 @@ import React from "react";
 interface CircularProgressProps {
   progress: number; // e.g., 40 means 40%
   imageUrl: string;
+  size?: number;
 }
 
-const CircularProgressBar: React.FC<CircularProgressProps> = ({ progress, imageUrl }) => {
-  const size = 120; // overall size of SVG
+const CircularProgressBar: React.FC<CircularProgressProps> = ({ progress, imageUrl, size = 120 }) => {
   const strokeWidth = 8;
   const radius = (size - strokeWidth) / 2;
   const circumference = 2 * Math.PI * radius;
@@ -15,8 +15,11 @@ const CircularProgressBar: React.FC<CircularProgressProps> = ({ progress, imageU
   // control how much of the circle is filled
   const strokeDashoffset = circumference - (progress / 100) * circumference;
 
+  // Calculate image size relative to container (approx 66% of container)
+  const imageSize = Math.floor(size * 0.66);
+
   return (
-    <div className="relative flex items-center justify-center w-[120px] h-[120px]">
+    <div className="relative flex items-center justify-center" style={{ width: size, height: size }}>
       <svg
         className="rotate-[-90deg]" // make progress start at top
         width={size}
@@ -54,14 +57,15 @@ const CircularProgressBar: React.FC<CircularProgressProps> = ({ progress, imageU
         <Image
           src={imageUrl}
           alt="Profile"
-          className="w-20 h-20 rounded-full border-4 border-white shadow-lg object-cover"
-          width={80}
-          height={80}
+          className="rounded-full border-4 border-white shadow-lg object-cover"
+          width={imageSize}
+          height={imageSize}
+          style={{ width: `${imageSize}px`, height: `${imageSize}px` }}
         />
       </div>
 
       {/* Progress text at bottom (optional) */}
-      <div className="absolute bottom-[-18px] text-sm text-gray-600 font-medium">
+      <div className="absolute bottom-[-24px] text-sm text-gray-600 font-medium whitespace-nowrap">
         {progress}%
       </div>
     </div>

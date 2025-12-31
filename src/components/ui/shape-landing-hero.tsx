@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 
-function ElegantShape({
+export function ElegantShape({
     className,
     delay = 0,
     width = 400,

@@ -18,20 +18,20 @@ function PaymentCallbackContent() {
 
     useEffect(() => {
         if (!reference) {
-            router.push("/dashboard");
+            router.push("/dashboard/profile");
             return;
         }
 
         if (data && data.success && data.status === "success") {
             toast.success("Payment successful! Plan upgraded.");
             setTimeout(() => {
-                router.push("/dashboard");
+                router.push("/dashboard/profile");
             }, 2000);
         } else if ((data && data.status !== "success") || isError) {
             toast.error("Payment verification failed or was not successful.");
             // Optional: redirect after delay
             setTimeout(() => {
-                router.push("/dashboard");
+                router.push("/dashboard/profile");
             }, 3000);
         }
     }, [data, isError, reference, router]);
