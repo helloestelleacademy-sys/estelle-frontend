@@ -23,6 +23,9 @@ const source = Source_Serif_4({
 export const metadata: Metadata = {
   title: "Estelle",
   description: "Learn Personal branding. Get Certified. Stand Out",
+  verification: {
+    google: "nFgLye16lmzVkKvmw4FE1eFgdiqfzaCDeu-XqSq_p3c",
+  },
 };
 
 export default function RootLayout({
