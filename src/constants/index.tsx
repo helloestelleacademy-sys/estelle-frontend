@@ -1,4 +1,4 @@
-import { Book, Inbox, LayoutDashboard, LogOut, MailOpen, Plus, Settings, User2, UserCheck2 } from 'lucide-react';
+import { Book, Inbox, LayoutDashboard, LogOut, MailOpen, Plus, Settings, User2, UserCheck2, Award, Bot, Library } from 'lucide-react';
 
 export const NavItems = [
   {
@@ -12,18 +12,23 @@ export const NavItems = [
     icon: Book,
   },
   {
-    title: "Inbox",
-    url: "/dashboard/inbox",
-    icon: Inbox,
+    title: "Resources",
+    url: "/dashboard/resources",
+    icon: Library,
   },
   {
-    title: "Tasks",
-    url: "/dashboard/tasks",
-    icon: MailOpen,
+    title: "AI Tools",
+    url: "/dashboard/ai-tools",
+    icon: Bot,
   },
   {
-    title: "Group",
-    url: "#",
+    title: "Certificate",
+    url: "/dashboard/certificate",
+    icon: Award,
+  },
+  {
+    title: "Community",
+    url: "https://t.me/+c4YyoBhf7KwzYzQ0",
     icon: UserCheck2,
   },
 ]
