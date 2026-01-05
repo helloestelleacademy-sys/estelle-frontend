@@ -1,3 +1,4 @@
+"use client";
 import React from 'react'
 import {
   Sidebar,
@@ -11,28 +12,20 @@ import {
 } from "@/components/ui/sidebar"
 
 import Image from 'next/image'
-// import { NavItems, NavItems2 } from '@/constants'
+import { NavItems, NavItems2, NavItemsAdmin, NavItemsAdmin2 } from '@/constants'
 import Link from 'next/link'
-
-
-type NavLinks = {
-  NavLinks1: {
-    title: string;
-    url: string;
-    icon: React.ElementType;
-  }[]
-  NavLinks2: {
-    title: string;
-    url: string;
-    icon: React.ElementType;
-  }[]
-}
-
 import { useAppDispatch } from '@/redux/hooks'
 import { logout } from '@/redux/features/authSlice'
 
-const AppSidebar = ({ NavLinks1, NavLinks2 }: NavLinks) => {
+interface AppSidebarProps {
+  type?: 'dashboard' | 'admin';
+}
+
+const AppSidebar = ({ type = 'dashboard' }: AppSidebarProps) => {
   const dispatch = useAppDispatch();
+
+  const links1 = type === 'admin' ? NavItemsAdmin : NavItems;
+  const links2 = type === 'admin' ? NavItemsAdmin2 : NavItems2;
 
   const handleItemClick = (title: string) => {
     if (title === 'Log out' || title === 'Logout') {
@@ -52,7 +45,7 @@ const AppSidebar = ({ NavLinks1, NavLinks2 }: NavLinks) => {
         <SidebarGroup>
           <SidebarGroupContent className='px-8'>
             <SidebarMenu className='w-full flex items-start flex-col gap-4 justify-start '>
-              {NavLinks1.map((item) => (
+              {links1.map((item) => (
                 <SidebarMenuItem key={item.title} className='hover:bg-gray-200 transition duration-300 cursor-pointer w-full rounded-2xl'>
                   <SidebarMenuButton asChild className='font-medium py-5'>
                     <Link href={item.url}>
@@ -70,7 +63,7 @@ const AppSidebar = ({ NavLinks1, NavLinks2 }: NavLinks) => {
         <SidebarGroup>
           <SidebarGroupContent className='px-8'>
             <SidebarMenu className='w-full flex items-start flex-col gap-4 justify-start '>
-              {NavLinks2.map((item) => (
+              {links2.map((item) => (
                 <SidebarMenuItem key={item.title} className='hover:bg-gray-200 transition duration-300 cursor-pointer w-full rounded-2xl'>
                   <SidebarMenuButton asChild className='font-medium py-5'>
                     <Link href={item.url} onClick={() => handleItemClick(item.title)}>
