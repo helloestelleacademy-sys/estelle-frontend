@@ -17,6 +17,14 @@ const Links1 = [
         title: 'Testimonials',
         href: '/#testimonials'
     },
+    {
+        title: 'Privacy Policy',
+        href: '/privacy-policy'
+    },
+    {
+        title: 'Terms of Service',
+        href: '/terms'
+    },
 ]
 
 const Footer = () => {

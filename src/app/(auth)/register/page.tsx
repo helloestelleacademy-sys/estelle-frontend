@@ -167,9 +167,7 @@ const Register = () => {
                     <div className='cursor-pointer' onClick={() => window.location.href = `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/auth/linkedin`}>
                         <Image src={linkedin} alt='linkedin-icon' className='w-[50px]' />
                     </div>
-                    <div className='cursor-pointer' onClick={() => window.location.href = `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/auth/microsoft`}>
-                        <Image src={teams} alt='teams-icon' className='w-[50px]' />
-                    </div>
+
                 </div>
 
             </div>
