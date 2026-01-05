@@ -29,7 +29,7 @@ export default function ProfilePage() {
             <div className="rounded-2xl bg-white p-8 shadow-sm border border-gray-100 mb-12 flex flex-col md:flex-row gap-8 items-start md:items-center">
                 <div className="relative h-24 w-24 md:h-32 md:w-32 shrink-0 overflow-hidden rounded-full border-4 border-[#7852A9]/10">
                     <Image
-                        src={user.img || "https://i.pravatar.cc/150?img=3"}
+                        src={user.avatar || "https://i.pravatar.cc/150?img=3"}
                         alt="Profile"
                         fill
                         className="object-cover"

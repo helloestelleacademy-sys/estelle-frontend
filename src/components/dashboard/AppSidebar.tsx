@@ -28,7 +28,18 @@ type NavLinks = {
   }[]
 }
 
+import { useAppDispatch } from '@/redux/hooks'
+import { logout } from '@/redux/features/authSlice'
+
 const AppSidebar = ({ NavLinks1, NavLinks2 }: NavLinks) => {
+  const dispatch = useAppDispatch();
+
+  const handleItemClick = (title: string) => {
+    if (title === 'Log out' || title === 'Logout') {
+      dispatch(logout());
+    }
+  }
+
   return (
     <Sidebar>
       <SidebarHeader className='px-10 py-2'>
@@ -62,7 +73,7 @@ const AppSidebar = ({ NavLinks1, NavLinks2 }: NavLinks) => {
               {NavLinks2.map((item) => (
                 <SidebarMenuItem key={item.title} className='hover:bg-gray-200 transition duration-300 cursor-pointer w-full rounded-2xl'>
                   <SidebarMenuButton asChild className='font-medium py-5'>
-                    <Link href={item.url}>
+                    <Link href={item.url} onClick={() => handleItemClick(item.title)}>
                       <item.icon />
                       <span>{item.title}</span>
                     </Link>
