@@ -59,7 +59,7 @@ const pricing = [
             "Free personal branding resources, templates and toolkits",
             "Dedicated customer success team and strategic implementation service",
         ],
-        buttonLink: 'mailto:info.estelleglobal@gmail.com',
+        buttonLink: 'mailto:info.estelleglobal@gmail.com?subject=Inquiry:%20Organization%20Plan&body=Hello%20Estelle%20Team,%0D%0A%0D%0AI%20am%20interested%20in%20the%20Organization%20Plan%20for%20my%20team.%20Please%20provide%20more%20details.%0D%0A%0D%0ABest%20regards,',
         buttonColor: "bg-[#8a55cf]",
         buttonText: "Book a Call"
     },

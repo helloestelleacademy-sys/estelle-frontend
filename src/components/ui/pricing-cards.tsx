@@ -225,7 +225,7 @@ function Pricing() {
                                     </div>
                                 </div>
                                 <div className="pt-8">
-                                    <a href="mailto:info.estelleglobal@gmail.com">
+                                    <a href="mailto:info.estelleglobal@gmail.com?subject=Inquiry:%20Organization%20Plan&body=Hello%20Estelle%20Team,%0D%0A%0D%0AI%20am%20interested%20in%20the%20Organization%20Plan%20for%20my%20team.%20Please%20provide%20more%20details.%0D%0A%0D%0ABest%20regards,">
                                         <Button variant="outline" className="w-full gap-4 rounded-md py-6 border-[#7852A9] text-[#7852A9] hover:bg-black hover:text-white hover:border-black transition-colors duration-300">
                                             Book a Call <MoveRight className="w-4 h-4" />
                                         </Button>
