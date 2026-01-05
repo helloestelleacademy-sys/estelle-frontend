@@ -25,7 +25,8 @@ const pricing = [
             "Tailored quizzes for practical learning",
         ],
         buttonLink: 'https://mainstack.store/stellanwosu/O7XDUpkdLOhk',
-        buttonColor: "bg-[#8a55cf]"
+        buttonColor: "bg-[#8a55cf]",
+        buttonText: "Buy Now"
     },
     {
         title: "Premium ",
@@ -40,7 +41,8 @@ const pricing = [
             "Enjoy maximum flexible learning at your own pace ",
         ],
         buttonLink: 'https://mainstack.store/stellanwosu/premium-plan',
-        buttonColor: "bg-[#7852A9]"
+        buttonColor: "bg-[#7852A9]",
+        buttonText: "Buy Now"
     },
     {
         title: "Organizations",
@@ -57,8 +59,9 @@ const pricing = [
             "Free personal branding resources, templates and toolkits",
             "Dedicated customer success team and strategic implementation service",
         ],
-        buttonLink: 'https://mainstack.store/stellanwosu/Y31l1e4NVIhj',
-        buttonColor: "bg-[#8a55cf]"
+        buttonLink: 'mailto:info.estelleglobal@gmail.com',
+        buttonColor: "bg-[#8a55cf]",
+        buttonText: "Book a Call"
     },
 ]
 const Pricing = () => {
@@ -140,7 +143,7 @@ const Pricing = () => {
 
                                             <a href={item.buttonLink} className={clsx('w-full px-8 py-4 rounded-md shadow text-sm flex justify-center items-center text-white gap-2 hover:bg-black active:bg-black transition-colors duration-300', item.buttonColor)}>
                                                 <Image src={fuelIcon} alt='img' />
-                                                <p>Buy Now</p>
+                                                <p>{item.buttonText}</p>
                                             </a>
                                         </div>
                                     </div>

@@ -225,9 +225,9 @@ function Pricing() {
                                     </div>
                                 </div>
                                 <div className="pt-8">
-                                    <a href="https://mainstack.store/stellanwosu/Y31l1e4NVIhj" target="_blank" rel="noopener noreferrer">
+                                    <a href="mailto:info.estelleglobal@gmail.com">
                                         <Button variant="outline" className="w-full gap-4 rounded-md py-6 border-[#7852A9] text-[#7852A9] hover:bg-black hover:text-white hover:border-black transition-colors duration-300">
-                                            Book a meeting <MoveRight className="w-4 h-4" />
+                                            Book a Call <MoveRight className="w-4 h-4" />
                                         </Button>
                                     </a>
                                 </div>
