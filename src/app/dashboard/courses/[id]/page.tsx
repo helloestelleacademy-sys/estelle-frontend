@@ -6,14 +6,14 @@ import { Loader2, Lock, PlayCircle, BookOpenCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import UnlockCourseModal from "@/components/dashboard/UnlockCourseModal";
 import { toast } from "sonner";
 
 const CourseDetail = () => {
     const params = useParams();
-    const router = useRouter();
+    // const router = useRouter();
     const id = Array.isArray(params.id) ? params.id[0] : params.id;
 
     // Fetch Course Data
@@ -212,7 +212,7 @@ const CourseDetail = () => {
                                         onClick={() => setIsUnlockModalOpen(true)}
                                         className="w-full bg-[#7852A9] hover:bg-[#5e3e87]"
                                     >
-                                        Upgrade Now
+                                        Start Learning
                                     </Button>
                                 </CardContent>
                             </Card>

@@ -41,11 +41,11 @@ const Footer = () => {
 
                 <div className='flex flex-col gap-6'>
                     <div className='space-y-2'>
-                        <h2 className='font-semibold text-sm'>Sign up on our Newsletter</h2>
-                        <p className='text-sm font-medium text-[#7851A9]'>Be the first to know our update!</p>
+                        <h2 className='font-semibold text-md'>Sign up on our Newsletter</h2>
+                        <p className='text-md font-medium text-[#7851A9]'>Be the first to know our update!</p>
                     </div>
 
-                    <p className='text-xs max-w-md'>Estelle is an e-learning platform designed to make personal branding education universally accessible. Through curated courses, expert mentorship,
+                    <p className='text-md max-w-md'>Estelle is an e-learning platform designed to make personal branding education universally accessible. Through curated courses, expert mentorship,
                         and interactive learning experiences, we empower individuals and teams to define their voice, showcase their value, and build influence that matters.</p>
 
                     <div className='space-y-4'>

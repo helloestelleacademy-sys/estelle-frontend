@@ -20,7 +20,7 @@ const About = () => {
 
                                 <div className='space-y-3'>
                                     <h2 className='font-semibold text-[#7851A9]'>Become a thought leader</h2>
-                                    <p className='text-sm text-neutral-400 text-balance'>Learn how to tell your story that becomes a legacy. Get seen and make an impact.</p>
+                                    <p className='text-sm text-neutral-900 text-balance'>Learn how to tell your story that becomes a legacy. Get seen and make an impact.</p>
                                 </div>
                             </div>
 
@@ -29,7 +29,7 @@ const About = () => {
 
                                 <div className='space-y-3'>
                                     <h2 className='font-semibold text-[#7851A9]'>Expert led courses</h2>
-                                    <p className='text-sm text-neutral-400 text-balance'>Access to valuable knowledge and mentorship that improves your visibility.</p>
+                                    <p className='text-sm text-neutral-900 text-balance'>Access to valuable knowledge and mentorship that improves your visibility.</p>
                                 </div>
                             </div>
 
@@ -38,7 +38,7 @@ const About = () => {
 
                                 <div className='space-y-3'>
                                     <h2 className='font-semibold text-[#7851A9]'>Earn valuable credentials</h2>
-                                    <p className='text-sm text-neutral-400 text-balance'>Get certified and boost your chances of being trusted by clients & recruiters.</p>
+                                    <p className='text-sm text-neutral-900 text-balance'>Get certified and boost your chances of being trusted by clients & recruiters.</p>
                                 </div>
                             </div>
                         </div>

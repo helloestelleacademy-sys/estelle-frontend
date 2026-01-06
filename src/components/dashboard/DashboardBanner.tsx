@@ -39,7 +39,7 @@ const DashboardBanner = () => {
                     </h2>
                 </div>
 
-                <Link href="/dashboard/courses">
+                <Link href="/dashboard/pricing">
                     <Button className="bg-[#7851A9] hover:bg-[#5e3e87] text-white shadow-lg shadow-purple-200">
                         View Course
                     </Button>

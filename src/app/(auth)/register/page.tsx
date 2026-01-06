@@ -1,6 +1,6 @@
 "use client"
 import Image from 'next/image'
-import React, { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
@@ -17,11 +17,11 @@ import { Input } from "@/components/ui/input"
 import { Checkbox } from "@/components/ui/checkbox"
 import google from '@/assets/Google.svg'
 import linkedin from '@/assets/LinkedIn.svg'
-import teams from '@/assets/Teams.svg'
+// import teams from '@/assets/Teams.svg'
 import Link from 'next/link'
 import { useRegisterMutation } from '@/redux/api/authApi'
 import { toast } from "sonner"
-import { Loader2 } from 'lucide-react'
+import { Eye, EyeOff, Loader2 } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 
 
@@ -40,6 +40,7 @@ const formSchema = z.object({
 const Register = () => {
     const router = useRouter()
     const [register, { isLoading, error, isSuccess }] = useRegisterMutation()
+    const [passwordVisible, setPasswordVisible]= useState(false)
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -129,6 +130,8 @@ const Register = () => {
                                     </FormItem>
                                 )}
                             />
+                            
+                            <div className='relative'>
                             <FormField
                                 control={form.control}
                                 name="password"
@@ -136,12 +139,18 @@ const Register = () => {
                                     <FormItem>
                                         <FormLabel className='font-light'>Password</FormLabel>
                                         <FormControl>
-                                            <Input type='password' placeholder="******" className='py-6' {...field} />
+                                            <Input type={passwordVisible ? "text" : "password"}  placeholder="******" className='py-6' {...field} />
                                         </FormControl>
                                         <FormMessage />
                                     </FormItem>
                                 )}
                             />
+                            <button type='button' onClick={()=>setPasswordVisible(!passwordVisible)} 
+                                    className='absolute inset-y-0 right-3 top-6 flex items-center text-gray-500'
+                                >
+                                    {passwordVisible ? <Eye size={18} /> : <EyeOff size={18} />}
+                                </button>
+                            </div>
 
                             <div className="flex items-center gap-3 mt-4">
                                 <Checkbox id="terms" checked className='border-[#7851A9]' />

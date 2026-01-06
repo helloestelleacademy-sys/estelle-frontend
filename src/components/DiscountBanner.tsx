@@ -58,7 +58,7 @@ const DiscountBanner = () => {
           100% { transform: translateX(-50%); }
         }
         .animate-scroll {
-          animation: scroll 20s linear infinite;
+          animation: scroll 55s linear infinite;
         }
       `}</style>
       <div className='w-full bg-[#D00000] py-3 shadow-xl flex items-center border-y-2 border-yellow-400 overflow-hidden z-50'>

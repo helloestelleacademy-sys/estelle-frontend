@@ -21,8 +21,8 @@ export default function Home() {
       <DiscountBanner />
       <About />
       <FeaturedCourses />
-      <Pricing />
       <Mission />
+      <Pricing />
       <Testimonials />
       <Service />
       <FAQSection />

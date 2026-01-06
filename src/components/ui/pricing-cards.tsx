@@ -49,9 +49,9 @@ function Pricing() {
         <div id="pricing" className="w-full py-20 lg:py-24">
             <div className="container mx-auto">
                 <div className="flex text-center justify-center items-center gap-4 flex-col">
-                    <Badge className="bg-[#7852A9] hover:bg-[#5e3e87] px-4 py-1 text-sm">Pricing</Badge>
+                    <Badge className="bg-[#a984dd] hover:bg-[#71519e] px-4 py-1 text-sm">Pricing</Badge>
                     <div className="flex gap-2 flex-col">
-                        <h2 className="text-3xl md:text-5xl tracking-tighter max-w-xl text-center font-regular">
+                        <h2 className="text-3xl md:text-5xl max-w-xl text-center">
                             Prices that make sense!
                         </h2>
                         <p className="text-lg leading-relaxed tracking-tight text-muted-foreground max-w-xl text-center">
@@ -76,11 +76,11 @@ function Pricing() {
                                     <div className="flex flex-col">
                                         <div className="flex flex-row items-center gap-2">
                                             <span className="text-4xl font-bold">₦35,000</span>
-                                            <span className="bg-[#FE401C] text-white text-xs px-2 py-1 rounded-full font-bold">-30%</span>
+                                            {/* <span className="bg-[#FE401C] text-white text-xs px-2 py-1 rounded-full font-bold">-30%</span> */}
                                         </div>
-                                        <span className="text-sm text-muted-foreground line-through mt-1">
+                                        {/* <span className="text-sm text-muted-foreground line-through mt-1">
                                             ₦50,000
-                                        </span>
+                                        </span> */}
                                     </div>
                                     <div className="flex flex-col gap-4 justify-start">
                                         {[
@@ -194,16 +194,16 @@ function Pricing() {
                                     <div className="flex flex-col">
                                         <div className="flex flex-row items-center gap-2">
                                             <span className="text-4xl font-bold">₦300,000</span>
-                                            <span className="bg-[#FE401C] text-white text-xs px-2 py-1 rounded-full font-bold">-30%</span>
+                                            {/* <span className="bg-[#FE401C] text-white text-xs px-2 py-1 rounded-full font-bold">-30%</span> */}
                                         </div>
-                                        <div className="flex flex-row gap-2 items-center mt-1">
+                                        {/* <div className="flex flex-row gap-2 items-center mt-1">
                                             <span className="text-sm text-muted-foreground line-through">
                                                 ₦430,000
                                             </span>
                                             <span className="text-sm text-muted-foreground">
                                                 / one-time
                                             </span>
-                                        </div>
+                                        </div> */}
                                     </div>
                                     <div className="flex flex-col gap-4 justify-start">
                                         {[

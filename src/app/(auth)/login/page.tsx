@@ -1,6 +1,6 @@
 "use client"
 import Image from 'next/image'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
@@ -22,7 +22,7 @@ import Link from 'next/link'
 import { useLoginMutation } from '@/redux/api/authApi'
 import { useRouter } from 'next/navigation'
 import { toast } from 'sonner'
-import { Loader2 } from 'lucide-react'
+import { Eye, EyeOff, Loader2 } from 'lucide-react'
 
 
 
@@ -39,6 +39,7 @@ const formSchema = z.object({
 const Login = () => {
   const router = useRouter()
   const [login, { isLoading, isError, isSuccess }] = useLoginMutation()
+  const [passwordVisible, setPasswordVisible]= useState(false)
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -100,19 +101,28 @@ const Login = () => {
                   </FormItem>
                 )}
               />
+              <div className='relative'>
+
+              
               <FormField
                 control={form.control}
                 name="password"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Password</FormLabel>
-                    <FormControl>
-                      <Input type="password" placeholder="password" {...field} />
+                    <FormControl className='relative'>
+                      <Input type={passwordVisible ? "text" : "password"}  placeholder="password" {...field} />                  
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
+                  <button type='button' onClick={()=>setPasswordVisible(!passwordVisible)} 
+                      className='absolute inset-y-0 right-3 top-6 flex items-center text-gray-500'
+                      >
+                        {passwordVisible ? <Eye size={18} /> : <EyeOff size={18} />}
+                  </button>
+              </div>
 
               <div className="flex items-center gap-3 mt-4">
                 <Checkbox id="terms" className='border-[#7851A9]' />
