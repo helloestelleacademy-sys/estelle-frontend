@@ -141,6 +141,10 @@ const UserStatistics: React.FC<UserStatisticsProps> = ({ user, enrollments }) =>
                         <Zap className='w-3 h-3 text-[#FFD700] fill-[#FFD700]' />
                         <p className='text-xs text-gray-500'>Online Now</p>
                     </div>
+                    <div>
+                    <p className='font-bold text-gray-900 text-sm mt-1'>Linkedin Profile:</p>
+                    <a href='https://www.linkedin.com/in/stellanwosu/' className='text-xs text-blue-800'> https://www.linkedin.com/in/stellanwosu/</a>
+                    </div>
                 </div>
             </div>
 
