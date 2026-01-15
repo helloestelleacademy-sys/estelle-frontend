@@ -34,13 +34,16 @@ const formSchema = z.object({
     password: z.string().min(6, {
         message: "Password must be at least 6 characters.",
     }),
+    phoneNo: z.string().min(10, {
+        message: "Phone number must be at least 10 characters.",
+    }),
 })
 
 
 const Register = () => {
     const router = useRouter()
     const [register, { isLoading, error, isSuccess }] = useRegisterMutation()
-    const [passwordVisible, setPasswordVisible]= useState(false)
+    const [passwordVisible, setPasswordVisible] = useState(false)
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -49,6 +52,7 @@ const Register = () => {
             lastName: "",
             email: "",
             password: "",
+            phoneNo: "",
         },
     })
 
@@ -130,22 +134,35 @@ const Register = () => {
                                     </FormItem>
                                 )}
                             />
-                            
-                            <div className='relative'>
                             <FormField
                                 control={form.control}
-                                name="password"
+                                name="phoneNo"
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel className='font-light'>Password</FormLabel>
+                                        <FormLabel className='font-light'>Phone Number</FormLabel>
                                         <FormControl>
-                                            <Input type={passwordVisible ? "text" : "password"}  placeholder="******" className='py-6' {...field} />
+                                            <Input placeholder="1234567890" className='py-6' {...field} />
                                         </FormControl>
                                         <FormMessage />
                                     </FormItem>
                                 )}
                             />
-                            <button type='button' onClick={()=>setPasswordVisible(!passwordVisible)} 
+
+                            <div className='relative'>
+                                <FormField
+                                    control={form.control}
+                                    name="password"
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <FormLabel className='font-light'>Password</FormLabel>
+                                            <FormControl>
+                                                <Input type={passwordVisible ? "text" : "password"} placeholder="******" className='py-6' {...field} />
+                                            </FormControl>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+                                <button type='button' onClick={() => setPasswordVisible(!passwordVisible)}
                                     className='absolute inset-y-0 right-3 top-6 flex items-center text-gray-500'
                                 >
                                     {passwordVisible ? <Eye size={18} /> : <EyeOff size={18} />}
