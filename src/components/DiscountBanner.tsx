@@ -12,17 +12,26 @@ const DiscountBanner = () => {
     // Persist end time so refresh doesn't reset countdown
     let endTime = localStorage.getItem('promo_end_time')
 
-    if (!endTime) {
+    const resetTimer = () => {
       const now = Date.now()
       const newEndTime = now + THIRTY_DAYS_IN_SECONDS * 1000
       localStorage.setItem('promo_end_time', newEndTime.toString())
-      endTime = newEndTime.toString()
+      return newEndTime.toString()
     }
 
-    const endTimestamp = Number(endTime)
+    if (!endTime) {
+      endTime = resetTimer()
+    }
 
     const interval = setInterval(() => {
       const now = Date.now()
+      let endTimestamp = Number(endTime)
+
+      if (endTimestamp <= now) {
+        endTime = resetTimer()
+        endTimestamp = Number(endTime)
+      }
+
       const remaining = Math.max(0, Math.floor((endTimestamp - now) / 1000))
       setTimeLeft(remaining)
     }, 1000)
