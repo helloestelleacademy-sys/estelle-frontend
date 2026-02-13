@@ -36,8 +36,17 @@ export const userApi = createApi({
         }),
         getUserDetails: builder.query<{ success: boolean; user: any; enrollments: any[]; payments: any[] }, string>({
             query: (id) => `/users/${id}`,
+            providesTags: ["User"]
+        }),
+        updateUserRole: builder.mutation<{ success: boolean; message: string; user: any }, { id: string; role: string }>({
+            query: ({ id, role }) => ({
+                url: `/users/${id}/role`,
+                method: "PATCH",
+                body: { role },
+            }),
+            invalidatesTags: ["User"],
         }),
     })
 })
 
-export const { useUserProfileQuery, useGetAllUsersQuery, useGetUserDetailsQuery } = userApi
+export const { useUserProfileQuery, useGetAllUsersQuery, useGetUserDetailsQuery, useUpdateUserRoleMutation } = userApi

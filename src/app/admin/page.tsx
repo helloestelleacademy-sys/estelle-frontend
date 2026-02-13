@@ -70,12 +70,48 @@ const Home = () => {
 
 
       <div className='p-4 rounded-2xl bg-primary-foreground'>
-
+        <h2 className='text-lg font-medium mb-4'>Recent Signups</h2>
+        <div className='space-y-4'>
+          {overview?.recentUsers?.map((user: any) => (
+            <div key={user._id} className='flex items-center gap-3 border-b pb-2 last:border-0 last:pb-0'>
+              <div className='bg-primary/10 rounded-full p-2'>
+                <User size={16} className='text-primary' />
+              </div>
+              <div className='flex-1'>
+                <p className='text-sm font-medium'>{user.firstName} {user.lastName}</p>
+                <p className='text-xs text-muted-foreground'>{user.email}</p>
+              </div>
+              <div className='text-xs text-muted-foreground'>
+                {new Date(user.createdAt).toLocaleDateString()}
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
 
-      {/* <div className='border border-gray-400 p-4 rounded-2xl bg-primary-foreground'>
 
-      </div> */}
+      <div className='p-4 rounded-2xl bg-primary-foreground'>
+        <h2 className='text-lg font-medium mb-4'>Recent Payments</h2>
+        <div className='space-y-4'>
+          {overview?.recentPayments?.map((payment: any) => (
+            <div key={payment._id} className='flex items-center gap-3 border-b pb-2 last:border-0 last:pb-0'>
+              <div className='bg-green-100 rounded-full p-2'>
+                <Banknote size={16} className='text-green-600' />
+              </div>
+              <div className='flex-1'>
+                <p className='text-sm font-medium'>{payment.user?.firstName} {payment.user?.lastName}</p>
+                <p className='text-xs text-muted-foreground'>{payment.reference}</p>
+              </div>
+              <div className='text-sm font-medium'>
+                ₦{(payment.amount / 100).toLocaleString()}
+              </div>
+            </div>
+          ))}
+          {(!overview?.recentPayments || overview.recentPayments.length === 0) && (
+            <p className="text-sm text-muted-foreground">No recent payments.</p>
+          )}
+        </div>
+      </div>
 
     </div>
   )

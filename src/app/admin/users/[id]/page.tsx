@@ -1,8 +1,16 @@
 "use client"
 import React from 'react'
 import { useParams } from 'next/navigation'
-import { useGetUserDetailsQuery } from '@/redux/api/userApi'
+import { useGetUserDetailsQuery, useUpdateUserRoleMutation } from '@/redux/api/userApi'
 import { Loader2, Mail, Phone, Calendar, User, Shield, CreditCard, BookOpen } from 'lucide-react'
+import { toast } from "sonner"
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select"
 
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -19,6 +27,16 @@ const UserDetailsPage = () => {
     const params = useParams();
     const id = params.id as string;
     const { data, isLoading, isError } = useGetUserDetailsQuery(id);
+    const [updateUserRole, { isLoading: isUpdatingRole }] = useUpdateUserRoleMutation();
+
+    const handleRoleChange = async (newRole: string) => {
+        try {
+            await updateUserRole({ id, role: newRole }).unwrap();
+            toast.success(`User role updated to ${newRole}`);
+        } catch (error: any) {
+            toast.error(error?.data?.message || "Failed to update role");
+        }
+    }
 
     if (isLoading) {
         return (
@@ -46,7 +64,16 @@ const UserDetailsPage = () => {
                 <div className="flex items-center gap-2 text-muted-foreground">
                     <span className="text-sm">ID: {user._id}</span>
                     <Badge variant={user.status === 'active' ? 'default' : 'secondary'}>{user.status}</Badge>
-                    <Badge variant="outline">{user.role}</Badge>
+                    <Select onValueChange={handleRoleChange} defaultValue={user.role} disabled={isUpdatingRole}>
+                        <SelectTrigger className="w-[120px] h-7 text-xs">
+                            <SelectValue placeholder="Role" />
+                        </SelectTrigger>
+                        <SelectContent>
+                            <SelectItem value="CONSUMER">Consumer</SelectItem>
+                            <SelectItem value="HOST">Host</SelectItem>
+                            <SelectItem value="ADMIN">Admin</SelectItem>
+                        </SelectContent>
+                    </Select>
                 </div>
             </div>
 
