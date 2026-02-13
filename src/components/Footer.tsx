@@ -1,8 +1,11 @@
-import React from 'react'
+'use client';
+import React, { useState } from 'react'
 import { Input } from './ui/input'
 import { Button } from './ui/button'
 import Image from 'next/image'
-import { Facebook, Instagram, Linkedin, Twitter, Youtube } from 'lucide-react'
+import { Facebook, Instagram, Linkedin, Twitter, Youtube, Loader2 } from 'lucide-react'
+import { useSubscribeMutation } from '@/redux/api/newsletterApi'
+import { toast } from 'sonner' // Assuming sonner is used for toasts based on previous files
 
 const Links1 = [
     {
@@ -28,6 +31,26 @@ const Links1 = [
 ]
 
 const Footer = () => {
+    const [email, setEmail] = useState('');
+    const [subscribe, { isLoading }] = useSubscribeMutation();
+
+    const handleSubscribe = async () => {
+        if (!email) {
+            toast.error("Please enter your email address");
+            return;
+        }
+
+        try {
+            const response = await subscribe({ email }).unwrap();
+            toast.success(response.message || "Subscribed successfully!");
+            setEmail('');
+        } catch (error: any) {
+            console.error("Subscription error:", error);
+            const errorMessage = error?.data?.message || "Failed to subscribe. Please try again.";
+            toast.error(errorMessage);
+        }
+    };
+
     return (
         <footer id='footer' className='py-20 lg:py-24 w-full'>
             <div className='max-w-7xl mx-auto flex flex-wrap gap-8 justify-between px-4'>
@@ -49,8 +72,20 @@ const Footer = () => {
                         and interactive learning experiences, we empower individuals and teams to define their voice, showcase their value, and build influence that matters.</p>
 
                     <div className='space-y-4'>
-                        <Input className='py-6 text-[#7851A9] pl-2 bg-gray-200' placeholder='Email here' />
-                        <Button className='py-5 bg-[#CAA0FF]'>Subscribe Now</Button>
+                        <Input
+                            className='py-6 text-[#7851A9] pl-2 bg-gray-200'
+                            placeholder='Email here'
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
+                        <Button
+                            className='py-5 bg-[#CAA0FF]'
+                            onClick={handleSubscribe}
+                            disabled={isLoading}
+                        >
+                            {isLoading ? <Loader2 className="animate-spin w-4 h-4 mr-2" /> : null}
+                            {isLoading ? 'Subscribing...' : 'Subscribe Now'}
+                        </Button>
                     </div>
                 </div>
 

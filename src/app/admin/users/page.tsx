@@ -1,48 +1,35 @@
-import { UsersDetails } from "@/constants"
-import { columns, Users } from "./columns"
+"use client"
+import { columns } from "./columns"
 import { DataTable } from "./dataTables"
+import { useGetAllUsersQuery } from "@/redux/api/userApi"
+import { useState } from "react"
+import { Loader2 } from "lucide-react"
 
-async function getData(): Promise<Users[]> {
-  // Fetch data from your API here.
-  return [
-    {
-      id: "728ed52f",
-      name: 'Enoch',
-      email: "m@example.com",
-      phoneNo: "123-456-7890",
-      address: "123 Main St, City, Country",
-    },
-    {
-      id: "728ed52f",
-      name: 'Enoch',
-      email: "m@example.com",
-      phoneNo: "123-456-7890",
-      address: "123 Main St, City, Country",
-    },
-    {
-      id: "728ed52f",
-      name: 'Enoch',
-      email: "m@example.com",
-      phoneNo: "123-456-7890",
-      address: "123 Main St, City, Country",
-    },
-    {
-      id: "728ed52f",
-      name: 'Enoch',
-      email: "m@example.com",
-      phoneNo: "123-456-7890",
-      address: "123 Main St, City, Country",
-    },
+export default function DemoPage() {
+  const [page, setPage] = useState(1);
+  const { data, isLoading, isError } = useGetAllUsersQuery({ page, limit: 20 });
 
-  ]
-}
+  if (isLoading) {
+    return (
+      <div className="flex h-[50vh] w-full items-center justify-center">
+        <Loader2 className="h-8 w-8 animate-spin text-primary" />
+      </div>
+    )
+  }
 
-export default async function DemoPage() {
-  // const data = await getData()
+  if (isError) {
+    return (
+      <div className="container mx-auto py-10 bg-white rounded-2xl px-8 text-red-500">
+        Error loading users. Please try again.
+      </div>
+    )
+  }
 
   return (
     <div className="container mx-auto py-10 bg-white rounded-2xl px-8 ">
-      <DataTable columns={columns} data={UsersDetails} />
+      <h1 className="text-2xl font-bold mb-6">User Management</h1>
+      <DataTable columns={columns} data={data?.users || []} />
+      {/* Add Pagination Controls if needed */}
     </div>
   )
 }

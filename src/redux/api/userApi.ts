@@ -31,7 +31,13 @@ export const userApi = createApi({
             providesTags: ["User"]
         }),
 
+        getAllUsers: builder.query<{ success: boolean; users: any[]; total: number; page: number; pages: number }, { page: number; limit: number }>({
+            query: ({ page, limit }) => `/users?page=${page}&limit=${limit}`,
+        }),
+        getUserDetails: builder.query<{ success: boolean; user: any; enrollments: any[]; payments: any[] }, string>({
+            query: (id) => `/users/${id}`,
+        }),
     })
 })
 
-export const { useUserProfileQuery } = userApi
+export const { useUserProfileQuery, useGetAllUsersQuery, useGetUserDetailsQuery } = userApi

@@ -2,7 +2,8 @@
 
 import { ColumnDef } from "@tanstack/react-table"
 import { MoreHorizontal } from "lucide-react"
- 
+import Link from "next/link"
+
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -14,21 +15,27 @@ import {
 } from "@/components/ui/dropdown-menu"
 
 // This type is used to define the shape of our data.
-// You can use a Zod schema here if you want.
-export type Users = {
-  id: string
-  name: string
-  email: string,
-  phoneNo: string,
-  address: string,
+export type User = {
+  _id: string
+  firstName: string
+  lastName: string
+  email: string
+  phoneNo: string
+  role: string
+  createdAt: string
+  status: string
 }
 
-export const columns: ColumnDef<Users>[] = [
+export const columns: ColumnDef<User>[] = [
 
-    {
-      accessorKey: "name",
-      header: "Name",
-    },
+  {
+    accessorKey: "firstName",
+    header: "First Name",
+  },
+  {
+    accessorKey: "lastName",
+    header: "Last Name",
+  },
   {
     accessorKey: "email",
     header: "Email",
@@ -38,14 +45,18 @@ export const columns: ColumnDef<Users>[] = [
     header: "Phone Number",
   },
   {
-    accessorKey: "address",
-    header: "Address",
+    accessorKey: "role",
+    header: "Role",
+  },
+  {
+    accessorKey: "status",
+    header: "Status",
   },
   {
     id: "actions",
     cell: ({ row }) => {
-      const payment = row.original
- 
+      const user = row.original
+
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -57,12 +68,14 @@ export const columns: ColumnDef<Users>[] = [
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(payment.id)}
+              onClick={() => navigator.clipboard.writeText(user._id)}
             >
               Copy User ID
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>View User Details</DropdownMenuItem>
+            <Link href={`/admin/users/${user._id}`}>
+              <DropdownMenuItem>View User Details</DropdownMenuItem>
+            </Link>
           </DropdownMenuContent>
         </DropdownMenu>
       )

@@ -9,40 +9,55 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
-import { Plus } from "lucide-react"
+import { Plus, Loader2 } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { useState } from "react"
 import { toast } from "sonner"
+import { useCreateCourseMutation } from "@/redux/api/courseApi"
 
 const CreateCourse = () => {
 
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
   const [duration, setDuration] = useState('')
-  const [imageUrl, setImageUrl] = useState<File | null | string>(null);
-  const [imageUrlPreview, setImageUrlPreview] = useState('')
+  const [price, setPrice] = useState('')
+  const [level, setLevel] = useState('Beginner level')
+  const [courseType, setCourseType] = useState('Basic')
+  const [imageUrl, setImageUrl] = useState('');
 
-  const handleImage = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file && file.type.startsWith("image/")) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        setImageUrlPreview(reader.result as string);
-        setImageUrl(file); // store the File, not the base64 string
-      };
-      reader.readAsDataURL(file);
-    }
-  };
+  const [createCourse, { isLoading }] = useCreateCourseMutation();
 
-
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!imageUrl || typeof imageUrl === "string") {
-      toast.error("Please upload an image.");
+
+    if (!title || !description || !duration || !imageUrl) {
+      toast.error("Please fill in all required fields.");
       return;
+    }
+
+    try {
+      await createCourse({
+        title,
+        description,
+        duration,
+        price: Number(price) || 0,
+        level,
+        courseType,
+        image: imageUrl
+      }).unwrap();
+
+      toast.success("Course created successfully!");
+      // Reset form
+      setTitle('');
+      setDescription('');
+      setDuration('');
+      setPrice('');
+      setImageUrl('');
+    } catch (error: any) {
+      console.error("Failed to create course:", error);
+      toast.error(error?.data?.message || "Failed to create course");
     }
   }
 
@@ -68,35 +83,41 @@ const CreateCourse = () => {
 
           <div className="w-full max-h-[350px] overflow-y-auto sm:p-10">
 
-            {imageUrlPreview && <div className="w-full h-[250px] sm:h-[240px] relative">
-              <Image className="w-full h-full object-cover rounded-xl" src={imageUrlPreview} alt="Course Preview" fill />
+            {imageUrl && <div className="w-full h-[250px] sm:h-[240px] relative mb-4">
+              <Image className="w-full h-full object-cover rounded-xl" src={imageUrl} alt="Course Preview" fill unoptimized />
             </div>}
           </div>
 
           <div className="grid gap-4 ">
             <div className="grid gap-3">
-              <Label htmlFor="name">Title</Label>
-              <Input id="title" name="title" value={title} onChange={(e) => setTitle(e.target.value)} />
+              <Label htmlFor="title">Title</Label>
+              <Input id="title" name="title" value={title} onChange={(e) => setTitle(e.target.value)} required />
             </div>
 
             <div className="grid gap-3">
-              <Label htmlFor="bio">Description</Label>
-              <Textarea id="description" name="description" value={description} onChange={(e) => setDescription(e.target.value)} />
+              <Label htmlFor="description">Description</Label>
+              <Textarea id="description" name="description" value={description} onChange={(e) => setDescription(e.target.value)} required />
             </div>
 
             <div className="grid gap-3">
-              <Label htmlFor="name">Duration</Label>
-              <Input id="duration" name="duration" value={duration} onChange={(e) => setDuration(e.target.value)} />
+              <Label htmlFor="duration">Duration</Label>
+              <Input id="duration" name="duration" value={duration} onChange={(e) => setDuration(e.target.value)} placeholder="e.g. 4 Weeks" required />
             </div>
 
-
+            <div className="grid gap-3">
+              <Label htmlFor="price">Price (₦)</Label>
+              <Input id="price" name="price" type="number" value={price} onChange={(e) => setPrice(e.target.value)} placeholder="0" />
+            </div>
 
             <div className="grid gap-3">
-              <Label htmlFor="logo">Certificate</Label>
-              <Input type="file" id="imageUrl" name="imageUrl" onChange={handleImage} />
+              <Label htmlFor="imageUrl">Image URL</Label>
+              <Input type="url" id="imageUrl" name="imageUrl" value={imageUrl} onChange={(e) => setImageUrl(e.target.value)} placeholder="https://example.com/image.jpg" required />
             </div>
           </div>
-          <Button type="submit" className="bg-[#7851A9] hover:bg-[#664095] mt-10 py-6">Create Course</Button>
+          <Button type="submit" className="bg-[#7851A9] hover:bg-[#664095] mt-10 py-6 w-full" disabled={isLoading}>
+            {isLoading ? <Loader2 className="animate-spin w-4 h-4 mr-2" /> : null}
+            {isLoading ? 'Creating...' : 'Create Course'}
+          </Button>
         </form>
       </SheetContent>
     </Sheet>

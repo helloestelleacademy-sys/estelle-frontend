@@ -4,6 +4,8 @@ import { authApi } from "@/redux/api/authApi";
 import { userApi } from "@/redux/api/userApi";
 import { courseApi } from "@/redux/api/courseApi";
 import { paymentApi } from "@/redux/api/paymentApi";
+import { newsletterApi } from "@/redux/api/newsletterApi";
+import { analyticsApi } from "@/redux/api/analyticsApi";
 // import {api} from "@/redux/api/api";
 
 export const makeStore = () => {
@@ -14,11 +16,20 @@ export const makeStore = () => {
       [userApi.reducerPath]: userApi.reducer,
       [courseApi.reducerPath]: courseApi.reducer,
       [paymentApi.reducerPath]: paymentApi.reducer,
+      [newsletterApi.reducerPath]: newsletterApi.reducer,
+      [analyticsApi.reducerPath]: analyticsApi.reducer,
       //   [api.reducerPath]: api.reducer,
     },
     middleware: (getDefaultMiddleware) => {
       return getDefaultMiddleware()
-        .concat([authApi.middleware, userApi.middleware, courseApi.middleware, paymentApi.middleware])
+        .concat([
+          authApi.middleware,
+          userApi.middleware,
+          courseApi.middleware,
+          paymentApi.middleware,
+          newsletterApi.middleware,
+          analyticsApi.middleware
+        ])
     }
   })
 }
