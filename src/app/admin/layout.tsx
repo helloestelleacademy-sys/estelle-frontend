@@ -4,7 +4,14 @@ import { ProtectedRoute } from '@/components/ProtectedRoute';
 import { SidebarProvider } from '@/components/ui/sidebar';
 
 import { cookies } from 'next/headers';
-import React from 'react'
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
 
 const layout = async ({
   children,

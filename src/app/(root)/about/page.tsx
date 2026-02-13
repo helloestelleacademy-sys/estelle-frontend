@@ -6,7 +6,14 @@ import Cta from '@/components/Cta'
 import Features from '@/components/Features'
 import React from 'react'
 
-const page = () => {
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "About Us",
+  description: "Learn about Estelle's mission to empower professionals with personal branding skills. Meet our team and discover our vision.",
+};
+
+const AboutPage = () => {
   return (
     <div>
       <Header />
@@ -19,4 +26,4 @@ const page = () => {
   )
 }
 
-export default page
+export default AboutPage

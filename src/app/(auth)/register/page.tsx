@@ -3,6 +3,8 @@ import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
+import React, { Suspense } from 'react'
+
 import { useForm } from "react-hook-form"
 import { Button } from "@/components/ui/button"
 import {

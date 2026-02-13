@@ -5,7 +5,7 @@ import React, { useRef } from 'react'
 import { gsap } from "gsap";
 import { useGSAP } from '@gsap/react';
 
-const Courses = () => {
+const CoursePage = () => {
   const cardRef = useRef<(HTMLDivElement | null)[]>([])
   const { data, isLoading, error } = useGetAllCoursesQuery();
 
@@ -32,4 +32,4 @@ const Courses = () => {
   )
 }
 
-export default Courses
+export default CoursePage

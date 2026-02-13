@@ -14,6 +14,13 @@ import { ScrollTrigger } from 'gsap/all';
 
 gsap.registerPlugin(ScrollTrigger);
 
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Master Personal Branding & Stand Out",
+  description: "Join Estelle to build a powerful personal brand. Access expert courses, get certified, and accelerate your career growth.",
+};
+
 export default function Home() {
   return (
     <>

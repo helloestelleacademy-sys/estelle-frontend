@@ -39,7 +39,7 @@ const formSchema = z.object({
 const Login = () => {
   const router = useRouter()
   const [login, { isLoading, isError, isSuccess }] = useLoginMutation()
-  const [passwordVisible, setPasswordVisible]= useState(false)
+  const [passwordVisible, setPasswordVisible] = useState(false)
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -103,25 +103,25 @@ const Login = () => {
               />
               <div className='relative'>
 
-              
-              <FormField
-                control={form.control}
-                name="password"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Password</FormLabel>
-                    <FormControl className='relative'>
-                      <Input type={passwordVisible ? "text" : "password"}  placeholder="password" {...field} />                  
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-                  <button type='button' onClick={()=>setPasswordVisible(!passwordVisible)} 
-                      className='absolute inset-y-0 right-3 top-6 flex items-center text-gray-500'
-                      >
-                        {passwordVisible ? <Eye size={18} /> : <EyeOff size={18} />}
-                  </button>
+
+                <FormField
+                  control={form.control}
+                  name="password"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Password</FormLabel>
+                      <FormControl className='relative'>
+                        <Input type={passwordVisible ? "text" : "password"} placeholder="password" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <button type='button' onClick={() => setPasswordVisible(!passwordVisible)}
+                  className='absolute inset-y-0 right-3 top-6 flex items-center text-gray-500'
+                >
+                  {passwordVisible ? <Eye size={18} /> : <EyeOff size={18} />}
+                </button>
               </div>
 
               <div className="flex items-center gap-3 mt-4">

@@ -1,6 +1,10 @@
-"use client";
-
 import React from "react";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Terms of Service",
+    description: "Review Estelle's Terms of Service governing your use of our platform and services.",
+};
 
 const TermsOfService = () => {
     return (
