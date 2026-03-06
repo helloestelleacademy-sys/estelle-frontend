@@ -97,6 +97,10 @@ const Navbar = () => {
       title: "Courses",
       link: "/",
     },
+    {
+      title: "Events",
+      link: "/events",
+    },
     // {
     //     title:"Courses",
     //     link:"/courses",
@@ -123,6 +127,9 @@ const Navbar = () => {
           </Link>
           <Link href={'/#pricing'}>
             <li className={clsx('text-[16px] font-semibold tracking-wide  cursor-pointer')}>Pricing</li>
+          </Link>
+          <Link href={'/events'}>
+            <li className={clsx('text-[16px] font-semibold tracking-wide  cursor-pointer')}>Events</li>
           </Link>
           <Link href={'#footer'}>
             <li className={clsx('text-[16px] font-semibold tracking-wide  cursor-pointer')}>Support</li>

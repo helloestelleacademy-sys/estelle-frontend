@@ -6,6 +6,7 @@ import { courseApi } from "@/redux/api/courseApi";
 import { paymentApi } from "@/redux/api/paymentApi";
 import { newsletterApi } from "@/redux/api/newsletterApi";
 import { analyticsApi } from "@/redux/api/analyticsApi";
+import { eventApi } from "@/redux/api/eventApi";
 // import {api} from "@/redux/api/api";
 
 export const makeStore = () => {
@@ -18,6 +19,7 @@ export const makeStore = () => {
       [paymentApi.reducerPath]: paymentApi.reducer,
       [newsletterApi.reducerPath]: newsletterApi.reducer,
       [analyticsApi.reducerPath]: analyticsApi.reducer,
+      [eventApi.reducerPath]: eventApi.reducer,
       //   [api.reducerPath]: api.reducer,
     },
     middleware: (getDefaultMiddleware) => {
@@ -28,7 +30,8 @@ export const makeStore = () => {
           courseApi.middleware,
           paymentApi.middleware,
           newsletterApi.middleware,
-          analyticsApi.middleware
+          analyticsApi.middleware,
+          eventApi.middleware
         ])
     }
   })

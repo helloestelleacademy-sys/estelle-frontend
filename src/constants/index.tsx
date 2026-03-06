@@ -1,4 +1,4 @@
-import { Book, Inbox, LayoutDashboard, LogOut, MailOpen, Plus, Settings, User2, UserCheck2, Award, Bot, Library } from 'lucide-react';
+import { Book, Inbox, LayoutDashboard, LogOut, MailOpen, Plus, Settings, User2, UserCheck2, Award, Bot, Library, Calendar } from 'lucide-react';
 
 export const NavItems = [
   {
@@ -66,6 +66,11 @@ export const NavItemsAdmin = [
     title: "Create Course",
     url: "/admin/create-course",
     icon: Plus,
+  },
+  {
+    title: "Events",
+    url: "/admin/events",
+    icon: Calendar,
   },
   {
     title: "Group",
