@@ -1,61 +1,76 @@
 "use client";
 
-import Image from 'next/image'
-import Link from 'next/link'
 import React from 'react'
-import { Button } from '../ui/button'
+import { Calendar, MapPin, ChevronRight, Zap } from 'lucide-react'
+import { motion } from 'framer-motion'
 
 type EventProp = {
     id: string,
     title: string,
-    img: string,
+    img?: string,
     date: string,
     location: string,
     price: string | number,
+    isSelected?: boolean,
+    onClick?: () => void
 }
 
-const EventCard = ({ id, title, img, date, location }: EventProp) => {
+const EventCard = ({ id, title, date, location, isSelected, onClick }: EventProp) => {
     return (
-        <div className='bg-[#FFFBF2] rounded-[32px] p-2 flex flex-col shadow-sm border border-stone-50 overflow-hidden group hover:shadow-md transition-shadow duration-300 h-full'>
-            {/* Event Image */}
-            <div className="relative w-full aspect-video rounded-[24px] overflow-hidden bg-white flex items-center justify-center">
-                <Image
-                    src={img || '/assets/headerImg.png'}
-                    alt={title}
-                    fill
-                    className='object-cover p-2 rounded-[24px] group-hover:scale-105 transition-transform duration-500'
+        <motion.div
+            onClick={onClick}
+            whileHover={{ scale: 1.02, x: 5 }}
+            whileTap={{ scale: 0.98 }}
+            className={`cursor-pointer rounded-[24px] p-6 mb-4 transition-all duration-300 border backdrop-blur-md relative overflow-hidden group ${isSelected
+                    ? 'bg-[#7852A9] border-[#7852A9] text-white shadow-2xl shadow-purple-900/20'
+                    : 'bg-white/50 border-white text-gray-900 hover:border-[#7852A9]/50 shadow-lg shadow-purple-900/5'
+                }`}
+        >
+            {/* Selection indicator */}
+            {isSelected && (
+                <motion.div
+                    layoutId="selection-glow"
+                    className="absolute inset-0 bg-gradient-to-r from-white/10 to-transparent pointer-events-none"
                 />
-            </div>
+            )}
 
-            <div className='px-4 pt-6 pb-6 flex flex-col flex-1 justify-between'>
-                <div>
-                    <div className='flex items-center gap-2 mb-3'>
-                        <span className='px-3 py-1 bg-[#EEE0FF] text-[#7851A9] text-xs font-semibold rounded-full uppercase tracking-wide'>
-                            Event
+            <div className="flex justify-between items-start gap-4 relative z-10">
+                <div className="flex-1 space-y-4">
+                    <div className="flex items-center gap-2">
+                        {isSelected ? (
+                            <Zap className="w-4 h-4 text-purple-200 fill-purple-200" />
+                        ) : (
+                            <div className="w-2 h-2 rounded-full bg-[#7852A9]" />
+                        )}
+                        <span className={`text-[10px] font-black uppercase tracking-[0.2em] ${isSelected ? 'text-purple-100' : 'text-[#7852A9]'}`}>
+                            {isSelected ? 'Currently Viewing' : 'Masterclass'}
                         </span>
                     </div>
 
-                    <h2 className='text-[20px] font-semibold text-gray-900 leading-tight mb-2 line-clamp-2'>
+                    <h3 className={`font-black text-xl leading-tight tracking-tight ${isSelected ? 'text-white' : 'text-gray-900'}`}>
                         {title}
-                    </h2>
+                    </h3>
 
-                    <p className='text-[#7851A9] font-medium text-sm mb-1'>
-                        {new Date(date).toLocaleDateString('en-US', { dateStyle: 'full' })}
-                    </p>
-                    <p className='text-gray-600 text-sm mb-4'>
-                        {location}
-                    </p>
+                    <div className="flex flex-wrap gap-x-4 gap-y-2">
+                        <div className={`flex items-center gap-1.5 text-xs font-bold ${isSelected ? 'text-purple-100' : 'text-gray-500'}`}>
+                            <Calendar className="w-3.5 h-3.5 opacity-70" />
+                            <span>{new Date(date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</span>
+                        </div>
+                        <div className={`flex items-center gap-1.5 text-xs font-bold ${isSelected ? 'text-purple-100' : 'text-gray-500'}`}>
+                            <MapPin className="w-3.5 h-3.5 opacity-70" />
+                            <span className="max-w-[120px] truncate">{location}</span>
+                        </div>
+                    </div>
                 </div>
 
-                <div className='mt-auto w-full'>
-                    <Link href={`/events/${id}`} className='block w-full'>
-                        <Button className='w-full bg-[#37296D] hover:bg-[#302362] text-white text-lg font-medium py-6 rounded-xl shadow-lg shadow-purple-900/10 transition-all'>
-                            View Details
-                        </Button>
-                    </Link>
+                <div className={`mt-2 p-2 rounded-full transition-colors ${isSelected
+                        ? 'bg-white/20 text-white'
+                        : 'bg-[#7852A9]/5 text-[#7852A9] group-hover:bg-[#7852A9] group-hover:text-white'
+                    }`}>
+                    <ChevronRight className="w-4 h-4" />
                 </div>
             </div>
-        </div>
+        </motion.div>
     )
 }
 
