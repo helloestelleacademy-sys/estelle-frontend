@@ -26,6 +26,7 @@ const EventsContent = () => {
     const { data, isLoading, error } = useGetAllEventsQuery();
     const [selectedEventId, setSelectedEventId] = useState<string | null>(initialId);
     const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false);
+    const [isTelegramModalOpen, setIsTelegramModalOpen] = useState(false);
     const [currentUrl, setCurrentUrl] = useState("");
     const [regForm, setRegForm] = useState({
         name: user ? `${user.firstName || ''} ${user.lastName || ''}`.trim() : "",
@@ -73,6 +74,9 @@ const EventsContent = () => {
 
             toast.success("Successfully registered for the event!");
             setIsRegisterModalOpen(false);
+            // Close the registration dialog, then open the Telegram modal.
+            // Using a microtask avoids both dialogs competing for focus.
+            setTimeout(() => setIsTelegramModalOpen(true), 0);
         } catch (err: any) {
             toast.error(err.data?.message || "Failed to register. Please try again.");
         }
@@ -336,6 +340,32 @@ const EventsContent = () => {
                                             </DialogContent>
                                         </Dialog>
                                     </div>
+
+                                    <Dialog open={isTelegramModalOpen} onOpenChange={setIsTelegramModalOpen}>
+                                        <DialogContent className="sm:max-w-[440px] rounded-[40px] border-none shadow-3xl p-0 overflow-hidden">
+                                            <div className="bg-[#7852A9] p-8 text-white">
+                                                <DialogTitle className="text-2xl font-black italic">Join Telegram</DialogTitle>
+                                                <DialogDescription className="text-purple-100/70 text-sm font-bold mt-2">
+                                                    Stay updated about the event and community.
+                                                </DialogDescription>
+                                            </div>
+                                            <div className="p-8 space-y-6 bg-white">
+                                                <p className="text-sm text-gray-600 font-semibold">
+                                                    Click below to join our Telegram channel.
+                                                </p>
+                                                <Button asChild className="w-full bg-[#7852A9] hover:bg-[#603e8a] h-14 text-base font-black rounded-xl tracking-wide">
+                                                    <a
+                                                        href="https://t.me/+P_SDXIY3evk1YmNk"
+                                                        target="_blank"
+                                                        rel="noreferrer"
+                                                    >
+                                                        Join Telegram
+                                                        <ArrowRight className="w-5 h-5 ml-2" />
+                                                    </a>
+                                                </Button>
+                                            </div>
+                                        </DialogContent>
+                                    </Dialog>
                                 </div>
                             </motion.div>
                         ) : (
