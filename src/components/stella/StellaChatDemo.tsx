@@ -87,12 +87,13 @@ function uid() {
   return `${Date.now()}-${Math.random().toString(16).slice(2)}`
 }
 
-const initialAssistantMessage = {
-  id: uid(),
-  role: "assistant" as const,
+const initialAssistantMessage: StellaMessage = {
+  id: "assistant-0",
+  role: "assistant",
   content:
     "Hi - I am Stella. I can help you with personal branding, positioning, and content.\n\nTry a prompt below or type your own question.",
-  createdAt: Date.now(),
+  createdAt: 0,
+  feedback: null,
 }
 
 function getChunks(text: string) {
@@ -128,6 +129,13 @@ export function StellaChatDemo() {
       if (inactivityRef.current) clearTimeout(inactivityRef.current)
     }
   }, [queueSleepTimer])
+
+  React.useEffect(() => {
+    // Avoid SSR/client hydration mismatch from Date.now() by setting timestamps after mount.
+    setMessages((prev) =>
+      prev.map((m) => (m.createdAt ? m : { ...m, createdAt: Date.now() }))
+    )
+  }, [])
 
   async function streamAssistantResponse(prompt: string) {
     const localRunId = ++runIdRef.current
@@ -238,11 +246,11 @@ export function StellaChatDemo() {
     queueSleepTimer()
     setMessages([
       {
-        id: uid(),
+        id: "assistant-0",
         role: "assistant",
         content:
           "Hi - I am Stella. I can help you with personal branding, positioning, and content.\n\nTry a prompt below or type your own question.",
-        createdAt: Date.now(),
+        createdAt: 0,
         feedback: null,
       },
     ])

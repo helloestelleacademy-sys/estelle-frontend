@@ -1,5 +1,6 @@
 "use client"
 
+import * as React from "react"
 import { Bot, User } from "lucide-react"
 import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
@@ -24,6 +25,11 @@ export function StellaMessageBubble({
   onFeedback,
 }: StellaMessageBubbleProps) {
   const isUser = message.role === "user"
+  const [mounted, setMounted] = React.useState(false)
+
+  React.useEffect(() => {
+    setMounted(true)
+  }, [])
 
   return (
     <div className={cn("flex gap-3", isUser ? "justify-end" : "justify-start")}>
@@ -79,9 +85,15 @@ export function StellaMessageBubble({
           ) : null}
         </div>
 
-        <div className={cn("text-[11px] text-muted-foreground", isUser ? "text-right" : "text-left")}>
-          {new Date(message.createdAt).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
-        </div>
+        {mounted && message.createdAt ? (
+          <div className={cn("text-[11px] text-muted-foreground", isUser ? "text-right" : "text-left")}>
+            {new Date(message.createdAt).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
+          </div>
+        ) : (
+          <div className={cn("text-[11px] text-muted-foreground", isUser ? "text-right" : "text-left")}>
+            {" "}
+          </div>
+        )}
 
         {!isUser ? (
           <StellaMessageActions
