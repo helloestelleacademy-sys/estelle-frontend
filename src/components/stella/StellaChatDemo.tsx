@@ -7,6 +7,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { StellaChatShell } from "@/components/stella/StellaChatShell"
 import { StellaComposer } from "@/components/stella/StellaComposer"
 import { StellaMessageList } from "@/components/stella/StellaMessageList"
+import { StellaStatusBanner } from "@/components/stella/StellaStatusBanner"
+import { StellaExportActions } from "@/components/stella/StellaExportActions"
 import {
   STELLA_EMOTIONS,
   pickEmotionFromContent,
@@ -111,6 +113,9 @@ export function StellaChatDemo() {
   const [streamingMessageId, setStreamingMessageId] = React.useState<string | null>(null)
   const [avatarEmotion, setAvatarEmotion] = React.useState<StellaEmotion>("idle")
   const [emotionOverride, setEmotionOverride] = React.useState<StellaEmotion | null>(null)
+  const [forceOffline, setForceOffline] = React.useState(false)
+  const [forceErrorOnNextReply, setForceErrorOnNextReply] = React.useState(false)
+  const [showToolCards, setShowToolCards] = React.useState(true)
   const runIdRef = React.useRef(0)
   const inactivityRef = React.useRef<ReturnType<typeof setTimeout> | null>(null)
 
@@ -145,6 +150,26 @@ export function StellaChatDemo() {
 
     if (localRunId !== runIdRef.current) return
 
+    if (forceErrorOnNextReply) {
+      setForceErrorOnNextReply(false)
+      setIsTyping(false)
+      setStreamingMessageId(null)
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: uid(),
+          role: "assistant",
+          content: "I hit a snag generating that response. Please try again.",
+          createdAt: Date.now(),
+          feedback: null,
+          status: "error",
+        },
+      ])
+      if (!emotionOverride) setAvatarEmotion("angry")
+      queueSleepTimer()
+      return
+    }
+
     const assistantId = uid()
     setIsTyping(false)
     setStreamingMessageId(assistantId)
@@ -154,6 +179,18 @@ export function StellaChatDemo() {
     ])
 
     const reply = getDemoResponse(prompt)
+    const addToolBlocks = showToolCards && /(course|courses|event|events|pricing|learn)/i.test(prompt)
+    const citations = [
+      {
+        title: "Estelle: Personal branding fundamentals",
+        url: "https://estellelearning.com",
+        snippet: "Positioning, proof points, and repeatable content pillars.",
+      },
+      {
+        title: "Writing better LinkedIn headlines",
+        snippet: "Use a role + audience + outcome + proof pattern.",
+      },
+    ]
     const chunks = getChunks(reply)
     for (let i = 0; i < chunks.length; i += 1) {
       if (localRunId !== runIdRef.current) return
@@ -170,6 +207,20 @@ export function StellaChatDemo() {
 
     if (localRunId === runIdRef.current) {
       setStreamingMessageId(null)
+      setMessages((prev) =>
+        prev.map((m) =>
+          m.id === assistantId
+            ? {
+                ...m,
+                citations,
+                blocks: addToolBlocks
+                  ? [{ kind: "course", id: "course-brand-foundations" }, { kind: "event", id: "event-brand-clinic" }]
+                  : undefined,
+                status: "ok",
+              }
+            : m
+        )
+      )
       if (!emotionOverride) {
         setAvatarEmotion(pickEmotionFromContent(reply))
       }
@@ -180,6 +231,7 @@ export function StellaChatDemo() {
   async function send(text: string) {
     const trimmed = text.trim()
     if (!trimmed || isTyping || streamingMessageId) return
+    if (forceOffline) return
     if (!emotionOverride) setAvatarEmotion("thinking")
     queueSleepTimer()
 
@@ -199,6 +251,7 @@ export function StellaChatDemo() {
 
   async function regenerateLastAssistant() {
     if (isTyping || streamingMessageId) return
+    if (forceOffline) return
     if (!emotionOverride) setAvatarEmotion("thinking")
     queueSleepTimer()
 
@@ -263,6 +316,18 @@ export function StellaChatDemo() {
         isStreaming={Boolean(streamingMessageId)}
         emotion={effectiveEmotion}
         onReset={reset}
+        statusBanner={
+          forceOffline ? (
+            <StellaStatusBanner kind="offline" onRetry={() => setForceOffline(false)} />
+          ) : messages.some((m) => m.status === "error") ? (
+            <StellaStatusBanner
+              kind="error"
+              onRetry={() => {
+                setMessages((prev) => prev.filter((m) => m.status !== "error"))
+              }}
+            />
+          ) : null
+        }
         messageList={
           <StellaMessageList
             messages={messages}
@@ -275,7 +340,7 @@ export function StellaChatDemo() {
         composer={
           <StellaComposer
             value={input}
-            disabled={isTyping || Boolean(streamingMessageId)}
+            disabled={isTyping || Boolean(streamingMessageId) || forceOffline}
             prompts={starterPrompts}
             onChange={setInput}
             onSubmit={() => void send(input)}
@@ -296,6 +361,13 @@ export function StellaChatDemo() {
                 setEmotionOverride((current) => (current === emotion ? null : emotion))
               }}
               clearPreview={() => setEmotionOverride(null)}
+              forceOffline={forceOffline}
+              setForceOffline={setForceOffline}
+              forceErrorOnNextReply={forceErrorOnNextReply}
+              setForceErrorOnNextReply={setForceErrorOnNextReply}
+              showToolCards={showToolCards}
+              setShowToolCards={setShowToolCards}
+              messages={messages}
             />
           </div>
         </details>
@@ -314,6 +386,13 @@ export function StellaChatDemo() {
                 setEmotionOverride((current) => (current === emotion ? null : emotion))
               }}
               clearPreview={() => setEmotionOverride(null)}
+              forceOffline={forceOffline}
+              setForceOffline={setForceOffline}
+              forceErrorOnNextReply={forceErrorOnNextReply}
+              setForceErrorOnNextReply={setForceErrorOnNextReply}
+              showToolCards={showToolCards}
+              setShowToolCards={setShowToolCards}
+              messages={messages}
             />
           </CardContent>
         </Card>
@@ -326,10 +405,24 @@ function SidebarContent({
   emotionOverride,
   onPreviewEmotion,
   clearPreview,
+  forceOffline,
+  setForceOffline,
+  forceErrorOnNextReply,
+  setForceErrorOnNextReply,
+  showToolCards,
+  setShowToolCards,
+  messages,
 }: {
   emotionOverride?: StellaEmotion | null
   onPreviewEmotion?: (emotion: StellaEmotion) => void
   clearPreview?: () => void
+  forceOffline?: boolean
+  setForceOffline?: (v: boolean) => void
+  forceErrorOnNextReply?: boolean
+  setForceErrorOnNextReply?: (v: boolean) => void
+  showToolCards?: boolean
+  setShowToolCards?: (v: boolean) => void
+  messages?: StellaMessage[]
 }) {
   return (
     <div className="space-y-4 text-sm">
@@ -370,6 +463,36 @@ function SidebarContent({
           <li>Event-driven Rive emotion system</li>
         </ul>
       </div>
+
+      <div className="space-y-2">
+        <div className="font-medium">Demo toggles</div>
+        <label className="flex items-center justify-between gap-3 rounded-lg border bg-card/40 px-3 py-2">
+          <span className="text-muted-foreground">Force offline</span>
+          <input
+            type="checkbox"
+            checked={Boolean(forceOffline)}
+            onChange={(e) => setForceOffline?.(e.target.checked)}
+          />
+        </label>
+        <label className="flex items-center justify-between gap-3 rounded-lg border bg-card/40 px-3 py-2">
+          <span className="text-muted-foreground">Error on next reply</span>
+          <input
+            type="checkbox"
+            checked={Boolean(forceErrorOnNextReply)}
+            onChange={(e) => setForceErrorOnNextReply?.(e.target.checked)}
+          />
+        </label>
+        <label className="flex items-center justify-between gap-3 rounded-lg border bg-card/40 px-3 py-2">
+          <span className="text-muted-foreground">Attach tool cards</span>
+          <input
+            type="checkbox"
+            checked={Boolean(showToolCards)}
+            onChange={(e) => setShowToolCards?.(e.target.checked)}
+          />
+        </label>
+      </div>
+
+      {messages ? <StellaExportActions messages={messages} /> : null}
 
       <div className="space-y-2">
         <div className="font-medium">Next to add</div>

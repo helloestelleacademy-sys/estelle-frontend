@@ -28,7 +28,20 @@ export type StellaMessage = {
   content: string
   createdAt: number
   feedback?: StellaFeedback
+  citations?: StellaCitation[]
+  blocks?: StellaBlock[]
+  status?: "ok" | "error"
 }
+
+export type StellaCitation = {
+  title: string
+  url?: string
+  snippet?: string
+}
+
+export type StellaBlock =
+  | { kind: "course"; id: string }
+  | { kind: "event"; id: string }
 
 export const STELLA_EXPRESSION_KEYS = [
   "idle",

@@ -7,6 +7,8 @@ import remarkGfm from "remark-gfm"
 
 import { cn } from "@/lib/utils"
 import { StellaMessageActions } from "@/components/stella/StellaMessageActions"
+import { StellaCitations } from "@/components/stella/StellaCitations"
+import { StellaToolCards } from "@/components/stella/StellaToolCards"
 import type { StellaFeedback, StellaMessage } from "@/components/stella/types"
 
 type StellaMessageBubbleProps = {
@@ -103,6 +105,14 @@ export function StellaMessageBubble({
             onRegenerate={onRegenerate}
             onFeedback={(feedback) => onFeedback(message.id, feedback)}
           />
+        ) : null}
+
+        {!isUser && message.citations?.length ? (
+          <StellaCitations citations={message.citations} />
+        ) : null}
+
+        {!isUser && message.blocks?.length ? (
+          <StellaToolCards blocks={message.blocks} />
         ) : null}
       </div>
 

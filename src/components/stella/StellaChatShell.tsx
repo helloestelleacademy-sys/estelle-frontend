@@ -11,6 +11,7 @@ type StellaChatShellProps = {
   isStreaming: boolean
   emotion: StellaEmotion
   onReset: () => void
+  statusBanner?: ReactNode
   messageList: ReactNode
   composer: ReactNode
 }
@@ -20,6 +21,7 @@ export function StellaChatShell({
   isStreaming,
   emotion,
   onReset,
+  statusBanner,
   messageList,
   composer,
 }: StellaChatShellProps) {
@@ -49,6 +51,7 @@ export function StellaChatShell({
         </div>
       </CardHeader>
 
+      {statusBanner}
       <CardContent className="px-0">{messageList}</CardContent>
       <CardFooter className="border-t">{composer}</CardFooter>
     </Card>
