@@ -2,7 +2,8 @@
 
 import * as React from "react"
 
-import { StellaMessageBubble } from "@/components/stella/StellaMessageBubble"
+import { StellaMessageCard } from "@/components/stella/StellaMessageCard"
+import { StellaPromptChip } from "@/components/stella/StellaPromptChip"
 import { StellaTypingIndicator } from "@/components/stella/StellaTypingIndicator"
 import type { StellaFeedback, StellaMessage } from "@/components/stella/types"
 
@@ -42,25 +43,36 @@ export function StellaMessageList({
   return (
     <div
       ref={scrollerRef}
-      className="h-[68dvh] min-h-[460px] overflow-y-auto px-4 py-5 md:h-[72dvh] md:max-h-[760px] md:px-6 md:py-6"
+      className="h-[62dvh] min-h-[420px] overflow-y-auto px-4 py-5 md:h-[72dvh] md:max-h-[760px] md:px-6 md:py-6"
       onScroll={handleScroll}
     >
-      <div className="space-y-5">
-        {messages.map((message) => (
-          <StellaMessageBubble
-            key={message.id}
-            message={message}
-            isLastAssistantMessage={message.id === lastAssistantId}
-            isStreaming={streamingMessageId === message.id}
-            onRegenerate={onRegenerate}
-            onFeedback={onFeedback}
-          />
-        ))}
+      <div className="space-y-7">
+        {messages.map((message) =>
+          message.role === "user" ? (
+            <StellaPromptChip key={message.id} message={message} />
+          ) : (
+            <div key={message.id} className="stella-timeline-item">
+              <div className="stella-timeline-rail" aria-hidden="true" />
+              <div className="stella-timeline-content">
+                <StellaMessageCard
+                  message={message}
+                  isLastAssistantMessage={message.id === lastAssistantId}
+                  isStreaming={streamingMessageId === message.id}
+                  onRegenerate={onRegenerate}
+                  onFeedback={onFeedback}
+                />
+              </div>
+            </div>
+          )
+        )}
 
         {isTyping ? (
-          <div className="flex justify-start gap-3">
-            <div className="mt-0.5 rounded-2xl bg-muted px-4 py-2 text-sm shadow-xs">
-              <StellaTypingIndicator />
+          <div className="stella-timeline-item">
+            <div className="stella-timeline-rail" aria-hidden="true" />
+            <div className="stella-timeline-content">
+              <div className="stella-module-card inline-flex w-fit items-center gap-2 px-4 py-2 text-sm">
+                <StellaTypingIndicator />
+              </div>
             </div>
           </div>
         ) : null}

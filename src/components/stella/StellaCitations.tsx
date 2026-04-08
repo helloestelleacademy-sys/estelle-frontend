@@ -12,7 +12,7 @@ export function StellaCitations({ citations, className }: { citations: StellaCit
   if (!citations.length) return null
 
   return (
-    <div className={cn("rounded-xl border bg-background/60 p-3", className)}>
+    <div className={cn("stella-glass rounded-2xl p-3", className)}>
       <button
         type="button"
         className={cn(
@@ -32,7 +32,7 @@ export function StellaCitations({ citations, className }: { citations: StellaCit
       {open ? (
         <ul className="mt-3 space-y-2">
           {citations.map((c, idx) => (
-            <li key={`${c.title}-${idx}`} className="rounded-lg border bg-card/40 p-2">
+            <li key={`${c.title}-${idx}`} className="rounded-xl border bg-background/50 p-2">
               <div className="flex items-start justify-between gap-2">
                 <div className="min-w-0">
                   <div className="truncate text-xs font-medium">{c.title}</div>

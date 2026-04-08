@@ -20,10 +20,10 @@ export function StellaToolCards({ blocks, className }: { blocks: StellaBlock[]; 
           const course = getCourseById(b.id)
           if (!course) return null
           return (
-            <Card key={`course-${course.id}`} className="shadow-xs">
+            <Card key={`course-${course.id}`} className="stella-glass rounded-2xl shadow-sm">
               <CardHeader className="pb-3">
                 <div className="flex items-start justify-between gap-3">
-                  <CardTitle className="text-sm">{course.title}</CardTitle>
+                  <CardTitle className="font-display text-sm">{course.title}</CardTitle>
                   <Badge variant="secondary">{course.level}</Badge>
                 </div>
               </CardHeader>
@@ -56,10 +56,10 @@ export function StellaToolCards({ blocks, className }: { blocks: StellaBlock[]; 
         if (!event) return null
 
         return (
-          <Card key={`event-${event.id}`} className="shadow-xs">
+          <Card key={`event-${event.id}`} className="stella-glass rounded-2xl shadow-sm">
             <CardHeader className="pb-3">
               <div className="flex items-start justify-between gap-3">
-                <CardTitle className="text-sm">{event.title}</CardTitle>
+                <CardTitle className="font-display text-sm">{event.title}</CardTitle>
                 <Badge variant="outline">{event.location}</Badge>
               </div>
             </CardHeader>

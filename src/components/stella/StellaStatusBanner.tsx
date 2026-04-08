@@ -23,7 +23,12 @@ export function StellaStatusBanner(props: StellaStatusBannerProps) {
 
   if (props.kind === "offline") {
     return (
-      <div className={cn("flex items-center justify-between gap-3 border-b bg-muted/40 px-4 py-2", className)}>
+      <div
+        className={cn(
+          "flex items-center justify-between gap-3 border-b bg-background/60 px-4 py-2 backdrop-blur",
+          className
+        )}
+      >
         <div className="flex items-center gap-2 text-sm">
           <WifiOff className="size-4 text-muted-foreground" />
           <span className="text-muted-foreground">You are offline. Messages will not send.</span>
@@ -38,7 +43,12 @@ export function StellaStatusBanner(props: StellaStatusBannerProps) {
   }
 
   return (
-    <div className={cn("flex items-center justify-between gap-3 border-b bg-destructive/10 px-4 py-2", className)}>
+    <div
+      className={cn(
+        "flex items-center justify-between gap-3 border-b bg-destructive/10 px-4 py-2 backdrop-blur",
+        className
+      )}
+    >
       <div className="flex items-center gap-2 text-sm">
         <AlertTriangle className="size-4 text-destructive" />
         <span className="text-muted-foreground">

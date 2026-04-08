@@ -10,7 +10,7 @@ import { StellaCitations } from "@/components/stella/StellaCitations"
 import { StellaToolCards } from "@/components/stella/StellaToolCards"
 import type { StellaFeedback, StellaMessage } from "@/components/stella/types"
 
-type StellaMessageBubbleProps = {
+type StellaMessageCardProps = {
   message: StellaMessage
   isLastAssistantMessage: boolean
   isStreaming?: boolean
@@ -18,31 +18,33 @@ type StellaMessageBubbleProps = {
   onFeedback: (messageId: string, feedback: StellaFeedback) => void
 }
 
-export function StellaMessageBubble({
+export function StellaMessageCard({
   message,
   isLastAssistantMessage,
   isStreaming,
   onRegenerate,
   onFeedback,
-}: StellaMessageBubbleProps) {
+}: StellaMessageCardProps) {
   const isUser = message.role === "user"
-  const [mounted, setMounted] = React.useState(false)
 
-  React.useEffect(() => {
-    setMounted(true)
-  }, [])
+  if (isUser) {
+    return null
+  }
 
   return (
-    <div className={cn("flex gap-3", isUser ? "justify-end" : "justify-start")}>
-      <div className={cn("max-w-[88%] space-y-1", isUser ? "items-end" : "items-start")}>
-        <div
-          className={cn(
-            "rounded-3xl px-4 py-2 text-sm leading-relaxed shadow-sm ring-1 ring-border/60",
-            isUser
-              ? "bg-primary text-primary-foreground ring-primary/10"
-              : "bg-background/70 text-foreground backdrop-blur"
-          )}
-        >
+    <section className="stella-module space-y-2">
+      <div className="stella-module-card p-4">
+        <div className="flex items-start justify-between gap-3">
+          <div className="space-y-1">
+            <div className="font-display text-sm font-semibold tracking-tight">Answer</div>
+            <div className="text-xs text-muted-foreground">Stella</div>
+          </div>
+          <div className="flex items-center gap-2">
+            {isStreaming ? <span className="stella-live text-xs">Live</span> : null}
+          </div>
+        </div>
+
+        <div className="mt-3 text-[13.5px] leading-relaxed text-foreground">
           <ReactMarkdown
             remarkPlugins={[remarkGfm]}
             components={{
@@ -51,22 +53,17 @@ export function StellaMessageBubble({
               ol: ({ children }) => <ol className="mb-2 list-decimal pl-5 last:mb-0">{children}</ol>,
               li: ({ children }) => <li className="mb-0.5">{children}</li>,
               a: ({ href, children }) => (
-                <a
-                  href={href}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="underline underline-offset-2"
-                >
+                <a href={href} target="_blank" rel="noreferrer" className="underline underline-offset-2">
                   {children}
                 </a>
               ),
               code: ({ children }) => (
-                <code className="rounded bg-background/60 px-1 py-0.5 text-[0.92em]">
+                <code className="rounded bg-muted/60 px-1 py-0.5 text-[0.92em] text-foreground">
                   {children}
                 </code>
               ),
               pre: ({ children }) => (
-                <pre className="mb-2 overflow-x-auto rounded-md bg-background/60 p-2 text-xs last:mb-0">
+                <pre className="mb-2 overflow-x-auto rounded-xl border bg-muted/40 p-3 text-xs text-foreground/90 last:mb-0">
                   {children}
                 </pre>
               ),
@@ -74,23 +71,12 @@ export function StellaMessageBubble({
           >
             {message.content}
           </ReactMarkdown>
-
           {isStreaming ? (
             <span className="ml-1 inline-block h-4 w-0.5 animate-pulse align-middle bg-current/70" />
           ) : null}
         </div>
 
-        {mounted && message.createdAt ? (
-          <div className={cn("text-[11px] text-muted-foreground", isUser ? "text-right" : "text-left")}>
-            {new Date(message.createdAt).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
-          </div>
-        ) : (
-          <div className={cn("text-[11px] text-muted-foreground", isUser ? "text-right" : "text-left")}>
-            {" "}
-          </div>
-        )}
-
-        {!isUser ? (
+        <div className="mt-3 border-t pt-3">
           <StellaMessageActions
             content={message.content}
             isLastAssistantMessage={isLastAssistantMessage}
@@ -98,18 +84,18 @@ export function StellaMessageBubble({
             onRegenerate={onRegenerate}
             onFeedback={(feedback) => onFeedback(message.id, feedback)}
           />
-        ) : null}
-
-        {!isUser && message.citations?.length ? (
-          <StellaCitations citations={message.citations} />
-        ) : null}
-
-        {!isUser && message.blocks?.length ? (
-          <StellaToolCards blocks={message.blocks} />
-        ) : null}
+        </div>
       </div>
 
-    </div>
+      {message.citations?.length ? <StellaCitations citations={message.citations} /> : null}
+      {message.blocks?.length ? <StellaToolCards blocks={message.blocks} /> : null}
+
+      {message.status === "error" ? (
+        <div className={cn("rounded-xl border bg-destructive/5 px-3 py-2 text-xs text-muted-foreground")}>
+          Tip: try again, or toggle “offline/error” in the left panel for testing.
+        </div>
+      ) : null}
+    </section>
   )
 }
 

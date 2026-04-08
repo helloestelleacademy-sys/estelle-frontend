@@ -49,8 +49,8 @@ export function StellaComposer({
             type="button"
             onClick={() => onPrompt(prompt)}
             className={cn(
-              "rounded-full border bg-background px-3 py-1 text-xs text-muted-foreground transition-colors",
-              "hover:bg-accent hover:text-accent-foreground",
+              "rounded-full border bg-background/70 px-3 py-1 text-xs text-muted-foreground transition-colors backdrop-blur",
+              "hover:bg-accent hover:text-accent-foreground hover:border-primary/30",
               "focus-visible:ring-ring/50 focus-visible:ring-[3px] focus-visible:outline-none"
             )}
           >
@@ -59,7 +59,7 @@ export function StellaComposer({
         ))}
       </div>
 
-      <div className="flex items-end gap-2">
+      <div className="stella-glass flex items-end gap-2 rounded-2xl p-2">
         <Button
           type="button"
           size="icon"
@@ -77,7 +77,7 @@ export function StellaComposer({
           value={value}
           onChange={(e) => onChange(e.target.value)}
           placeholder="Message Stella..."
-          className="min-h-12 resize-none"
+          className="min-h-12 resize-none border-0 bg-transparent shadow-none focus-visible:ring-0"
           disabled={disabled}
           onKeyDown={(e) => {
             if (e.key === "Enter" && !e.shiftKey) {
@@ -95,7 +95,7 @@ export function StellaComposer({
                 size="icon-lg"
                 disabled={!value.trim() || disabled}
                 aria-label="Send message"
-                className="shrink-0"
+                className="shrink-0 shadow-sm"
               >
                 <Send className="size-4" />
               </Button>
