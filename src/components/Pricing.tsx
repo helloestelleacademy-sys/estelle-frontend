@@ -1,3 +1,5 @@
+/* Pricing section disabled — replaced by the waitlist section on the landing page.
+
 'use client'
 import React, { useRef } from 'react'
 import fuelIcon from "@/assets/fuelIcon.svg"
@@ -160,3 +162,6 @@ const Pricing = () => {
 }
 
 export default Pricing
+
+*/
+export {};

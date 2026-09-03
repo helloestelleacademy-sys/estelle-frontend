@@ -90,8 +90,8 @@ const Navbar = () => {
       link: "/about",
     },
     {
-      title: "Pricing",
-      link: "/#pricing",
+      title: "Waitlist",
+      link: "/#waitlist",
     },
     {
       title: "Courses",
@@ -125,8 +125,8 @@ const Navbar = () => {
           <Link href={'/about'}>
             <li className={clsx('text-[16px] font-semibold tracking-wide  cursor-pointer')}>About</li>
           </Link>
-          <Link href={'/#pricing'}>
-            <li className={clsx('text-[16px] font-semibold tracking-wide  cursor-pointer')}>Pricing</li>
+          <Link href={'/#waitlist'}>
+            <li className={clsx('text-[16px] font-semibold tracking-wide  cursor-pointer')}>Waitlist</li>
           </Link>
           <Link href={'/events'}>
             <li className={clsx('text-[16px] font-semibold tracking-wide  cursor-pointer')}>Events</li>

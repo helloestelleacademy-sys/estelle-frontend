@@ -6,7 +6,8 @@ import FeaturedCourses from "@/components/FeaturedCourses";
 import Features from "@/components/Features";
 import Header from "@/components/Header";
 import Mission from "@/components/Mission";
-import Pricing from "@/components/ui/pricing-cards";
+// import Pricing from "@/components/ui/pricing-cards";
+import Waitlist from "@/components/Waitlist";
 import Service from "@/components/Service";
 import Testimonials from "@/components/Testimonials";
 import { gsap } from 'gsap';
@@ -29,7 +30,8 @@ export default function Home() {
       <About />
       <FeaturedCourses />
       <Mission />
-      <Pricing />
+      {/* <Pricing /> */}
+      <Waitlist />
       <Testimonials />
       <Service />
       <FAQSection />
