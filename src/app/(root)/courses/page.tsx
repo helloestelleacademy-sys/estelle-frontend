@@ -19,7 +19,7 @@ const CoursePage = () => {
     <section className='py-18 lg:py-24'>
       <div className='max-w-7xl mx-auto px-4 md:px-6'>
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-18'>
-          {isLoading && <p className="text-center col-span-full">Loading courses...</p>}
+          {isLoading && <p className="text-center col-span-full">Loading courses......</p>}
           {error && <p className="text-center col-span-full text-red-500">Error loading courses</p>}
           {data && data.courses && data.courses.map((course, index) => (
             <div key={course._id || index} className='' ref={(el) => { cardRef.current[index] = el }}>
