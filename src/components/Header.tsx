@@ -20,22 +20,22 @@ const Header = () => {
                             <span className='font-source'>Legacy</span></h1>
                         <p className='lg:text-xl mb-8 max-w-2xl text-sm'>Attract global opportunities, become an Influence, and transform your personal brand through guided courses and resources.</p>
 
-                        <p className='text-sm mb-8 font-semibold'> <span className='gradient-bg bg-clip-text text-transparent'>210,000 naira/ Premium plan, </span>instant 30% cash back guarantee</p>
+                        {/* <p className='text-sm mb-8 font-semibold'> <span className='gradient-bg bg-clip-text text-transparent'>210,000 naira/ Premium plan, </span>instant 30% cash back guarantee</p> */}
                         <div className='flex flex-col sm:flex-row items-start gap-4'>
-                            <Link href='/register' className='flex items-center justify-center bg-white text-[#7852A9] hover:opacity-90  py-4 rounded-md font-bold w-full md:w-[200px]'>Start Learning</Link>
+                            <Link href='/register' className='flex items-center justify-center bg-white text-[#7852A9] hover:opacity-90  py-4 rounded-md font-bold w-full md:w-[200px]'>Join the Waitlist</Link>
                             <Link href='/about' className='flex items-center justify-center gradient-bg text-white hover:bg-black active:bg-black hover:text-white transition w-full  md:w-[200px] py-4 rounded-md font-bold'>Learn More</Link>
                         </div>
                         <p className='text-sm mt-6 font-semibold'> <span className='gradient-bg bg-clip-text text-transparent'>Life time learning access</span> to Courses and AI resources</p>
                     </div>
 
-                    <div className="flex justify-center lg:justify-end relative mt-10 lg:mt-0">
+                    <div className="flex justify-center lg:justify-end relative mt-10 lg:mt-20">
                         <div className="relative w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] lg:w-[500px] lg:h-[500px]">
                             {/* Background Circle */}
                             <div className="absolute inset-0 rounded-full bg-[#D9B3FF]"></div>
 
                             {/* Your Image */}
                             <Image
-                                src="/assets/headerImg.png"
+                                src="/assets/stelaPurple.png"
                                 alt="Hero Person"
                                 className="absolute -bottom-44 left-1/2 -translate-x-1/2 w-[110%] max-w-none h-auto object-contain z-10"
                                 width={600}

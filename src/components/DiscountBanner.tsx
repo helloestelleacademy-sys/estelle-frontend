@@ -48,12 +48,12 @@ const DiscountBanner = () => {
 
   const MarqueeContent = () => (
     <div className='flex items-center gap-6 md:gap-12 text-white font-bold text-sm md:text-lg uppercase w-max tracking-widest shrink-0'>
-      <span className='text-yellow-300'>⚠️ FLASH SALE</span>
-      <span>30% OFF PREMIUM PLAN</span>
+      <span className='text-yellow-300'>⚠️ join the waitlist</span>
+      <span>Launch countdown:</span>
       <span className='text-yellow-300'>★</span>
-      <span>OFFER ENDS IN: <span className='font-mono bg-black/20 px-2 py-1 rounded'>{format(hours)}H : {format(minutes)}M : {format(seconds)}S</span></span>
+      <span>Nov 28 2026<span className='font-mono bg-black/20 px-2 py-1 rounded'>{format(hours)}H : {format(minutes)}M : {format(seconds)}S</span></span>
       <span className='text-yellow-300'>★</span>
-      <span>DON'T MISS OUT</span>
+      <span>50 days : 12 hours : 30 secs</span>
       <span className='text-yellow-300'>★</span>
     </div>
   )

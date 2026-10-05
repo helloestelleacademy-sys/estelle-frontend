@@ -171,10 +171,10 @@ const Register = () => {
                                 </button>
                             </div>
 
-                            <div className="flex items-center gap-3 mt-4">
+                            {/* <div className="flex items-center gap-3 mt-4">
                                 <Checkbox id="terms" checked className='border-[#7851A9]' />
                                 <p className='font-light text-sm'>I agree to platforms <span className='text-[#7851A9] font-semibold'>Terms of service</span> and <span className='text-[#7851A9] font-semibold'>Privacy Policy</span></p>
-                            </div>
+                            </div> */}
 
                             <Button type="submit" className='w-full py-6 bg-[#7851A9] hover:bg-[#563382] transition duration-300'> {isLoading ? <Loader2 className="animate-spin" /> : "Continue"}</Button>
 
@@ -182,7 +182,7 @@ const Register = () => {
                     </Form>
                 </div>
 
-                <div className='mt-6 flex items-center gap-4 justify-center'>
+                {/* <div className='mt-6 flex items-center gap-4 justify-center'>
                     <div className='w-[220px] h-[1.5px] bg-black' />
                     <span>Or</span>
                     <div className='w-[220px] h-[1.5px] bg-black' />
@@ -196,7 +196,7 @@ const Register = () => {
                         <Image src={linkedin} alt='linkedin-icon' className='w-[50px]' />
                     </div>
 
-                </div>
+                </div> */}
 
             </div>
         </div>

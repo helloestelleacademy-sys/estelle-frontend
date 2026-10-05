@@ -14,11 +14,11 @@ const instructors = [
     image: "/assets/stella.jpg",
   },
 
-  {
-    name: "Brenda Blanche",
-    role: "Personal Branding Coach",
-    image: "/assets/brenda1.jpg",
-  }
+  // {
+  //   name: "Brenda Blanche",
+  //   role: "Personal Branding Coach",
+  //   image: "/assets/brenda1.jpg",
+  // }
 ]
 
 const Instructors = () => {

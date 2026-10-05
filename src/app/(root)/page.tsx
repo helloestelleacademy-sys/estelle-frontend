@@ -28,7 +28,7 @@ export default function Home() {
       <Header />
       <DiscountBanner />
       <About />
-      <FeaturedCourses />
+      {/* <FeaturedCourses /> */}
       <Mission />
       {/* <Pricing /> */}
       <Waitlist />

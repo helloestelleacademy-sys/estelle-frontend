@@ -142,9 +142,9 @@ const Navbar = () => {
 
         <div className='hidden md:flex space-x-6'>
           {!user ? (<>
-            <Link href='/login'>
+            {/* <Link href='/login'>
               <Button className='w-[100px] py-5 text-[16px] bg-white text-[#37296D] hover:text-white hover:bg-[#7852A9]'>Login</Button>
-            </Link>
+            </Link> */}
             <Link href='/register'>
               <Button className='bg-[#7852A9] w-[100px] hover:bg-black active:bg-black transition-colors py-5'>Sign Up</Button>
             </Link>
