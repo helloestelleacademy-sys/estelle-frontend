@@ -1,10 +1,9 @@
 "use client";
 
+import Link from "next/link";
 import { MoveRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-
-const WAITLIST_URL = "https://tally.so/r/nWL7gv";
 
 function Waitlist() {
     return (
@@ -21,11 +20,11 @@ function Waitlist() {
                         </p>
                     </div>
                     <div className="pt-8">
-                        <a href={WAITLIST_URL} target="_blank" rel="noopener noreferrer">
+                        <Link href="/waitlist">
                             <Button className="gap-4 rounded-md py-6 px-8 bg-[#7852A9] text-white hover:bg-[#573a81] transition-colors duration-300">
                                 Join the Waitlist <MoveRight className="w-4 h-4" />
                             </Button>
-                        </a>
+                        </Link>
                     </div>
                 </div>
             </div>
