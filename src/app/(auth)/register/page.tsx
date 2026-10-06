@@ -171,6 +171,8 @@ const Register = () => {
                                 </button>
                             </div>
 
+                            {/* commented out for the waitlist */}
+
                             {/* <div className="flex items-center gap-3 mt-4">
                                 <Checkbox id="terms" checked className='border-[#7851A9]' />
                                 <p className='font-light text-sm'>I agree to platforms <span className='text-[#7851A9] font-semibold'>Terms of service</span> and <span className='text-[#7851A9] font-semibold'>Privacy Policy</span></p>
