@@ -91,7 +91,7 @@ const Navbar = () => {
     },
     {
       title: "Waitlist",
-      link: "/#waitlist",
+      link: "/waitlist",
     },
     {
       title: "Courses",
@@ -125,7 +125,7 @@ const Navbar = () => {
           <Link href={'/about'}>
             <li className={clsx('text-[16px] font-semibold tracking-wide  cursor-pointer')}>About</li>
           </Link>
-          <Link href={'/#waitlist'}>
+          <Link href={'/waitlist'}>
             <li className={clsx('text-[16px] font-semibold tracking-wide  cursor-pointer')}>Waitlist</li>
           </Link>
           <Link href={'/events'}>
