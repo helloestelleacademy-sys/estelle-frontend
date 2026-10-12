@@ -97,10 +97,10 @@ const Navbar = () => {
       title: "Courses",
       link: "/",
     },
-    {
-      title: "Events",
-      link: "/events",
-    },
+    // {
+    //   title: "Events",
+    //   link: "/events",
+    // },
     // {
     //     title:"Courses",
     //     link:"/courses",
