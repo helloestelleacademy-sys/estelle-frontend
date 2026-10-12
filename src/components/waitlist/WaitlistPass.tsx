@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useId, useRef, useState } from "react";
+import { useCallback, useEffect, useId, useRef, useState } from "react";
 import {
   animate,
   motion,
@@ -13,9 +13,13 @@ import {
   useTransform,
   useVelocity,
 } from "framer-motion";
-import { MoveRight } from "lucide-react";
+import { ChevronDown, Download, MoveRight, Share } from "lucide-react";
+import type { Country } from "./countries";
+import { CountrySheet } from "./CountrySheet";
+import { renderPassImage } from "./passImage";
 
 type Phase = "form" | "saving" | "joined";
+type Pass = { file: File; shareable: boolean } | "failed" | null;
 type FieldName = "name" | "email" | "phone" | "country";
 
 const FIELDS: {
@@ -31,17 +35,44 @@ const FIELDS: {
   { name: "name", label: "Name", type: "text", autoComplete: "name", placeholder: "Your full name", maxLength: 80 },
   { name: "email", label: "Email address", type: "email", autoComplete: "email", inputMode: "email", placeholder: "you@example.com", maxLength: 254 },
   { name: "phone", label: "Phone number", type: "tel", autoComplete: "tel", inputMode: "tel", placeholder: "+234 801 234", maxLength: 30, half: true },
-  { name: "country", label: "Country", type: "text", autoComplete: "country-name", placeholder: "Nigeria", maxLength: 60, half: true },
+  { name: "country", label: "Country", type: "select", autoComplete: "country-name", placeholder: "Select country", maxLength: 60, half: true },
 ];
 
 const VALIDATE: Record<FieldName, (value: string) => string> = {
   name: (v) => (v ? "" : "Enter your name."),
   email: (v) => (/^\S+@\S+\.\S+$/.test(v) ? "" : "Enter a valid email, like you@example.com."),
   phone: (v) => (v.replace(/\D/g, "").length >= 7 ? "" : "Enter a phone number, including country code."),
-  country: (v) => (v ? "" : "Enter your country."),
+  country: (v) => (v ? "" : "Choose your country."),
 };
 
 const FAILURE = "We couldn’t save your spot. Please try again.";
+const WHATSAPP_GROUP_URL = "https://chat.whatsapp.com/HsGoAAg3ww9LQ0NIs0Sy69?mode=gi_t";
+
+// Avatars are drawn on the device: instant, offline, and no third-party request. Prewarmed on form focus.
+let avatarModules: Promise<[typeof import("@dicebear/core"), typeof import("@dicebear/micah")]> | undefined;
+function loadAvatarModules() {
+  avatarModules ??= Promise.all([import("@dicebear/core"), import("@dicebear/micah")]);
+  avatarModules.catch(() => { avatarModules = undefined; });
+  return avatarModules;
+}
+
+function download(file: File) {
+  const href = URL.createObjectURL(file);
+  const link = document.createElement("a");
+  link.href = href;
+  link.download = file.name;
+  link.click();
+  setTimeout(() => URL.revokeObjectURL(href), 1000);
+}
+
+/** WhatsApp glyph, Simple Icons (CC0). */
+function WhatsAppIcon() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+    </svg>
+  );
+}
 // The clip sits this far above the card; the card pivots here and the strap attaches here.
 const CLIP_DROP = 58;
 const SWING = { type: "spring", stiffness: 120, damping: 7 } as const;
@@ -126,8 +157,11 @@ const WaitlistPass = () => {
   const [name, setName] = useState("");
   const [errors, setErrors] = useState<Partial<Record<FieldName, string>>>({});
   const [submitError, setSubmitError] = useState("");
-  // Random, not name-based, so nothing personal is sent to DiceBear.
-  const [avatarSeed, setAvatarSeed] = useState("");
+  const [country, setCountry] = useState<Country>();
+  const [pickerOpen, setPickerOpen] = useState(false);
+  // "" while drawing, null if the avatar could not be drawn.
+  const [avatarUrl, setAvatarUrl] = useState<string | null>("");
+  const [pass, setPass] = useState<Pass>(null);
   const stage = useRef<HTMLDivElement>(null);
   const heading = useRef<HTMLHeadingElement>(null);
   const busy = phase === "saving";
@@ -179,8 +213,58 @@ const WaitlistPass = () => {
     if (!reduce) animate(x, 0, { ...SWING, velocity: 520 });
   }, [joined, reduce, x]);
 
+  // Drawn as soon as the pass is joined and its avatar is ready, so the share sheet opens inside the tap that asks for it.
+  useEffect(() => {
+    // The joined face: the heading's parent.
+    const face = heading.current?.parentElement;
+    if (!joined || avatarUrl === "" || !face || !heading.current) return;
+    let cancelled = false;
+    const serif = face.querySelector(".font-serif") ?? face;
+    renderPassImage({
+      greeting: firstName ? `HEY, ${firstName.toUpperCase()}` : "YOUR LEGACY BEGINS",
+      from: country ? `from ${country.name} ${country.flag}` : "",
+      avatarUrl: avatarUrl ?? "",
+      fonts: { display: getComputedStyle(heading.current).fontFamily, body: getComputedStyle(face).fontFamily, serif: getComputedStyle(serif).fontFamily },
+      site: window.location.host,
+    })
+      .then((blob) => {
+        if (cancelled) return;
+        const file = new File([blob], "estelle-waitlist-pass.png", { type: "image/png" });
+        // Phones get the share sheet (Instagram, WhatsApp, X…); desktop share menus lack those apps, so computers save it.
+        const touch = window.matchMedia("(pointer: coarse)").matches;
+        setPass({ file, shareable: touch && navigator.canShare?.({ files: [file] }) === true });
+      })
+      .catch(() => { if (!cancelled) setPass("failed"); });
+    return () => { cancelled = true; };
+  }, [joined, avatarUrl, country, firstName]);
+
+  async function sharePass() {
+    if (!pass || pass === "failed") return;
+    if (pass.shareable) {
+      const from = country ? ` from ${country.name} ${country.flag}` : "";
+      try {
+        await navigator.share({ files: [pass.file], title: "Estelle waitlist", text: `I have joined Estelle waitlist${from}. Join me: ${window.location.origin}/waitlist` });
+        return;
+      } catch (shareError) {
+        if (shareError instanceof DOMException && shareError.name === "AbortError") return;
+      }
+    }
+    download(pass.file);
+  }
+
+  const closePicker = useCallback((returnFocus: boolean) => {
+    setPickerOpen(false);
+    if (returnFocus) document.getElementById("wl-country")?.focus();
+  }, []);
+
+  function pickCountry(next: Country) {
+    setCountry(next);
+    setErrors((prev) => (prev.country ? { ...prev, country: "" } : prev));
+    closePicker(true);
+  }
+
   function startDrag(e: React.PointerEvent) {
-    if (reduce || (e.target as HTMLElement).closest("input, button, a, label")) return;
+    if (reduce || (e.target as HTMLElement).closest("input, button, a, label, [data-no-drag]")) return;
     dragControls.start(e);
   }
 
@@ -218,14 +302,24 @@ const WaitlistPass = () => {
     setErrors(next);
     const firstInvalid = FIELDS.find((f) => next[f.name]);
     if (firstInvalid) {
-      (form.elements.namedItem(firstInvalid.name) as HTMLInputElement).focus();
+      form.querySelector<HTMLElement>(`#wl-${firstInvalid.name}`)?.focus();
       return;
     }
 
     setPhase("saving");
     setSubmitError("");
     setName(data.name);
-    if (!avatarSeed) setAvatarSeed(crypto.randomUUID().slice(0, 8));
+    if (avatarUrl === "") {
+      loadAvatarModules()
+        .then(([{ createAvatar }, micah]) => setAvatarUrl(createAvatar(micah, {
+          // Random, not name-based.
+          seed: Math.random().toString(36).slice(2, 10),
+          size: 288,
+          backgroundColor: ["c0aede", "ffd5dc", "b6e3f4", "ffdfbf", "c7f0d8"],
+          mouth: ["smile", "laughing", "smirk"],
+        }).toDataUri()))
+        .catch(() => setAvatarUrl(null));
+    }
     try {
       const res = await fetch("/api/waitlist", {
         method: "POST",
@@ -284,6 +378,7 @@ const WaitlistPass = () => {
               <form
                 noValidate
                 onSubmit={onSubmit}
+                onFocus={() => void loadAvatarModules().catch(() => {})}
                 aria-label="Join the Estelle waitlist"
                 inert={busy}
                 className={`relative mt-6 flex flex-1 flex-col transition-opacity duration-200 ${busy ? "opacity-50" : ""}`}
@@ -296,21 +391,42 @@ const WaitlistPass = () => {
                         <label htmlFor={`wl-${f.name}`} className="mb-2 block cursor-default text-[13px] font-medium text-white/85">
                           {f.label}
                         </label>
-                        <input
-                          id={`wl-${f.name}`}
-                          name={f.name}
-                          type={f.type}
-                          autoComplete={f.autoComplete}
-                          inputMode={f.inputMode}
-                          placeholder={f.placeholder}
-                          maxLength={f.maxLength}
-                          required
-                          aria-invalid={!!error}
-                          aria-describedby={error ? `wl-${f.name}-error` : undefined}
-                          onBlur={onBlur}
-                          onChange={onChange}
-                          className={inputClass}
-                        />
+                        {f.type === "select" ? (
+                          <>
+                            {/* Opens CountrySheet; the hidden input carries the name to the signup, like the old text field. */}
+                            <button
+                              type="button"
+                              id={`wl-${f.name}`}
+                              aria-haspopup="dialog"
+                              aria-expanded={pickerOpen}
+                              aria-invalid={!!error}
+                              aria-describedby={error ? `wl-${f.name}-error` : undefined}
+                              onClick={() => setPickerOpen(true)}
+                              className={`${inputClass} flex cursor-pointer items-center gap-2 text-left ${country ? "" : "text-white/45"}`}
+                            >
+                              {country && <span aria-hidden="true" className="text-lg leading-none">{country.flag}</span>}
+                              <span className="min-w-0 flex-1 truncate">{country?.name ?? f.placeholder}</span>
+                              <ChevronDown aria-hidden="true" className="h-4 w-4 shrink-0 text-white/55" />
+                            </button>
+                            <input type="hidden" name={f.name} value={country?.name ?? ""} />
+                          </>
+                        ) : (
+                          <input
+                            id={`wl-${f.name}`}
+                            name={f.name}
+                            type={f.type}
+                            autoComplete={f.autoComplete}
+                            inputMode={f.inputMode}
+                            placeholder={f.placeholder}
+                            maxLength={f.maxLength}
+                            required
+                            aria-invalid={!!error}
+                            aria-describedby={error ? `wl-${f.name}-error` : undefined}
+                            onBlur={onBlur}
+                            onChange={onChange}
+                            className={inputClass}
+                          />
+                        )}
                         {error && (
                           <p id={`wl-${f.name}-error`} className="mt-1.5 text-xs leading-snug text-[var(--wl-error)]">
                             {error}
@@ -346,19 +462,23 @@ const WaitlistPass = () => {
                   )}
                 </div>
               </form>
+              <CountrySheet open={pickerOpen && !joined} selected={country} onPick={pickCountry} onClose={closePicker} />
             </Face>
 
             <Face aria-hidden={!joined} inert={!joined} className="[transform:rotateY(180deg)]">
               <Identity label="Founding member" />
               <h2 ref={heading} tabIndex={-1} className="relative mt-8 font-display text-[28px] font-semibold leading-[1.15] tracking-[-0.03em] text-white outline-none">
-                Waitlist joined.
+                I have joined
+                <br />
+                Estelle waitlist
+                {country && <span className="block text-[var(--wl-accent-soft)]">from {country.name} {country.flag}</span>}
               </h2>
               <div className="relative grid flex-1 place-items-center py-8">
                 <div className="rounded-full bg-[radial-gradient(circle_at_30%_25%,var(--wl-accent-soft),var(--wl-accent)_60%,#4b2f78)] p-1.5 shadow-[inset_0_2px_4px_#ffffff55,0_20px_50px_-10px_#7852A9aa]">
-                  {avatarSeed && (
-                    // eslint-disable-next-line @next/next/no-img-element -- remote SVG avatar; next/image would need SVG + remote config
+                  {avatarUrl && (
+                    // eslint-disable-next-line @next/next/no-img-element -- generated SVG data URI; next/image adds nothing here
                     <img
-                      src={`https://api.dicebear.com/9.x/micah/svg?seed=${avatarSeed}&backgroundColor=c0aede,ffd5dc,b6e3f4,ffdfbf,c7f0d8&mouth=smile,laughing,smirk,pucker`}
+                      src={avatarUrl}
                       alt="Your Estelle avatar"
                       width={144}
                       height={144}
@@ -377,6 +497,28 @@ const WaitlistPass = () => {
                   Our mission.
                 </strong>
                 <p className="mt-3 text-sm text-white/70">We&apos;ll email you the moment we open the doors.</p>
+                <div className="mt-5 grid grid-cols-2 gap-2 max-[389px]:grid-cols-1">
+                  {pass !== "failed" && (
+                    <button
+                      type="button"
+                      onClick={sharePass}
+                      disabled={!pass}
+                      aria-busy={!pass}
+                      className="flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-full bg-[linear-gradient(180deg,#ffffff,#e9deff)] px-3 text-[13px] font-semibold text-[#2a1d45] shadow-[0_8px_24px_-8px_#d9b3ff80] transition-[opacity,transform] hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--wl-accent-soft)] active:scale-[.97] disabled:cursor-wait disabled:opacity-60"
+                    >
+                      {pass && !pass.shareable ? <>Save pass<Download className="h-4 w-4" aria-hidden="true" /></> : <>Share pass<Share className="h-4 w-4" aria-hidden="true" /></>}
+                    </button>
+                  )}
+                  <a
+                    href={WHATSAPP_GROUP_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex min-h-11 items-center justify-center gap-2 rounded-full bg-white/[0.08] px-3 text-[13px] font-semibold text-white shadow-[inset_0_0_0_1px_#ffffff14] transition-[background-color,transform] hover:bg-white/[0.12] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--wl-accent-soft)] active:scale-[.97]"
+                  >
+                    Join the group<span className="sr-only"> on WhatsApp (opens in a new tab)</span>
+                    <WhatsAppIcon />
+                  </a>
+                </div>
               </div>
             </Face>
           </motion.div>
@@ -384,7 +526,7 @@ const WaitlistPass = () => {
       </div>
 
       <p className="sr-only" role="status">
-        {busy ? "Saving your spot…" : joined ? "You have joined the Estelle waitlist." : ""}
+        {busy ? "Saving your spot…" : joined ? "You have joined Estelle waitlist." : ""}
       </p>
     </div>
   );
