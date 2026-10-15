@@ -1,133 +1,106 @@
 'use client'
 import Image from 'next/image'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button } from './ui/button'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import clsx from 'clsx'
-import { useGSAP } from '@gsap/react'
-import gsap from 'gsap'
+import { MoveRight } from 'lucide-react'
 import { useSelector } from 'react-redux'
 import { RootState } from '@/redux/store'
 
+const EASE_DRAWER = 'cubic-bezier(0.32, 0.72, 0, 1)'
+const EASE_OUT = 'cubic-bezier(0.23, 1, 0.32, 1)'
+
+const navLinks = [
+  {
+    title: "Home",
+    link: "/",
+  },
+  {
+    title: "About",
+    link: "/about",
+  },
+  {
+    title: "Waitlist",
+    link: "/waitlist",
+  },
+  // {
+  //   title: "Courses",
+  //   link: "/",
+  // },
+  // {
+  //   title: "Events",
+  //   link: "/events",
+  // },
+  // {
+  //     title:"Courses",
+  //     link:"/courses",
+  // },
+
+  // {
+  //   title: "Support",
+  //   link: "#footer",
+  // },
+]
+
 const Navbar = () => {
-  // const { isLoading, data } = useUserProfileQuery()
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const mobileMenuRef = useRef(null);
-  const linkRef = useRef<(HTMLAnchorElement | null)[]>([]);
-  const iconTl = useRef<gsap.core.Timeline | null>(null);
-  const topLineRef = useRef(null);
-  const bottomLineRef = useRef(null);
-  const menuTl = useRef<gsap.core.Timeline | null>(null)
+  const pathname = usePathname();
 
   const { user } = useSelector((state: RootState) => state.auth)
-  console.log("Navbar user:", user, user?.lastName)
 
+  const closeMenu = () => setIsOpen(false)
+  const toggleMenu = () => setIsOpen((open) => !open)
+
+  // close the menu whenever the route changes
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20) // this checks if the page is scrolled more than 20px, if so it sets isScrolled to true
-    };
-    window.addEventListener('scroll', handleScroll) // add the event listener to the window object
-
-    return () => window.removeEventListener('scroll', handleScroll) // cleanup function to remove the event listener when the component unmounts
-  }, [])
-
-  useGSAP(() => {
-
-    gsap.set(mobileMenuRef.current, { yPercent: -200 })
-    gsap.set(linkRef.current, { autoAlpha: 0 })
-
-    menuTl.current = gsap.timeline({
-      paused: true
-    })
-      .to(mobileMenuRef.current, { yPercent: 0, opacity: 1, duration: 0.8, ease: 'power3.out' })
-      .to(linkRef.current, { autoAlpha: 1, stagger: 0.08, duration: 0.8, ease: 'power2.out' })
-
-    iconTl.current = gsap.timeline({
-      paused: true
-    })
-      .to([topLineRef.current], {
-        rotation: 45,
-        y: 3.3,
-        duration: 0.5,
-        ease: "power2.inOut",
-      })
-      .to([bottomLineRef.current], {
-        rotation: -45,
-        y: -3.3,
-        duration: 0.5,
-        ease: "power2.inOut",
-      }, "<")
-  }, [])
-
-  const onNavLinkClose = () => {
-    menuTl.current?.reverse()
     setIsOpen(false)
-    iconTl!.current!.reverse()
-  }
+  }, [pathname])
 
-  const toggleMenu = () => {
-    if (isOpen) {
-      menuTl.current?.reverse()
-      setIsOpen(false)
-      iconTl!.current!.reverse()
-    } else {
-      menuTl.current?.play()
-      setIsOpen(true)
-      iconTl.current?.play()
+  // lock page scroll while the menu is open, and close on Escape
+  useEffect(() => {
+    if (!isOpen) return
+
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setIsOpen(false)
     }
+    window.addEventListener('keydown', onKeyDown)
 
-  }
+    return () => {
+      document.body.style.overflow = previousOverflow
+      window.removeEventListener('keydown', onKeyDown)
+    }
+  }, [isOpen])
 
-
-  const navLinks = [
-    {
-      title: "Home",
-      link: "/",
-    },
-    {
-      title: "About",
-      link: "/about",
-    },
-    {
-      title: "Waitlist",
-      link: "/waitlist",
-    },
-    {
-      title: "Courses",
-      link: "/",
-    },
-    // {
-    //   title: "Events",
-    //   link: "/events",
-    // },
-    // {
-    //     title:"Courses",
-    //     link:"/courses",
-    // },
-
-    {
-      title: "Support",
-      link: "#footer",
-    },
-  ]
+  // if the viewport grows to desktop while open, reset the state
+  useEffect(() => {
+    const mq = window.matchMedia('(min-width: 768px)')
+    const onChange = (e: MediaQueryListEvent) => {
+      if (e.matches) setIsOpen(false)
+    }
+    mq.addEventListener('change', onChange)
+    return () => mq.removeEventListener('change', onChange)
+  }, [])
 
   return (
-    <nav className={`w-full py-3  z-50 transition-all duration-300 bg-blur bg-white fixed top-0`}>
-      <div className='flex items-center justify-between max-w-6xl mx-auto px-2'>
+    <nav className='w-full py-3 z-50 bg-white fixed top-0'>
+      <div className='relative z-20 flex items-center justify-between max-w-6xl mx-auto px-4 md:px-2'>
         {/* logo */}
-        <Link href={'/'} className=''>
-          <Image src={'/assets/Estellelogonew2.png'} alt='Logo' width={78} height={80} />
+        <Link href={'/'} onClick={closeMenu}>
+          <Image src={'/assets/Estellelogonew2.png'} alt='Estelle' width={78} height={80} />
         </Link>
 
-
-        <ul className='hidden sm:flex gap-6 items-center text-[#37296D]'>
+        <ul className='hidden md:flex gap-6 items-center text-[#37296D]'>
           <Link href={'/about'}>
             <li className={clsx('text-[16px] font-semibold tracking-wide  cursor-pointer')}>About</li>
           </Link>
-          <Link href={'/waitlist'}>
+          {/* <Link href={'/waitlist'}>
             <li className={clsx('text-[16px] font-semibold tracking-wide  cursor-pointer')}>Waitlist</li>
-          </Link>
+          </Link> */}
           <Link href={'/events'}>
             <li className={clsx('text-[16px] font-semibold tracking-wide  cursor-pointer')}>Events</li>
           </Link>
@@ -145,8 +118,8 @@ const Navbar = () => {
             {/* <Link href='/login'>
               <Button className='w-[100px] py-5 text-[16px] bg-white text-[#37296D] hover:text-white hover:bg-[#7852A9]'>Login</Button>
             </Link> */}
-            <Link href='/register'>
-              <Button className='bg-[#7852A9] w-[100px] hover:bg-black active:bg-black transition-colors py-5'>Sign Up</Button>
+            <Link href='/waitlist'>
+              <Button className='bg-[#7852A9] w-fit hover:bg-[#563b7a] active:bg-black transition-colors py-5'>Join the Waitlist</Button>
             </Link>
           </>) :
             <a href='/dashboard' >
@@ -156,24 +129,133 @@ const Navbar = () => {
 
         </div>
 
-        <div onClick={toggleMenu} className='md:hidden bg-white size-12 z-50 flex flex-col gap-1 justify-center items-center md:size-20 transition-all duration-300 rounded-full cursor-pointer'>
-          <span ref={topLineRef} className='block w-8 h-0.5 bg-black rounded-full origin-center'></span>
-          <span ref={bottomLineRef} className='block w-8 h-0.5 bg-black rounded-full origin-center'></span>
-        </div>
-
-        {/* <h2>{user.firstname}</h2> */}
-
+        {/* hamburger */}
+        <button
+          type='button'
+          onClick={toggleMenu}
+          aria-label={isOpen ? 'Close menu' : 'Open menu'}
+          aria-expanded={isOpen}
+          aria-controls='mobile-menu'
+          className='md:hidden relative size-11 rounded-full bg-[#f3edfb] text-[#37296D] cursor-pointer touch-manipulation transition-transform duration-150 ease-out active:scale-[0.94] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#7852A9]'
+        >
+          <span
+            aria-hidden='true'
+            className='absolute left-1/2 top-1/2 -ml-[10px] -mt-px block h-0.5 w-5 rounded-full bg-current transition-transform duration-300 motion-reduce:transition-none'
+            style={{
+              transitionTimingFunction: EASE_OUT,
+              transform: isOpen ? 'translateY(0) rotate(45deg)' : 'translateY(-3.5px) rotate(0deg)',
+            }}
+          />
+          <span
+            aria-hidden='true'
+            className='absolute left-1/2 top-1/2 -ml-[10px] -mt-px block h-0.5 w-5 rounded-full bg-current transition-transform duration-300 motion-reduce:transition-none'
+            style={{
+              transitionTimingFunction: EASE_OUT,
+              transform: isOpen ? 'translateY(0) rotate(-45deg)' : 'translateY(3.5px) rotate(0deg)',
+            }}
+          />
+        </button>
       </div>
 
-      <div ref={mobileMenuRef} className='md:hidden fixed inset-0 border border-white/15 w-full h-[screen] bg-black/30 z-[100] flex flex-col items-center justify-between text-white/80 py-22 px-10 gap-y-10 backdrop-blur opacity-0 '>
-        <div className='flex flex-col gap-y-6 text-3xl'>
-          {navLinks.map((item, index) => (
-            <Link href={item.link} key={index} ref={(el) => { linkRef.current[index] = el }} className=''>
-              <span onClick={onNavLinkClose} className='transition-all duration-300 text-white  hover:text-white font-semibold cursor-pointer'>
-                {item.title}
-              </span>
+      {/* mobile menu: circle reveal that grows out of the hamburger */}
+      <div
+        id='mobile-menu'
+        aria-hidden={!isOpen}
+        className='md:hidden fixed inset-0 z-10 h-dvh bg-[#faf7ff] flex flex-col px-6 pt-28 motion-reduce:transition-none'
+        style={{
+          clipPath: isOpen
+            ? 'circle(150% at calc(100% - 40px) 36px)'
+            : 'circle(0px at calc(100% - 40px) 36px)',
+          visibility: isOpen ? 'visible' : 'hidden',
+          pointerEvents: isOpen ? 'auto' : 'none',
+          // closing is quicker than opening; visibility flips only after the reveal has finished
+          transition: isOpen
+            ? `clip-path 500ms ${EASE_DRAWER}, visibility 0s`
+            : `clip-path 320ms ${EASE_DRAWER}, visibility 0s linear 320ms`,
+          paddingBottom: 'max(2rem, env(safe-area-inset-bottom))',
+        }}
+      >
+        {/* soft brand glow */}
+        <div aria-hidden='true' className='pointer-events-none absolute -right-24 -top-24 size-72 rounded-full bg-[#a984dd]/25 blur-3xl' />
+
+        <p
+          className='relative text-xs font-semibold uppercase tracking-[0.2em] text-[#7852A9] transition-[opacity,transform] duration-300 motion-reduce:transition-none'
+          style={{
+            transitionTimingFunction: EASE_OUT,
+            transitionDelay: isOpen ? '120ms' : '0ms',
+            opacity: isOpen ? 1 : 0,
+            transform: isOpen ? 'translateY(0)' : 'translateY(8px)',
+          }}
+        >
+          Menu
+        </p>
+
+        <ul className='relative mt-4 flex flex-col'>
+          {navLinks.map((item, index) => {
+            const isActive = pathname === item.link
+            return (
+              <li
+                key={item.title}
+                className='border-b border-[#37296D]/10 transition-[opacity,transform] duration-300 motion-reduce:transition-none'
+                style={{
+                  transitionTimingFunction: EASE_OUT,
+                  transitionDelay: isOpen ? `${160 + index * 50}ms` : '0ms',
+                  opacity: isOpen ? 1 : 0,
+                  transform: isOpen ? 'translateY(0)' : 'translateY(14px)',
+                }}
+              >
+                <Link
+                  href={item.link}
+                  onClick={closeMenu}
+                  aria-current={isActive ? 'page' : undefined}
+                  tabIndex={isOpen ? 0 : -1}
+                  className={clsx(
+                    'group flex min-h-16 items-center justify-between gap-4 py-3 text-3xl font-semibold tracking-tight transition-colors duration-150 active:text-[#7852A9]',
+                    isActive ? 'text-[#7852A9]' : 'text-[#37296D]'
+                  )}
+                >
+                  <span className='flex items-baseline gap-4'>
+                    <span className='w-6 text-sm font-medium tabular-nums text-[#37296D]/40'>
+                      {String(index + 1).padStart(2, '0')}
+                    </span>
+                    {item.title}
+                  </span>
+                  <MoveRight
+                    aria-hidden='true'
+                    className={clsx(
+                      'size-5 shrink-0 transition-transform duration-200 ease-out group-active:translate-x-1',
+                      isActive ? 'text-[#7852A9]' : 'text-[#37296D]/40'
+                    )}
+                  />
+                </Link>
+              </li>
+            )
+          })}
+        </ul>
+
+        {/* primary action */}
+        <div
+          className='relative mt-auto transition-[opacity,transform] duration-300 motion-reduce:transition-none'
+          style={{
+            transitionTimingFunction: EASE_OUT,
+            transitionDelay: isOpen ? `${160 + navLinks.length * 50 + 40}ms` : '0ms',
+            opacity: isOpen ? 1 : 0,
+            transform: isOpen ? 'translateY(0)' : 'translateY(14px)',
+          }}
+        >
+          {!user ? (
+            <Link href='/waitlist' onClick={closeMenu} tabIndex={isOpen ? 0 : -1}>
+              <Button className='w-full gap-3 rounded-xl bg-[#7852A9] py-7 text-base hover:bg-black active:bg-black active:scale-[0.98] transition-[background-color,transform] duration-150'>
+                Join the Waitlist <MoveRight className='size-4' />
+              </Button>
             </Link>
-          ))}
+          ) : (
+            <a href='/dashboard' onClick={closeMenu} tabIndex={isOpen ? 0 : -1}>
+              <Button className='w-full gap-3 rounded-xl bg-[#4e2286] py-7 text-base hover:bg-black active:bg-black active:scale-[0.98] transition-[background-color,transform] duration-150'>
+                Go to Dashboard <MoveRight className='size-4' />
+              </Button>
+            </a>
+          )}
         </div>
       </div>
     </nav>
