@@ -1,7 +1,9 @@
 import About from "@/components/About";
+import BeforeAfter from "@/components/BeforeAfter";
 import Cta from "@/components/Cta";
 import DiscountBanner from "@/components/DiscountBanner";
 import FAQSection from "@/components/Faq";
+import HowItWorks from "@/components/HowItWorks";
 import FeaturedCourses from "@/components/FeaturedCourses";
 import Features from "@/components/Features";
 import Header from "@/components/Header";
@@ -28,8 +30,10 @@ export default function Home() {
       <Header />
       <DiscountBanner />
       <About />
+      <BeforeAfter />
       {/* <FeaturedCourses /> */}
       <Mission />
+      <HowItWorks />
       {/* <Pricing /> */}
       <Waitlist />
       <Testimonials />

@@ -23,7 +23,7 @@ const Header = () => {
                         {/* <p className='text-sm mb-8 font-semibold'> <span className='gradient-bg bg-clip-text text-transparent'>210,000 naira/ Premium plan, </span>instant 30% cash back guarantee</p> */}
                         <div className='flex flex-col sm:flex-row items-start gap-4'>
                             <Link href='/waitlist' className='flex items-center justify-center bg-white text-[#7852A9] hover:opacity-90  py-4 rounded-md font-bold w-full md:w-[200px]'>Join the Waitlist</Link>
-                            <Link href='/about' className='flex items-center justify-center gradient-bg text-white hover:bg-black active:bg-black hover:text-white transition w-full  md:w-[200px] py-4 rounded-md font-bold'>Learn More</Link>
+                            <Link href='/about' className='flex items-center justify-center gradient-bg text-white hover:bg-[#563b7a] active:bg-black hover:text-white transition w-full  md:w-[200px] py-4 rounded-md font-bold'>Learn More</Link>
                         </div>
                         <p className='text-sm mt-6 font-semibold'> <span className='gradient-bg bg-clip-text text-transparent'>Life time learning access</span> to Courses and AI resources</p>
                     </div>

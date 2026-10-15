@@ -3,7 +3,7 @@ import { Toaster } from "@/components/ui/sonner"
 import "./globals.css";
 import StoreProvider from "@/StoreProvider";
 import { PersistLogin } from "@/components/PersistLogin";
-import { inter, jakarta } from "@/lib/fonts";
+import { inter, jakarta, instrumentSerif } from "@/lib/fonts";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://estellelearning.com"),
@@ -61,7 +61,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${jakarta.variable}`}>
+    <html lang="en" className={`${inter.variable} ${jakarta.variable} ${instrumentSerif.variable}`}>
       <body
         className={`antialiased font-sans`}
       >
