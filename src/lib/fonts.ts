@@ -1,4 +1,4 @@
-import { Inter, Plus_Jakarta_Sans, Instrument_Serif } from "next/font/google"
+import { Inter, Plus_Jakarta_Sans } from "next/font/google"
 
 export const inter = Inter({
   subsets: ["latin"],
@@ -13,10 +13,3 @@ export const jakarta = Plus_Jakarta_Sans({
 })
 
 
-export const instrumentSerif = Instrument_Serif({
-  subsets: ["latin"],
-  weight: "400",
-  style: ["normal", "italic"],
-  display: "swap",
-  variable: "--font-accent",
-})

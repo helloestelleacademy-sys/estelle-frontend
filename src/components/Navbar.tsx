@@ -8,6 +8,7 @@ import clsx from 'clsx'
 import { MoveRight } from 'lucide-react'
 import { useSelector } from 'react-redux'
 import { RootState } from '@/redux/store'
+import DiscountBanner, { BANNER_HEIGHT } from './DiscountBanner'
 
 const EASE_DRAWER = 'cubic-bezier(0.32, 0.72, 0, 1)'
 const EASE_OUT = 'cubic-bezier(0.23, 1, 0.32, 1)'
@@ -21,10 +22,11 @@ const navLinks = [
     title: "About",
     link: "/about",
   },
-  {
-    title: "Waitlist",
-    link: "/waitlist",
-  },
+  // the waitlist CTA lives in the header button / mobile menu button instead
+  // {
+  //   title: "Waitlist",
+  //   link: "/waitlist",
+  // },
   // {
   //   title: "Courses",
   //   link: "/",
@@ -47,6 +49,9 @@ const navLinks = [
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
+  // the launch countdown rides along with the header, on the landing page only
+  const showBanner = pathname === '/'
+  const bannerOffset = showBanner ? BANNER_HEIGHT : 0
 
   const { user } = useSelector((state: RootState) => state.auth)
 
@@ -87,8 +92,13 @@ const Navbar = () => {
   }, [])
 
   return (
-    <nav className='w-full py-3 z-50 bg-white fixed top-0'>
-      <div className='relative z-20 flex items-center justify-between max-w-6xl mx-auto px-4 md:px-2'>
+    <nav className='w-full z-50 bg-white fixed top-0'>
+      {showBanner && (
+        <div className='relative z-20'>
+          <DiscountBanner />
+        </div>
+      )}
+      <div className='relative z-20 flex items-center justify-between max-w-6xl mx-auto px-4 md:px-6 py-3'>
         {/* logo */}
         <Link href={'/'} onClick={closeMenu}>
           <Image src={'/assets/Estellelogonew2.png'} alt='Estelle' width={78} height={80} />
@@ -114,18 +124,11 @@ const Navbar = () => {
         </ul>
 
         <div className='hidden md:flex space-x-6'>
-          {!user ? (<>
-            {/* <Link href='/login'>
-              <Button className='w-[100px] py-5 text-[16px] bg-white text-[#37296D] hover:text-white hover:bg-[#7852A9]'>Login</Button>
-            </Link> */}
+          {!user && (
             <Link href='/waitlist'>
               <Button className='bg-[#7852A9] w-fit hover:bg-[#563b7a] active:bg-black transition-colors py-5'>Join the Waitlist</Button>
             </Link>
-          </>) :
-            <a href='/dashboard' >
-              <Button className='bg-[#4e2286] hover:bg-black active:bg-black transition-colors w-[100px] py-5 cursor-pointer'>Dashboard</Button>
-            </a>
-          }
+          )}
 
         </div>
 
@@ -161,17 +164,18 @@ const Navbar = () => {
       <div
         id='mobile-menu'
         aria-hidden={!isOpen}
-        className='md:hidden fixed inset-0 z-10 h-dvh bg-[#faf7ff] flex flex-col px-6 pt-28 motion-reduce:transition-none'
+        className='md:hidden fixed inset-0 z-10 h-dvh bg-[#faf7ff] flex flex-col px-6 motion-reduce:transition-none'
         style={{
           clipPath: isOpen
-            ? 'circle(150% at calc(100% - 40px) 36px)'
-            : 'circle(0px at calc(100% - 40px) 36px)',
+            ? `circle(150% at calc(100% - 40px) ${36 + bannerOffset}px)`
+            : `circle(0px at calc(100% - 40px) ${36 + bannerOffset}px)`,
           visibility: isOpen ? 'visible' : 'hidden',
           pointerEvents: isOpen ? 'auto' : 'none',
           // closing is quicker than opening; visibility flips only after the reveal has finished
           transition: isOpen
             ? `clip-path 500ms ${EASE_DRAWER}, visibility 0s`
             : `clip-path 320ms ${EASE_DRAWER}, visibility 0s linear 320ms`,
+          paddingTop: `calc(7rem + ${bannerOffset}px)`,
           paddingBottom: 'max(2rem, env(safe-area-inset-bottom))',
         }}
       >

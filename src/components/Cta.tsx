@@ -4,7 +4,7 @@ import Image from 'next/image'
 
 const Cta = () => {
   return (
-    <section className='py-20 lg:py-24'>
+    <section className='py-12 lg:py-16'>
       <div className='max-w-7xl mx-auto px-4 md:px-6'>
         <div className='bg-[#7852A9] px-10 py-12 relative rounded-3xl flex flex-col md:flex-row justify-start items-center gap-15 lg:h-[350px]'>
           {/* <Image src={'/assets/overlayRectangle.png'} alt='image' width={500} height={200} className='absolute right-0  z-0' /> */}

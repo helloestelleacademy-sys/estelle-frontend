@@ -5,11 +5,11 @@ import Image from 'next/image'
 const About = () => {
 
     return (
-        <section id='about' className='py-20 lg:py-24'>
+        <section id='about' className='py-12 lg:py-16'>
             <div className='flex flex-col'>
-                <h3 className='subText font-bold text-3xl mb-10 text-center'>Trusted by hundreds of learners in 10+ countries around the world</h3>
+                <h3 className='subText font-semibold tracking-tight text-3xl md:text-4xl mb-6 px-4 text-center'>Trusted by hundreds of learners in 10+ countries around the world</h3>
 
-                <div className='bg-[#EEE0FF] px-8 py-12'>
+                <div className='bg-[#EEE0FF] px-8 py-10'>
                     <div className='max-w-6xl mx-auto flex flex-col gap-8 justify-center items-center'>
                         <h2 className='text-xl font-semibold text-[#7851A9]'>Invest in your personal brand</h2>
 

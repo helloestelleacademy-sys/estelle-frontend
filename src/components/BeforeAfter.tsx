@@ -19,13 +19,13 @@ const withEstelle = [
 
 const BeforeAfter = () => {
   return (
-    <section id='difference' className='py-20 lg:py-24'>
+    <section id='difference' className='py-12 lg:py-16'>
       <div className='max-w-6xl mx-auto px-4 md:px-6'>
-        <div className='flex flex-col items-center text-center gap-4 mb-12 lg:mb-16'>
-          <p className='font-mono text-xs font-medium uppercase tracking-[0.2em] text-[#7852A9]'>The difference</p>
-          <h2 className='text-3xl md:text-5xl font-semibold tracking-tight max-w-2xl text-balance'>
+        <div className='flex flex-col items-center text-center gap-4 mb-8 lg:mb-10'>
+          <p className='text-xs font-medium uppercase tracking-[0.2em] text-[#7852A9]'>The difference</p>
+          <h2 className='text-3xl md:text-4xl font-semibold tracking-tight max-w-2xl text-balance'>
             Talent is everywhere.{' '}
-            <span className='font-accent text-[#7852A9] text-[1.1em]'>Visibility</span> is not.
+            <span className='text-[#7852A9]'>Visibility</span> is not.
           </h2>
           <p className='text-neutral-600 max-w-xl text-balance'>
             Two people with the same skills. One has a personal brand that does the talking.
@@ -37,7 +37,7 @@ const BeforeAfter = () => {
           <div className='rounded-3xl border border-[#E7E7E7] bg-[#F6F4F8] p-8 md:p-10 flex flex-col min-h-[420px]'>
             <div className='flex items-center justify-between'>
               <h3 className='text-xl font-semibold text-neutral-900'>Without a personal brand</h3>
-              <span className='font-mono text-[11px] uppercase tracking-widest text-neutral-500 rounded-full border border-neutral-300 px-3 py-1'>Before</span>
+              <span className='text-[11px] uppercase tracking-widest text-neutral-500 rounded-full border border-neutral-300 px-3 py-1'>Before</span>
             </div>
 
             <ul className='flex flex-wrap items-center justify-center content-center gap-3 flex-1 py-10'>
@@ -63,7 +63,7 @@ const BeforeAfter = () => {
 
             <div className='relative flex items-center justify-between'>
               <h3 className='text-xl font-semibold'>With Estelle</h3>
-              <span className='font-mono text-[11px] uppercase tracking-widest text-white/80 rounded-full border border-white/30 px-3 py-1'>After</span>
+              <span className='text-[11px] uppercase tracking-widest text-white/80 rounded-full border border-white/30 px-3 py-1'>After</span>
             </div>
 
             <ol className='relative flex-1 flex flex-col justify-center py-10'>

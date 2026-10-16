@@ -22,12 +22,12 @@ const Service = () => {
   }, [])
 
   return (
-    <section id='service' className='py-20 lg:py-24'>
+    <section id='service' className='py-12 lg:py-16'>
       <div className='max-w-7xl mx-auto px-4 md:px-6'>
         <div className='flex flex-col md:flex-row items-center justify-between gap-10'>
           {/* left */}
           <div className='w-full md:w-1/2 flex flex-col gap-4'>
-            <h2 className='text-3xl md:text-4xl lg:text-5xl mt-2 font-semibold max-w-2xl'>Want personalized services in building your personal brand? </h2>
+            <h2 className='text-3xl md:text-4xl mt-2 font-semibold tracking-tight max-w-2xl'>Want personalized services in building your personal brand? </h2>
             <p className='text-xl tracking-wide font-medium'>Send a mail to</p>
             <div className='flex items-center gap-2 text-[#7851A9]'>
               <Mail />
