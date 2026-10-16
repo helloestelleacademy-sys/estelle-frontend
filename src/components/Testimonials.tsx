@@ -26,12 +26,12 @@ const Testimonials = () => {
   }, [])
 
   return (
-    <section id='testimonials' className='py-20 lg:py-24'>
+    <section id='testimonials' className='py-12 lg:py-16'>
       <div className='max-w-7xl mx-auto flex flex-col items-center justify-center px-4'>
 
-        <h2 className='text-2xl md:text-3xl lg:text-5xl text-center font-semibold lg:max-w-2xl pb-12'>What our learners are acheiving through learning</h2>
+        <h2 className='text-3xl md:text-4xl text-center font-semibold tracking-tight lg:max-w-2xl'>What our learners are acheiving through learning</h2>
 
-        <div className="relative mt-12 overflow-hidden w-full">
+        <div className="relative mt-8 overflow-hidden w-full">
           {/* Double the testimonials to create seamless looping */}
           <div ref={scrollRef} className="flex gap-6 w-[max] px-4">
             {[...testimonials, ...testimonials].map((t, index) => ( // we are mapping through doubled array, making it twice as long

@@ -31,12 +31,12 @@ const values = [
 
 const Values = () => {
   return (
-    <section className='py-20 lg:py-24'>
+    <section className='py-12 lg:py-16'>
       <div className='max-w-6xl mx-auto px-4 md:px-6'>
-        <div className='flex flex-col items-center text-center gap-4 mb-12 lg:mb-16'>
-          <p className='font-mono text-xs font-medium uppercase tracking-[0.2em] text-[#7852A9]'>What we stand for</p>
-          <h2 className='text-3xl md:text-5xl font-semibold tracking-tight text-balance'>
-            Our core <span className='font-accent text-[#7852A9] text-[1.1em]'>values</span>
+        <div className='flex flex-col items-center text-center gap-4 mb-8 lg:mb-10'>
+          <p className='text-xs font-medium uppercase tracking-[0.2em] text-[#7852A9]'>What we stand for</p>
+          <h2 className='text-3xl md:text-4xl font-semibold tracking-tight text-balance'>
+            Our core <span className='text-[#7852A9]'>values</span>
           </h2>
         </div>
 
@@ -52,7 +52,7 @@ const Values = () => {
                   <span className='flex size-11 items-center justify-center rounded-full bg-[#F3EDFB] text-[#7852A9]'>
                     <Icon aria-hidden='true' className='size-5' />
                   </span>
-                  <span className='font-mono text-sm tabular-nums text-neutral-400'>
+                  <span className='text-sm tabular-nums text-neutral-400'>
                     {String(index + 1).padStart(2, '0')}
                   </span>
                 </div>

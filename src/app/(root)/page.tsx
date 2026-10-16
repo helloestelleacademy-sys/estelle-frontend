@@ -1,7 +1,6 @@
 import About from "@/components/About";
 import BeforeAfter from "@/components/BeforeAfter";
 import Cta from "@/components/Cta";
-import DiscountBanner from "@/components/DiscountBanner";
 import FAQSection from "@/components/Faq";
 import HowItWorks from "@/components/HowItWorks";
 import FeaturedCourses from "@/components/FeaturedCourses";
@@ -28,7 +27,6 @@ export default function Home() {
   return (
     <>
       <Header />
-      <DiscountBanner />
       <About />
       <BeforeAfter />
       {/* <FeaturedCourses /> */}

@@ -43,10 +43,10 @@ const Mission = () => {
   }, [])
 
   return (
-    <section className="w-full bg-white py-20 lg:py-24 px-4">
+    <section className="w-full bg-white py-12 lg:py-16 px-4">
       <div className="max-w-6xl mx-auto">
         {/* Heading */}
-        <h2 className="text-center text-2xl md:text-3xl font-semibold text-gray-900 mb-12">
+        <h2 className="text-center text-3xl md:text-4xl font-semibold tracking-tight text-gray-900 mb-8">
           Our mission is simple: to turn everyday <br className="hidden md:block" />
           people into legacy brands.
         </h2>

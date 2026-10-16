@@ -67,10 +67,10 @@ export default function FAQSection() {
     <section
       id="faq"
       ref={containerRef}
-      className="max-w-3xl mx-auto py-20 lg:py-24 px-6 text-gray-900"
+      className="max-w-3xl mx-auto py-12 lg:py-16 px-6 text-gray-900"
     >
 
-      <h2 className="text-4xl font-semibold mt-6 text-center max-w-xl mx-auto mb-10">Questions? We&apos;ve got <span className="gradient-bg bg-clip-text text-transparent">answers</span></h2>
+      <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-center max-w-xl mx-auto mb-8">Questions? We&apos;ve got <span className="gradient-bg bg-clip-text text-transparent">answers</span></h2>
 
       <div className="space-y-4">
         {faqs.map((faq, index) => (

@@ -41,11 +41,11 @@ const Features = () => {
 
 
   return (
-    <section id='features' className='py-20 lg:py-24 bg-[#F7F0FF]'>
+    <section id='features' className='py-12 lg:py-16 bg-[#F7F0FF]'>
       <div className='max-w-7xl mx-auto px-4 md:px-6 flex flex-col items-center'>
-        <h2 className='headerText text-center text-xl md:text-2xl lg:text-3xl font-semibold max-w-md lg:max-w-xl mx-auto text-[#7852A9]'>Why learn personal branding on Estelle?</h2>
+        <h2 className='headerText text-center text-3xl md:text-4xl font-semibold tracking-tight max-w-md lg:max-w-xl mx-auto text-[#7852A9]'>Why learn personal branding on Estelle?</h2>
 
-        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-18 mt-18'>
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12 mt-10'>
           {features.map((feature, index) => (
 
             <div ref={(el) => { cardRef.current[index] = el }} key={index} className="flex items-center justify-center flex-col">

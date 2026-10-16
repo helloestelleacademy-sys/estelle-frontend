@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react'
 
 const THIRTY_DAYS_IN_SECONDS = 30 * 24 * 60 * 60
 
+// height is fixed so the navbar and page content can offset for it
+export const BANNER_HEIGHT = 44
 
 const DiscountBanner = () => {
 
@@ -47,20 +49,22 @@ const DiscountBanner = () => {
   const format = (value: number) => value.toString().padStart(2, '0')
 
   const MarqueeContent = () => (
-    <div className='flex items-center gap-6 md:gap-12 text-white font-bold text-sm md:text-lg uppercase w-max tracking-widest shrink-0'>
+    <div className='flex items-center gap-6 md:gap-12 text-white font-bold text-sm md:text-base uppercase w-max tracking-widest shrink-0'>
       <span className='text-yellow-300'>⚠️ join the waitlist</span>
       <span>Launch countdown:</span>
       <span className='text-yellow-300'>★</span>
-      <span>Nov 28 2026<span className='font-mono bg-black/20 px-2 py-1 rounded'>{format(hours)}H : {format(minutes)}M : {format(seconds)}S</span></span>
+      <span>Nov 28 2026<span className='tabular-nums bg-black/20 px-2 py-1 rounded ml-2'>{format(hours)}H : {format(minutes)}M : {format(seconds)}S</span></span>
       <span className='text-yellow-300'>★</span>
       <span>50 days : 12 hours : 30 secs</span>
       <span className='text-yellow-300'>★</span>
     </div>
   )
 
-
   return (
-    <div className='sticky top-[5.6rem] -mt-[56px] w-full h-20 z-[40] overflow-visible pointer-events-none flex items-center justify-center '>
+    <div
+      className='w-full overflow-hidden bg-[#D00000] border-y-2 border-yellow-400 flex items-center'
+      style={{ height: BANNER_HEIGHT }}
+    >
       <style>{`
         @keyframes scroll {
           0% { transform: translateX(0); }
@@ -69,24 +73,25 @@ const DiscountBanner = () => {
         .animate-scroll {
           animation: scroll 55s linear infinite;
         }
+        @media (prefers-reduced-motion: reduce) {
+          .animate-scroll { animation: none; }
+        }
       `}</style>
-      <div className='w-full bg-[#D00000] py-3 shadow-xl flex items-center border-y-2 border-yellow-400 overflow-hidden z-50'>
-        {/* Marquee Track: Contains TWO sets of content. We slide the whole thing by 50% */}
-        <div className='flex animate-scroll gap-6 md:gap-12 '>
-          {/* Set 1 */}
-          <div className='flex gap-6 md:gap-12 shrink-0'>
-            <MarqueeContent />
-            <MarqueeContent />
-            <MarqueeContent />
-            <MarqueeContent />
-          </div>
-          {/* Set 2 (Duplicate) */}
-          <div className='flex gap-6 md:gap-12 shrink-0'>
-            <MarqueeContent />
-            <MarqueeContent />
-            <MarqueeContent />
-            <MarqueeContent />
-          </div>
+      {/* Marquee Track: Contains TWO sets of content. We slide the whole thing by 50% */}
+      <div className='flex animate-scroll gap-6 md:gap-12'>
+        {/* Set 1 */}
+        <div className='flex gap-6 md:gap-12 shrink-0'>
+          <MarqueeContent />
+          <MarqueeContent />
+          <MarqueeContent />
+          <MarqueeContent />
+        </div>
+        {/* Set 2 (Duplicate) */}
+        <div className='flex gap-6 md:gap-12 shrink-0'>
+          <MarqueeContent />
+          <MarqueeContent />
+          <MarqueeContent />
+          <MarqueeContent />
         </div>
       </div>
     </div>
