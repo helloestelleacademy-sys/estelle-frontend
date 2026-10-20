@@ -17,7 +17,7 @@ const Header = () => {
                         <p className='lg:text-xl mb-8 max-w-2xl text-sm'>Attract global opportunities, become an Influence, and transform your personal brand through guided courses and resources.</p>
 
                         <div className='flex flex-col sm:flex-row items-start gap-4'>
-                            <Link href='/about' className='flex items-center justify-center gradient-bg text-white hover:bg-[#563b7a] active:bg-black transition w-full md:w-[200px] py-4 rounded-md font-bold'>Learn More</Link>
+                            <Link href='/waitlist' className='flex items-center justify-center gradient-bg text-white hover:bg-[#563b7a] active:bg-black transition w-full md:w-[200px] py-4 rounded-md font-bold'>Join the Waitlist</Link>
                         </div>
                         <p className='text-sm mt-6 font-semibold'> <span className='gradient-bg bg-clip-text text-transparent'>Life time learning access</span> to Courses and AI resources</p>
                     </div>

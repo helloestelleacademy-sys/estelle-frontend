@@ -36,7 +36,7 @@ export default function Home() {
       <Waitlist />
       <Testimonials />
       <Service />
-      <FAQSection />
+      {/* <FAQSection /> */}
       <Features />
       <Cta />
     </>
