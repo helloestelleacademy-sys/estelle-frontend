@@ -46,7 +46,7 @@ const VALIDATE: Record<FieldName, (value: string) => string> = {
 };
 
 const FAILURE = "We couldn’t save your spot. Please try again.";
-const WHATSAPP_GROUP_URL = "https://chat.whatsapp.com/HsGoAAg3ww9LQ0NIs0Sy69?mode=gi_t";
+const WHATSAPP_GROUP_URL = "https://chat.whatsapp.com/EVZXrMIfE4IJ3X0bhvIMT3?s=cl&p=i&mlu=4&ilr=4&iam=2";
 
 // Avatars are drawn on the device: instant, offline, and no third-party request. Prewarmed on form focus.
 let avatarModules: Promise<[typeof import("@dicebear/core"), typeof import("@dicebear/micah")]> | undefined;
