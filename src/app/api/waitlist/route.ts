@@ -47,5 +47,30 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Could not join the waitlist. Please try again." }, { status: 502 });
   }
 
+  // The visitor is on the list once Tally has them; the welcome email is best effort and never fails the signup.
+  await notifyBackend({ ...values, avatarSeed: typeof body?.avatarSeed === "string" ? body.avatarSeed : undefined });
+
   return NextResponse.json({ ok: true });
+}
+
+/** Saves the signup in the backend, which sends the welcome email with the pass and WhatsApp link. */
+async function notifyBackend(payload: Record<string, string | undefined>) {
+  const base = process.env.NEXT_PUBLIC_BACKEND_URL;
+  const key = process.env.WAITLIST_API_KEY;
+  if (!base || !key) {
+    console.error("Waitlist welcome email skipped: NEXT_PUBLIC_BACKEND_URL or WAITLIST_API_KEY is not set");
+    return;
+  }
+  try {
+    const res = await fetch(`${base.replace(/\/$/, "")}/waitlist`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "x-waitlist-key": key },
+      body: JSON.stringify(payload),
+      // A sleeping backend (Render free tier) can take a while to wake; don't hold the visitor longer than this.
+      signal: AbortSignal.timeout(10_000),
+    });
+    if (!res.ok) console.error("Backend waitlist failed", res.status, await res.text().catch(() => ""));
+  } catch (err) {
+    console.error("Backend waitlist unreachable", err);
+  }
 }

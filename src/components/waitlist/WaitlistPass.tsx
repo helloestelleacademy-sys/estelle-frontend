@@ -162,6 +162,7 @@ const WaitlistPass = () => {
   // "" while drawing, null if the avatar could not be drawn.
   const [avatarUrl, setAvatarUrl] = useState<string | null>("");
   const [pass, setPass] = useState<Pass>(null);
+  const avatarSeed = useRef<string | undefined>(undefined);
   const stage = useRef<HTMLDivElement>(null);
   const heading = useRef<HTMLHeadingElement>(null);
   const busy = phase === "saving";
@@ -309,11 +310,13 @@ const WaitlistPass = () => {
     setPhase("saving");
     setSubmitError("");
     setName(data.name);
+    // Random, not name-based. Sent with the signup so the emailed pass shows the same face.
+    avatarSeed.current ??= Math.random().toString(36).slice(2, 10);
+    const seed = avatarSeed.current;
     if (avatarUrl === "") {
       loadAvatarModules()
         .then(([{ createAvatar }, micah]) => setAvatarUrl(createAvatar(micah, {
-          // Random, not name-based.
-          seed: Math.random().toString(36).slice(2, 10),
+          seed,
           size: 288,
           backgroundColor: ["c0aede", "ffd5dc", "b6e3f4", "ffdfbf", "c7f0d8"],
           mouth: ["smile", "laughing", "smirk"],
@@ -324,7 +327,7 @@ const WaitlistPass = () => {
       const res = await fetch("/api/waitlist", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        body: JSON.stringify({ ...data, avatarSeed: seed }),
       });
       if (!res.ok) {
         const body = await res.json().catch(() => null);
